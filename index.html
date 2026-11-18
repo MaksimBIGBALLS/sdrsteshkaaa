@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ПРОТОКОЛ: ДЕНЬ НАРОДЖЕННЯ СТЕШИ</title>
+    <title>бурмалда</title>
     <style>
         :root {
-            --bg-dark: #030712;
-            --bg-panel: rgba(10, 15, 30, 0.94);
-            --blue-main: #00f0ff;
-            --blue-light: #70d6ff;
-            --blue-glow: rgba(0, 240, 255, 0.55);
-            --blue-dim: rgba(0, 240, 255, 0.12);
-            --accent-navy: #1e3a8a;
-            --text-color: #e0f2fe;
-            --pink-heart: #ff2a85;
-            --pink-glow: rgba(255, 42, 133, 0.75);
-            --font-mono: 'Courier New', Courier, 'Lucida Console', monospace;
-            --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --rdr-dark: #0d0a07;
+            --rdr-paper: #211910;
+            --rdr-paper-trans: rgba(29, 23, 16, 0.92);
+            --rdr-gold: #c6a969;
+            --rdr-gold-dim: #806a43;
+            --rdr-red: #721c16;
+            --rdr-orange: #b56f35;
+            --rdr-text: #ede5d2;
+            --rdr-dim: #bdb091;
+            --font-western: 'Georgia', 'Times New Roman', serif;
+            --font-mono: 'Courier New', Courier, monospace;
         }
 
         * {
@@ -31,53 +30,68 @@
         html, body {
             width: 100%;
             height: 100%;
-            background-color: var(--bg-dark);
-            color: var(--text-color);
-            font-family: var(--font-mono);
+            background-color: var(--rdr-dark);
+            color: var(--rdr-text);
+            font-family: var(--font-western);
             overflow: hidden;
             position: relative;
         }
 
-        #matrix-canvas {
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 4;
+            pointer-events: none;
+            opacity: 0.16;
+            background-image:
+                repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,0.018) 3px 4px),
+                repeating-linear-gradient(90deg, transparent 0 5px, rgba(0,0,0,0.08) 5px 6px);
+            mix-blend-mode: overlay;
+        }
+
+        /* Локальне фонове зображення з папки: fonxxx.jpg із фільтром RDR2 */
+        #bg-image-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background-image: url('fonxxx.jpg');
+            background-size: cover;
+            background-position: center;
             z-index: 1;
-            opacity: 0;
-            transition: opacity 1s ease;
             pointer-events: none;
+            filter: sepia(0.55) contrast(1.1) brightness(0.7);
         }
 
-        #matrix-canvas.active {
-            opacity: 0.35;
-        }
-
-        #confetti-canvas {
+        /* Дощ на фоні */
+        #rain-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 25;
+            z-index: 2;
             pointer-events: none;
+            opacity: 0.4;
         }
 
-        .crt-overlay {
+        /* Кінематографічна віньєтка */
+        .rdr-vignette {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                rgba(18, 16, 16, 0) 50%, 
-                rgba(0, 0, 0, 0.4) 50%
-            );
-            background-size: 100% 4px;
-            z-index: 50;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 44%, transparent 34%, rgba(5, 3, 2, 0.62) 72%, rgba(5, 3, 2, 0.96) 100%),
+                linear-gradient(180deg, rgba(198,169,105,.025), transparent 20%, transparent 80%, rgba(0,0,0,.22));
+            z-index: 3;
             pointer-events: none;
-            opacity: 0.6;
+            animation: vignetteBreath 8s ease-in-out infinite;
+        }
+
+        @keyframes vignetteBreath {
+            0%, 100% { filter: brightness(.92); }
+            50% { filter: brightness(1.05); }
         }
 
         #app-wrapper {
@@ -89,6 +103,22 @@
             align-items: center;
             justify-content: center;
         }
+
+        #app-wrapper::before,
+        #app-wrapper::after {
+            content: "";
+            position: fixed;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            z-index: 20;
+            pointer-events: none;
+            background: linear-gradient(90deg, transparent 4%, rgba(198,169,105,.55) 18%, transparent 42%, transparent 58%, rgba(198,169,105,.55) 82%, transparent 96%);
+            box-shadow: 0 0 12px rgba(198,169,105,.18);
+        }
+
+        #app-wrapper::before { top: 18px; }
+        #app-wrapper::after { bottom: 18px; }
 
         .stage {
             position: absolute;
@@ -107,162 +137,157 @@
             opacity: 1;
         }
 
-        .cyber-btn {
-            background: rgba(0, 240, 255, 0.08);
-            color: var(--blue-light);
-            border: 2px solid var(--blue-main);
+        .stage.active::before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border: 1px solid rgba(198,169,105,.12);
+            box-shadow: inset 0 0 50px rgba(0,0,0,.45);
+            pointer-events: none;
+        }
+
+        /* Ретро-кнопки RDR2 */
+        .rdr-btn {
+            background:
+                linear-gradient(180deg, rgba(255,255,255,.035), transparent 35%),
+                linear-gradient(180deg, #392d20 0%, #1a150f 100%);
+            color: var(--rdr-gold);
+            border: 1px solid var(--rdr-gold-dim);
+            outline: 1px solid rgba(198,169,105,.22);
+            outline-offset: 3px;
             padding: 16px 32px;
-            font-family: var(--font-mono);
-            font-size: clamp(1rem, 3vw, 1.25rem);
+            font-family: var(--font-western);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             font-weight: bold;
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
-            border-radius: 6px;
-            box-shadow: 0 0 15px var(--blue-glow), inset 0 0 10px rgba(0, 240, 255, 0.2);
-            transition: all 0.2s ease;
+            border-radius: 1px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.78), inset 0 0 12px rgba(198,169,105,.12);
+            transition: all 0.15s ease;
             position: relative;
-            overflow: hidden;
             text-align: center;
         }
 
-        .cyber-btn:hover {
-            background: var(--blue-main);
-            color: #030712;
-            box-shadow: 0 0 30px var(--blue-main), 0 0 60px var(--blue-glow);
-            transform: translateY(-2px);
+        .rdr-btn:hover {
+            background: linear-gradient(180deg, #423424 0%, #291e14 100%);
+            color: #fff;
+            border-color: var(--rdr-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transform: translateY(-1px);
         }
 
-        .cyber-btn:active {
-            transform: scale(0.96);
+        .rdr-btn:active {
+            transform: scale(0.97);
         }
 
-        #intro-heart-wrap {
+        /* Інтро з годинником */
+        #intro-lamp-wrap {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            animation: heartEntrance 2.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation: lampEntrance 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
-        .pink-heart-svg {
-            width: clamp(130px, 32vw, 210px);
-            height: clamp(130px, 32vw, 210px);
-            fill: var(--pink-heart);
-            filter: drop-shadow(0 0 25px var(--pink-glow)) drop-shadow(0 0 55px rgba(255, 105, 180, 0.65));
-            animation: heartBeat 0.72s ease-in-out infinite;
+        .clock-icon-svg {
+            width: clamp(100px, 25vw, 150px);
+            height: clamp(100px, 25vw, 150px);
+            fill: var(--rdr-gold);
+            filter: drop-shadow(0 0 10px rgba(0,0,0,0.9));
         }
 
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.18); }
-            45% { transform: scale(0.98); }
-            65% { transform: scale(1.12); }
-        }
-
-        @keyframes heartEntrance {
-            0% { opacity: 0; transform: scale(0.3); }
-            20% { opacity: 1; transform: scale(1); }
-            80% { opacity: 1; transform: scale(1); filter: blur(0); }
-            100% { opacity: 0; transform: scale(1.6); filter: blur(8px); }
+        @keyframes lampEntrance {
+            0% { opacity: 0; transform: scale(0.5); filter: blur(8px); }
+            30% { opacity: 1; transform: scale(1); filter: blur(0); }
+            80% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.4); filter: blur(4px); }
         }
 
         #countdown-display {
             display: none;
-            font-size: clamp(7rem, 25vw, 15rem);
+            font-size: clamp(6rem, 22vw, 14rem);
             font-weight: 900;
-            color: var(--blue-main);
-            position: relative;
-            line-height: 1;
-            text-shadow: 0 0 25px var(--blue-glow);
-        }
-
-        .glitch-tick {
-            animation: pulseTick 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            color: var(--rdr-gold);
+            font-family: var(--font-western);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.9);
         }
 
         .screen-shake {
-            animation: screenShake 0.32s cubic-bezier(.36,.07,.19,.97) both;
+            animation: screenShake 0.3s ease both;
         }
 
         @keyframes screenShake {
-            10%, 90% { transform: translate3d(-4px, 2px, 0); }
-            20%, 80% { transform: translate3d(6px, -3px, 0); }
-            30%, 50%, 70% { transform: translate3d(-8px, 4px, 0); }
-            40%, 60% { transform: translate3d(8px, -2px, 0); }
+            10%, 90% { transform: translate3d(-3px, 2px, 0); }
+            20%, 80% { transform: translate3d(5px, -2px, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 3px, 0); }
+            40%, 60% { transform: translate3d(6px, -1px, 0); }
         }
 
-        @keyframes pulseTick {
-            0% { transform: scale(0.4); opacity: 0; filter: blur(8px); }
-            25% { transform: scale(1.15); opacity: 1; filter: blur(0); }
-            80% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0.9); opacity: 0; }
-        }
-
-        .terminal-box {
+        /* Досьє */
+        .rdr-card {
             width: 100%;
             max-width: 720px;
-            background: rgba(10, 15, 30, 0.9);
-            border: 1px solid var(--blue-main);
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
-            border-radius: 10px;
-            padding: 24px;
-            backdrop-filter: blur(4px);
+            background:
+                radial-gradient(circle at 20% 10%, rgba(198,169,105,.06), transparent 28%),
+                var(--rdr-paper-trans);
+            border: 1px solid var(--rdr-gold-dim);
+            outline: 1px solid rgba(198,169,105,.16);
+            outline-offset: 6px;
+            box-shadow: 0 18px 55px rgba(0,0,0,0.94), inset 0 0 38px rgba(0,0,0,.58);
+            border-radius: 2px;
+            padding: 28px;
         }
 
-        .terminal-header {
+        .rdr-header {
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
             margin-bottom: 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--blue-dim);
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--rdr-gold-dim);
             font-size: 0.85rem;
-            color: var(--blue-light);
+            color: var(--rdr-gold);
+            font-family: var(--font-mono);
+            letter-spacing: 1px;
         }
 
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--blue-main);
-            box-shadow: 0 0 8px var(--blue-main);
-        }
-
-        .terminal-lines {
+        .rdr-lines {
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 12px;
             font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-            line-height: 1.5;
-            min-height: 180px;
+            line-height: 1.6;
+            min-height: 160px;
+            font-family: var(--font-western);
         }
 
-        .term-line {
-            color: var(--blue-light);
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
-            word-break: break-word;
+        .rdr-line {
+            color: var(--rdr-text);
         }
 
-        .term-line.error-line {
-            color: #38bdf8;
-            font-weight: bold;
-            text-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
-            margin-top: 8px;
-            padding: 10px;
-            border-left: 3px solid #38bdf8;
-            background: rgba(56, 189, 248, 0.1);
+        .rdr-line.alert-line {
+            color: #ffb84d;
+            border-left: 3px solid var(--rdr-orange);
+            padding-left: 10px;
+            background: rgba(200, 100, 0, 0.12);
+            margin-top: 4px;
         }
 
+        /* Ігрові панелі */
         .game-panel {
             width: 100%;
             max-width: 760px;
             height: 82vh;
             max-height: 620px;
-            background: rgba(10, 15, 30, 0.92);
-            border: 1px solid var(--blue-main);
-            border-radius: 12px;
-            box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+            background:
+                radial-gradient(circle at 50% 0%, rgba(198,169,105,.07), transparent 32%),
+                var(--rdr-paper-trans);
+            border: 1px solid var(--rdr-gold-dim);
+            outline: 1px solid rgba(198,169,105,.14);
+            outline-offset: 5px;
+            border-radius: 2px;
+            box-shadow: 0 22px 65px rgba(0,0,0,0.94);
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -271,8 +296,8 @@
 
         .game-header {
             padding: 16px 20px;
-            background: rgba(0, 240, 255, 0.08);
-            border-bottom: 1px solid var(--blue-dim);
+            background: rgba(30, 24, 18, 0.95);
+            border-bottom: 2px solid var(--rdr-gold-dim);
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -283,26 +308,31 @@
 
         .game-title {
             font-size: clamp(1rem, 2.8vw, 1.2rem);
-            color: var(--blue-main);
+            color: var(--rdr-gold);
             font-weight: bold;
+            font-family: var(--font-western);
+            letter-spacing: 1px;
         }
 
         .game-badge {
-            background: var(--blue-main);
-            color: #030712;
+            background: #2a2117;
+            color: var(--rdr-gold);
+            border: 1px solid var(--rdr-gold-dim);
             padding: 4px 12px;
-            border-radius: 20px;
+            border-radius: 2px;
             font-weight: bold;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            font-family: var(--font-mono);
         }
 
         .game-desc {
-            padding: 10px 20px;
-            font-size: 0.9rem;
-            color: var(--blue-light);
-            background: rgba(3, 7, 18, 0.5);
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            color: var(--rdr-dim);
+            background: rgba(15, 12, 9, 0.85);
             text-align: center;
             z-index: 5;
+            font-family: var(--font-western);
         }
 
         #arena-age {
@@ -314,17 +344,18 @@
             cursor: crosshair;
         }
 
-        .floating-num {
+        .floating-evidence {
             position: absolute;
             padding: 10px 16px;
-            border-radius: 8px;
-            border: 1.5px solid var(--blue-main);
-            background: rgba(10, 15, 30, 0.92);
-            color: var(--blue-light);
-            font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+            border-radius: 2px;
+            border: 2px solid var(--rdr-gold-dim);
+            background: rgba(28, 21, 14, 0.95);
+            color: var(--rdr-gold);
+            font-size: clamp(1.2rem, 3.5vw, 1.5rem);
             font-weight: bold;
+            font-family: var(--font-mono);
             cursor: pointer;
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
             transition: transform 0.1s, background 0.15s;
             display: flex;
             align-items: center;
@@ -333,36 +364,32 @@
             min-height: 48px;
         }
 
-        .floating-num:hover {
-            background: rgba(0, 240, 255, 0.2);
-            box-shadow: 0 0 20px var(--blue-main);
-        }
-
-        .floating-num:active {
-            transform: scale(0.85);
+        .floating-evidence:hover {
+            background: var(--rdr-gold);
+            color: #120e0a;
+            border-color: #fff;
         }
 
         .toast-msg {
             position: absolute;
             transform: translate(-50%, -100%);
-            background: #030712;
-            border: 1px solid var(--blue-light);
-            color: #fff;
+            background: #1c150e;
+            border: 1.5px solid var(--rdr-orange);
+            color: var(--rdr-orange);
             padding: 6px 12px;
-            border-radius: 6px;
+            border-radius: 2px;
             font-size: 0.85rem;
+            font-family: var(--font-mono);
             white-space: nowrap;
             pointer-events: none;
             z-index: 20;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.9);
             animation: floatUpFade 1.3s ease-out forwards;
         }
 
         .toast-msg.success {
-            border-color: #38bdf8;
-            color: #38bdf8;
-            font-weight: bold;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+            border-color: var(--rdr-gold);
+            color: var(--rdr-gold);
         }
 
         @keyframes floatUpFade {
@@ -371,11 +398,11 @@
             100% { opacity: 0; transform: translate(-50%, -160%) scale(1); }
         }
 
+        /* Пасхалка */
         #easter-egg-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(3, 7, 18, 0.92);
-            backdrop-filter: blur(6px);
+            background: rgba(10, 7, 5, 0.92);
             z-index: 90;
             display: none;
             flex-direction: column;
@@ -383,53 +410,45 @@
             justify-content: center;
             padding: 20px;
             cursor: pointer;
-            animation: glitchFlashBg 0.35s ease;
         }
 
         #easter-egg-overlay.active {
             display: flex;
         }
 
-        @keyframes glitchFlashBg {
-            0% { background: rgba(0, 240, 255, 0.4); }
-            30% { background: rgba(30, 58, 138, 0.5); }
-            100% { background: rgba(3, 7, 18, 0.92); }
-        }
-
         .easter-egg-box {
             max-width: 90vw;
             max-height: 85vh;
-            background: rgba(10, 15, 30, 0.95);
-            border: 2px solid var(--blue-main);
-            box-shadow: 0 0 35px var(--blue-main), -4px 0 0 #0284c7, 4px 0 0 #38bdf8;
-            border-radius: 12px;
-            padding: 16px;
+            background: var(--rdr-paper);
+            border: 3px double var(--rdr-orange);
+            box-shadow: 0 0 40px rgba(200, 100, 0, 0.4);
+            border-radius: 4px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             text-align: center;
-            animation: cardAppear 0.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         .easter-egg-alert {
-            color: #38bdf8;
+            color: var(--rdr-orange);
             font-weight: bold;
-            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-family: var(--font-western);
             letter-spacing: 1px;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
         }
 
         .easter-egg-img {
             max-width: 100%;
             max-height: 55vh;
-            border-radius: 8px;
-            border: 1px solid var(--blue-light);
+            border-radius: 2px;
+            border: 1px solid var(--rdr-gold-dim);
             object-fit: contain;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
 
-        #arena-charisma {
+        /* Шкала розслідування */
+        #arena-investigation {
             flex: 1;
             position: relative;
             display: flex;
@@ -440,7 +459,7 @@
             overflow: hidden;
         }
 
-        .charisma-meter-wrap {
+        .investigation-meter-wrap {
             width: 100%;
             max-width: 480px;
             display: flex;
@@ -449,30 +468,29 @@
             z-index: 5;
         }
 
-        .charisma-label {
+        .investigation-label {
             display: flex;
             justify-content: space-between;
             font-size: 0.95rem;
-            color: var(--blue-light);
+            color: var(--rdr-dim);
+            font-family: var(--font-mono);
         }
 
         .progress-track {
             width: 100%;
-            height: 26px;
-            background: rgba(3, 7, 18, 0.8);
-            border: 1.5px solid var(--blue-main);
-            border-radius: 13px;
-            padding: 3px;
+            height: 22px;
+            background: #120e0a;
+            border: 2px solid var(--rdr-gold-dim);
+            border-radius: 2px;
+            padding: 2px;
             overflow: hidden;
-            box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.3);
         }
 
         .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #00f0ff, #38bdf8, #1e3a8a);
-            border-radius: 10px;
-            box-shadow: 0 0 15px var(--blue-main);
+            background: linear-gradient(90deg, #997a26, var(--rdr-gold), var(--rdr-orange));
+            border-radius: 1px;
             transition: width 0.08s linear;
         }
 
@@ -483,7 +501,7 @@
             margin-top: 15px;
         }
 
-        #charisma-btn {
+        #investigate-btn {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -491,28 +509,24 @@
             padding: 14px 24px;
             font-size: 1rem;
             white-space: nowrap;
-            transition: top 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), left 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @keyframes cardAppear {
-            0% { opacity: 0; transform: scale(0.85) translateY(20px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
+            transition: top 0.22s ease, left 0.22s ease;
         }
 
         .access-badge {
             display: inline-block;
             padding: 6px 16px;
-            border: 1px solid var(--blue-main);
-            color: var(--blue-main);
-            background: rgba(0, 240, 255, 0.08);
-            border-radius: 20px;
+            border: 1px solid var(--rdr-gold-dim);
+            color: var(--rdr-gold);
+            background: rgba(30, 24, 18, 0.8);
+            border-radius: 2px;
             font-size: 0.85rem;
+            font-family: var(--font-mono);
             letter-spacing: 2px;
             text-transform: uppercase;
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
         }
 
-        .holo-capsule-container {
+        /* Факс-повідомлення */
+        .letter-container {
             width: 100%;
             max-width: 650px;
             display: flex;
@@ -522,61 +536,177 @@
             animation: cardAppear 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
-        .holo-card {
+        @keyframes cardAppear {
+            0% { opacity: 0; transform: scale(0.9) translateY(15px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .letter-card {
             width: 100%;
-            background: rgba(10, 15, 30, 0.95);
-            border: 2px solid var(--blue-main);
-            border-radius: 16px;
+            background: var(--rdr-paper-trans);
+            border: 3px double var(--rdr-gold-dim);
+            border-radius: 4px;
             padding: 30px;
-            box-shadow: 0 0 45px rgba(0, 240, 255, 0.35), inset 0 0 25px rgba(0, 240, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9), inset 0 0 35px rgba(0,0,0,0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 18px;
             text-align: center;
             position: relative;
+        }
+
+        .fax-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            color: var(--rdr-gold);
+            font: 0.75rem var(--font-mono);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .fax-status-light {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-right: 7px;
+            border-radius: 50%;
+            background: #8d5b35;
+            box-shadow: 0 0 10px rgba(181,111,53,.6);
+            animation: faxSignal 1s ease-in-out infinite alternate;
+        }
+
+        .fax-machine {
+            width: 100%;
+            max-width: 600px;
+            padding: 14px 14px 10px;
+            background: linear-gradient(145deg, #33271b, #17120d 70%);
+            border: 1px solid var(--rdr-gold-dim);
+            border-top: 4px solid #55432c;
+            box-shadow: inset 0 0 18px rgba(0,0,0,.7), 0 12px 30px rgba(0,0,0,.45);
+        }
+
+        .fax-control-panel {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 42px;
+            padding: 0 10px 10px;
+            color: var(--rdr-dim);
+            font: 0.7rem var(--font-mono);
+            letter-spacing: 1px;
+        }
+
+        .fax-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .fax-controls span {
+            width: 9px;
+            height: 9px;
+            border: 1px solid #806a43;
+            border-radius: 50%;
+            background: #211910;
+        }
+
+        .fax-feed-slot {
+            height: 8px;
+            background: #080706;
+            border: 1px solid #0b0907;
+            box-shadow: inset 0 2px 4px #000;
+        }
+
+        .fax-paper-window {
+            --fax-paper-height: clamp(230px, 52vh, 420px);
+            width: min(100%, 560px);
+            height: 0;
+            margin: 0 auto;
             overflow: hidden;
+            animation: faxOutputOpen 2.8s cubic-bezier(.2,.7,.25,1) .45s forwards;
         }
 
-        .holo-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, rgba(0,240,255,0.05) 0%, transparent 50%);
-            pointer-events: none;
+        .fax-paper {
+            min-height: var(--fax-paper-height);
+            padding: clamp(10px, 2.5vw, 18px);
+            color: #2c241a;
+            background:
+                repeating-linear-gradient(0deg, rgba(91,70,42,.035) 0 1px, transparent 1px 4px),
+                #d9cba9;
+            box-shadow: 0 4px 12px rgba(0,0,0,.35);
         }
 
-        .holo-text {
-            font-size: clamp(1.1rem, 3.2vw, 1.4rem);
-            color: #fff;
-            line-height: 1.6;
-            text-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
-            font-family: var(--font-mono);
+        .fax-paper-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px dashed rgba(44,36,26,.42);
+            font: 0.62rem var(--font-mono);
+            letter-spacing: .5px;
         }
 
+        .fax-paper img {
+            display: block;
+            width: 100%;
+            max-height: min(320px, 36vh);
+            margin: 0 auto;
+            object-fit: contain;
+            filter: sepia(.12) contrast(.96);
+        }
+
+        .fax-paper-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 9px;
+            color: rgba(44,36,26,.72);
+            font: 0.6rem var(--font-mono);
+            letter-spacing: .7px;
+        }
+
+        .fax-tray {
+            height: 12px;
+            margin: 0 -7px;
+            border-top: 1px solid #6c5536;
+            background: linear-gradient(#2c2117, #17120d);
+        }
+
+        @keyframes faxOutputOpen {
+            to { height: var(--fax-paper-height); }
+        }
+
+        @keyframes faxSignal {
+            from { opacity: .35; }
+            to { opacity: 1; }
+        }
+
+        /* Міні-гра зі стаканами */
         .shell-game-panel {
             width: 100%;
             max-width: 760px;
             min-height: 440px;
-            background: rgba(10, 15, 30, 0.94);
-            border: 1px solid var(--blue-main);
-            border-radius: 14px;
-            box-shadow: 0 0 35px rgba(0, 240, 255, 0.25);
+            background: var(--rdr-paper-trans);
+            border: 3px double var(--rdr-gold-dim);
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
             padding: 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
             gap: 20px;
-            backdrop-filter: blur(6px);
         }
 
         .shell-status-text {
-            font-size: clamp(1rem, 2.8vw, 1.25rem);
-            color: var(--blue-light);
+            font-size: clamp(1rem, 2.8vw, 1.2rem);
+            color: var(--rdr-dim);
             text-align: center;
             min-height: 1.6em;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+            font-family: var(--font-mono);
         }
 
         .cups-stage {
@@ -600,71 +730,67 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-end;
-            transition: left 0.45s cubic-bezier(0.34, 1.25, 0.64, 1);
-            cursor: default;
+            transition: left 0.65s cubic-bezier(0.34, 1.25, 0.64, 1);
         }
 
         .cup-slot.clickable {
             cursor: pointer;
         }
 
-        .cup-slot.clickable:hover .cyber-cup {
-            filter: drop-shadow(0 0 18px #38bdf8);
-            border-color: #38bdf8;
+        .cup-slot.clickable:hover .noir-cup {
+            border-color: var(--rdr-gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
 
         .prize-item {
             position: absolute;
             bottom: 8px;
-            width: 72px;
-            height: 72px;
+            width: 64px;
+            height: 64px;
             object-fit: contain;
             z-index: 1;
-            filter: drop-shadow(0 0 12px var(--blue-main));
+            filter: drop-shadow(0 0 10px var(--rdr-gold));
             pointer-events: none;
-            transition: opacity 0.15s ease;
         }
 
-        .cyber-cup {
+        .noir-cup {
             position: relative;
             z-index: 3;
             width: 100%;
-            height: 142px;
-            opacity: 1;
-            background: linear-gradient(180deg, #1e3a8a 0%, #0f172a 52%, #030712 100%);
-            border: 3px solid #00f0ff;
-            border-top: 6px solid #70d6ff;
-            border-radius: 18px 18px 8px 8px;
-            box-shadow: 0 10px 25px #000000, inset 0 0 18px #1d4ed8;
+            height: 140px;
+            background: linear-gradient(180deg, #2b2218 0%, #17120d 100%);
+            border: 2px solid var(--rdr-gold-dim);
+            border-top: 4px solid var(--rdr-gold);
+            border-radius: 4px 4px 2px 2px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.9);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s, filter 0.2s;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s;
             transform: translateY(0);
         }
 
-        .cyber-cup.lifted {
-            transform: translateY(-92px);
+        .noir-cup.lifted {
+            transform: translateY(-90px);
         }
 
         .cup-stripe {
-            width: 65%;
-            height: 3px;
-            background: #00f0ff;
-            box-shadow: 0 0 8px #00f0ff;
-            border-radius: 2px;
+            width: 60%;
+            height: 2px;
+            background: var(--rdr-gold-dim);
+            border-radius: 1px;
         }
 
         .fail-box {
             width: 100%;
             max-width: 520px;
-            background: rgba(10, 15, 30, 0.96);
-            border: 2px solid #38bdf8;
-            border-radius: 14px;
+            background: var(--rdr-paper-trans);
+            border: 3px double var(--rdr-orange);
+            border-radius: 4px;
             padding: 24px;
-            box-shadow: 0 0 40px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -675,181 +801,160 @@
 
         .fail-img {
             max-width: 100%;
-            max-height: 260px;
-            border-radius: 10px;
-            border: 1.5px solid var(--blue-main);
+            max-height: 240px;
+            border-radius: 2px;
+            border: 1px solid var(--rdr-gold-dim);
             object-fit: contain;
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
         }
 
-        .tg-phone-mockup {
+        .mail-delivery-scene {
+            position: relative;
+            width: min(90vw, 700px);
+            height: min(68vh, 440px);
+            min-height: 300px;
+            overflow: hidden;
+            border: 1px solid var(--rdr-gold-dim);
+            background:
+                radial-gradient(ellipse at 50% 70%, rgba(122,83,47,.23), transparent 52%),
+                linear-gradient(180deg, rgba(15,13,11,.96), rgba(31,23,16,.95));
+            box-shadow: 0 20px 60px rgba(0,0,0,.8), inset 0 0 45px rgba(0,0,0,.6);
+            animation: cardAppear .5s ease both;
+        }
+
+        .mail-delivery-heading {
+            position: absolute;
+            top: 24px;
+            left: 16px;
+            right: 16px;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            text-align: center;
+        }
+
+        .mail-delivery-heading span {
+            color: var(--rdr-gold-dim);
+            font: .7rem var(--font-mono);
+            letter-spacing: 2px;
+        }
+
+        .mail-delivery-heading strong {
+            color: var(--rdr-text);
+            font: clamp(1rem, 3vw, 1.35rem) var(--font-western);
+            letter-spacing: .5px;
+        }
+
+        .mail-flight-trail {
+            position: absolute;
+            top: 57%;
+            left: 12%;
+            width: 76%;
+            border-top: 1px dashed rgba(198,169,105,.24);
+            transform: rotate(-10deg);
+        }
+
+        .courier-pigeon {
+            position: absolute;
+            z-index: 1;
+            top: 42%;
+            left: -26%;
+            width: clamp(145px, 30vw, 210px);
+            animation: pigeonCourierFlight 4.2s cubic-bezier(.35,.03,.62,.97) forwards;
+        }
+
+        .courier-pigeon svg {
+            display: block;
             width: 100%;
-            max-width: 380px;
-            height: 600px;
-            background: #0e1621;
-            border: 3px solid #2aabee;
-            border-radius: 36px;
-            box-shadow: 0 0 60px rgba(42, 171, 238, 0.6), inset 0 0 25px rgba(0, 0, 0, 0.8);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-            animation: phoneZoomIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            overflow: visible;
+            filter: drop-shadow(0 8px 8px rgba(0,0,0,.55));
         }
 
-        @keyframes phoneZoomIn {
-            0% { transform: scale(0.6); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+        .pigeon-wing {
+            transform-box: fill-box;
+            transform-origin: 50% 75%;
+            animation: pigeonWingFlap .22s ease-in-out infinite alternate;
         }
 
-        .phone-notch {
+        .pigeon-letter {
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 130px;
-            height: 22px;
-            background: #242f3d;
-            border-radius: 0 0 14px 14px;
-            z-index: 25;
+            right: 12%;
+            bottom: 0;
+            width: 30px;
+            height: 23px;
+            border: 1px solid #806a43;
+            background: #d3c09a;
+            color: #302315;
+            font: bold 15px/21px var(--font-western);
+            text-align: center;
+            box-shadow: 0 3px 7px rgba(0,0,0,.5);
+            transform: rotate(9deg);
+            animation: letterFlutter .28s ease-in-out infinite alternate;
         }
 
-        .phone-header {
-            background: #17212b;
-            padding: 30px 18px 14px 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #fff;
-            font-family: var(--font-sans);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            z-index: 5;
-        }
-
-        .phone-avatar {
-            width: 42px;
-            height: 42px;
-            background: linear-gradient(135deg, #2aabee, #229ed9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: 0 0 12px rgba(42,171,238,0.5);
-        }
-
-        .phone-chat-body {
-            flex: 1;
-            background: #0e1621 radial-gradient(circle at center, #17212b 0%, #0e1621 100%);
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            gap: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .tg-bubble {
-            background: #182533;
-            color: #fff;
-            padding: 10px 14px;
-            border-radius: 12px 12px 12px 2px;
-            max-width: 85%;
-            min-height: 38px;
-            min-width: 140px;
-            align-self: flex-start;
-            font-family: var(--font-sans);
-            font-size: 0.88rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 4px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: bubbleAppear 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-
-        .tg-bubble.outgoing {
-            background: #2b5278;
-            border-radius: 12px 12px 2px 12px;
-            align-self: flex-end;
-        }
-
-        @keyframes bubbleAppear {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .tg-gift-preview {
-            background: rgba(42, 171, 238, 0.12);
-            border: 1.5px solid #2aabee;
-            border-radius: 10px;
-            padding: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .flying-neon-gift {
+        .mail-delivery-caption {
             position: absolute;
-            bottom: -90px;
-            right: 30px;
-            width: 72px;
-            height: 72px;
-            z-index: 30;
-            filter: drop-shadow(0 0 20px var(--blue-main)) drop-shadow(0 0 40px #2aabee);
-            animation: epicFlyToChat 1.5s cubic-bezier(0.15, 0.85, 0.35, 1.15) forwards;
+            right: 12px;
+            bottom: 20px;
+            left: 12px;
+            color: var(--rdr-dim);
+            font: .72rem var(--font-mono);
+            letter-spacing: 1px;
+            text-align: center;
         }
 
-        @keyframes epicFlyToChat {
-            0% {
-                bottom: -90px;
-                right: 30px;
-                transform: scale(1.6) rotate(-45deg);
-                opacity: 0;
-            }
-            30% {
-                opacity: 1;
-            }
-            75% {
-                transform: scale(0.9) rotate(380deg);
-            }
-            100% {
-                bottom: 45%;
-                right: 30%;
-                transform: scale(0.2) rotate(720deg);
-                opacity: 0;
-            }
+        @keyframes pigeonCourierFlight {
+            0% { left: -26%; top: 58%; transform: rotate(-10deg) scale(.8); opacity: 0; }
+            12% { opacity: 1; }
+            45% { top: 31%; transform: rotate(2deg) scale(1); }
+            100% { left: 106%; top: 20%; transform: rotate(9deg) scale(.82); opacity: .25; }
         }
 
+        @keyframes pigeonWingFlap {
+            from { transform: rotate(-24deg); }
+            to { transform: rotate(22deg); }
+        }
+
+        @keyframes letterFlutter {
+            from { transform: rotate(6deg) translateY(0); }
+            to { transform: rotate(13deg) translateY(3px); }
+        }
+
+        @media (max-width: 480px) {
+            #stage-4 { padding: 12px; }
+            #stage-4 .letter-card { padding: 12px; }
+            #stage-4 .fax-machine { padding: 8px 8px 6px; }
+            #stage-4 .fax-paper { padding: 8px; }
+            .fax-control-panel { min-height: 34px; }
+            .fax-paper-window { --fax-paper-height: clamp(200px, 38vh, 300px); }
+            .fax-paper img { max-height: min(260px, 36vh); }
+            .mail-delivery-scene { min-height: 270px; }
+        }
+
+        /* Заглушка / Таймер */
         .offline-card {
             width: 100%;
             max-width: 780px;
-            background: rgba(10, 15, 30, 0.95);
-            border: 2px solid var(--blue-main);
-            border-radius: 16px;
-            padding: clamp(24px, 5vw, 44px);
-            box-shadow: 0 0 45px rgba(0, 240, 255, 0.4), inset 0 0 25px rgba(0, 240, 255, 0.12);
+            background: var(--rdr-paper-trans);
+            border: 3px double var(--rdr-gold-dim);
+            border-radius: 4px;
+            padding: clamp(24px, 5vw, 40px);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.9);
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 24px;
-            backdrop-filter: blur(8px);
+            gap: 22px;
             animation: cardAppear 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         .offline-title {
-            font-size: clamp(1.7rem, 5.5vw, 3.1rem);
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             font-weight: 900;
             color: #fff;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             line-height: 1.2;
-            text-shadow:
-                -3px 0 0 #0284c7,
-                3px 0 0 var(--blue-main),
-                0 0 25px var(--blue-glow);
+            font-family: var(--font-western);
         }
 
         .countdown-grid {
@@ -857,15 +962,15 @@
             grid-template-columns: repeat(4, 1fr);
             gap: clamp(8px, 2vw, 16px);
             width: 100%;
-            max-width: 620px;
+            max-width: 600px;
         }
 
         .time-unit {
-            background: rgba(0, 240, 255, 0.06);
-            border: 1.5px solid var(--blue-main);
-            border-radius: 12px;
-            padding: clamp(12px, 3vw, 20px) 8px;
-            box-shadow: 0 0 18px rgba(0, 240, 255, 0.2);
+            background: #1c150e;
+            border: 2px solid var(--rdr-gold-dim);
+            border-radius: 2px;
+            padding: clamp(12px, 3vw, 18px) 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.8);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -873,24 +978,18 @@
         }
 
         .time-num {
-            font-size: clamp(1.6rem, 5vw, 2.8rem);
+            font-size: clamp(1.5rem, 4.5vw, 2.6rem);
             font-weight: 900;
-            color: var(--blue-light);
-            text-shadow: 0 0 12px var(--blue-main);
+            color: var(--rdr-gold);
+            font-family: var(--font-mono);
             line-height: 1;
         }
 
         .time-lbl {
-            font-size: clamp(0.7rem, 2vw, 0.85rem);
-            color: #38bdf8;
-            letter-spacing: 1px;
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
+            color: var(--rdr-dim);
             text-transform: uppercase;
-        }
-
-        .target-date-note {
-            font-size: 0.9rem;
-            color: rgba(112, 214, 255, 0.75);
-            letter-spacing: 1px;
+            font-family: var(--font-mono);
         }
 
         @media (max-width: 480px) {
@@ -901,220 +1000,254 @@
     </style>
 </head>
 <body>
-    <audio id="game-audio" src="1115.MP3" preload="auto"></audio>
+    <audio id="background-music" src="zvuk1.mp3" preload="metadata" loop></audio>
+    <audio id="shuffle-track-audio" src="1115.MP3" preload="auto" loop></audio>
 
-    <canvas id="matrix-canvas"></canvas>
-    <canvas id="confetti-canvas"></canvas>
-    <div class="crt-overlay"></div>
+    <div id="bg-image-container"></div>
+    <div class="rdr-vignette"></div>
+    <canvas id="rain-canvas"></canvas>
 
     <main id="app-wrapper">
 
+        <!-- Етап 1: Інтро -->
         <section id="stage-1" class="stage active">
-            <div id="intro-heart-wrap">
-                <svg class="pink-heart-svg" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            <div id="intro-lamp-wrap">
+                <svg class="clock-icon-svg" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12.5,7H11V13L16.25,16.15L17,14.92L12.5,12.25V7Z"/>
                 </svg>
             </div>
             <div id="countdown-display" data-num="3">3</div>
         </section>
 
+        <!-- Етап 2: Завантаження досьє -->
         <section id="stage-2" class="stage">
-            <div class="terminal-box">
-                <div class="terminal-header">
-                    <span class="dot"></span>
-                    <span class="dot" style="opacity: 0.6;"></span>
-                    <span class="dot" style="opacity: 0.3;"></span>
-                    <span>ROOT@BIRTHDAY-OS:~# ./init_burmalda.sh</span>
+            <div class="rdr-card">
+                <div class="rdr-header">
+                    <span>СЕКРЕТНИЙ АРХІВ // ДОСЬЄ №18</span>
+                    <span>[СТАТУС: КОНФІДЕНЦІЙНО]</span>
                 </div>
-                <div id="terminal-output" class="terminal-lines"></div>
+                <div id="dossier-output" class="rdr-lines"></div>
             </div>
         </section>
 
+        <!-- Етап: Введення віку -->
         <section id="stage-age-input" class="stage">
-            <div class="settings-card" style="background: var(--bg-panel); border: 1px solid var(--blue-main); box-shadow: 0 0 30px rgba(0, 240, 255, 0.35); border-radius: 12px; padding: 22px; width: 100%; max-width: 480px; text-align: center; display: flex; flex-direction: column; gap: 14px;">
-                <h2 style="color: var(--blue-main); font-size: 1.1rem; letter-spacing: 1px;">// НАПІШІ СКОК ЛЄТА, ПУШТА Я НЄ ШАРЮ</h2>
+            <div class="rdr-card" style="max-width: 460px; text-align: center; display: flex; flex-direction: column; gap: 16px;">
+                <h2 style="color: var(--rdr-gold); font-size: 1.2rem; font-family: var(--font-western);">// ПРОВІРКА ДОКУМЕНТІВ НА ВОКЗАЛІ</h2>
                 <div style="display: flex; justify-content: center;">
-                    <img src="https://i.pinimg.com/736x/83/c5/a1/83c5a1b8059db3fb0311def5097fe5e6.jpg" alt="Мем" style="max-width: 140px; max-height: 120px; border-radius: 8px; border: 1px solid var(--blue-main); object-fit: cover; box-shadow: 0 0 15px rgba(0,240,255,0.3);">
+                    <img src="https://i.pinimg.com/736x/83/c5/a1/83c5a1b8059db3fb0311def5097fe5e6.jpg" alt="Архівне фото" style="max-width: 130px; max-height: 110px; border-radius: 2px; border: 2px solid var(--rdr-gold-dim); object-fit: cover;">
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
-                    <label for="input-custom-age" style="font-size: 0.85rem; color: var(--blue-light);">Свій реальний вік:</label>
-                    <input type="number" id="input-custom-age" min="0" max="150" value="0" style="background: rgba(3, 7, 18, 0.75); border: 1px solid rgba(0, 240, 255, 0.5); color: #fff; padding: 10px 12px; border-radius: 6px; font-family: var(--font-mono); font-size: 1.2rem; text-align: center; outline: none;">
+                    <label for="input-custom-age" style="font-size: 0.85rem; color: var(--rdr-dim); font-family: var(--font-mono);">Справжній вік підозрюваного:</label>
+                    <input type="number" id="input-custom-age" min="0" max="150" value="0" style="background: #120e0a; border: 2px solid var(--rdr-gold-dim); color: #fff; padding: 10px; border-radius: 2px; font-family: var(--font-mono); font-size: 1.2rem; text-align: center; outline: none;">
                 </div>
-                <div id="age-error-msg" style="color: #ff2a85; font-size: 0.9rem; font-weight: bold; min-height: 1.2em;"></div>
-                <button id="submit-age-btn" class="cyber-btn" style="width: 100%;">
-                    ГАААЗЗУУУУ
+                <div id="age-error-msg" style="color: var(--rdr-orange); font-size: 0.88rem; font-weight: bold; min-height: 1.2em; font-family: var(--font-mono);"></div>
+                <button id="submit-age-btn" class="rdr-btn" style="width: 100%;">
+                    Підтвердити показання
                 </button>
             </div>
         </section>
 
+        <!-- Етап 3.1: Пошук вуликів -->
         <section id="stage-3-1" class="stage">
             <div class="game-panel">
                 <div class="game-header">
-                    <span class="game-title">Провірка 1/2: «Зхопи свій вік»</span>
-                    <span id="age-counter" class="game-badge">Зхоплено: 0 / 3</span>
+                    <span class="game-title">РОЗШУК 1/2: «Знайди вік серед папірців»</span>
+                    <span id="age-counter" class="game-badge">Знайдено: 0 / 3</span>
                 </div>
                 <div class="game-desc">
-                    Система сумнівається, шо ти це ти. Клікни по своєму новому віку (<strong id="target-age-hint" style="color: #fff;">18</strong>) рівно 3 рази!
+                    Офіцер сумнівається у ваших даних. Знайдіть і вилучіть уліку з вашим новим віком (<strong id="target-age-hint" style="color: #fff;">18</strong>) рівно 3 рази!
                 </div>
                 <div id="arena-age"></div>
             </div>
         </section>
 
-        <div id="easter-egg-overlay" title="Клікні, шоби закрити">
+        <!-- Пасхалка -->
+        <div id="easter-egg-overlay">
             <div class="easter-egg-box">
-                <div class="easter-egg-alert">⚠ ЗНАЙДЕНО ПАСХАЛКУ // БІДА В СИСТЕМІ ⚠</div>
-                <img id="easter-egg-img" class="easter-egg-img" src="https://images.glavred.info/2020_09/1600248548-1833.jpg?r=48328" alt="Пасхалка 1488">
-                <button id="close-easter-egg-btn" class="cyber-btn btn-small">Вернутися до пошуку [X]</button>
+                <div class="easter-egg-alert">⚠ ЗНАЙДЕНО ПОБОЧНУ УЛІКУ // ЗРИВ ОПЕРАЦІЇ ⚠</div>
+                <img id="easter-egg-img" class="easter-egg-img" src="https://images.glavred.info/2020_09/1600248548-1833.jpg?r=48328" alt="Улика">
+                <button id="close-easter-egg-btn" class="rdr-btn" style="font-size: 0.9rem; padding: 10px 20px;">Повернутися до пошуку [X]</button>
             </div>
         </div>
 
+        <!-- Етап 3.2: Шкала тиску -->
         <section id="stage-3-2" class="stage">
             <div class="game-panel">
                 <div class="game-header">
-                    <span class="game-title">Провірка 2/2: «Заряд бурмалди»</span>
-                    <span id="charisma-status" class="game-badge">НЕСТАБІЛЬНО</span>
+                    <span class="game-title">РОЗШУК 2/2: «Тиск на допиті»</span>
+                    <span id="investigation-status" class="game-badge">НЕСТАБІЛЬНО</span>
                 </div>
                 <div class="game-desc">
-                    Концентрація бурмалди зашкалює! Швидко тикай по кнопці підзарядки, поки шкала не впала до нуля.
+                    Офіцер Андрюшка Бурім підозрює вас! Швидко натискай кнопку "Обурмалдіть 💓".
                 </div>
-                <div id="arena-charisma">
-                    <div class="charisma-meter-wrap">
-                        <div class="charisma-label">
-                            <span>Заряд бурмалди:</span>
-                            <span id="charisma-percent">0%</span>
+                <div id="arena-investigation">
+                    <div class="investigation-meter-wrap">
+                        <div class="investigation-label">
+                            <span>Рівень довіри:</span>
+                            <span id="investigation-percent">0%</span>
                         </div>
                         <div class="progress-track">
-                            <div id="charisma-bar" class="progress-fill"></div>
+                            <div id="investigation-bar" class="progress-fill"></div>
                         </div>
                     </div>
                     <div id="evasive-area">
-                        <button id="charisma-btn" class="cyber-btn">💖 Обурмалдить +18%</button>
+                        <button id="investigate-btn" class="rdr-btn">Обурмалдіть 💓</button>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Етап 4: Факс-повідомлення -->
         <section id="stage-4" class="stage">
-            <div class="holo-capsule-container">
-                <div class="access-badge">● Голографічний архів // Успішно розшифровано</div>
-                <div class="holo-card">
-                    <h1 style="font-size: clamp(1.5rem, 4vw, 2.2rem); color: #d4af37; font-family: var(--font-mono);">З др Стешка</h1>
-                    <p class="holo-text" id="envelope-letter-text">
-                        Поздравляю тя с днём наступления полной уголовной ответственности, желаю мотивации и ипровизации и всего хорошего, шоколада горячего и чо там еще.
-                    </p>
+            <div class="letter-container">
+                <div class="access-badge">● ВИ ПІДСТРЕЛИЛИ ОФІЦЕРА, СПРАВА ВИКРАДЕНА // Розшифровано успішно</div>
+                <div class="letter-card">
+                    <div class="fax-status">
+                        <span>Вхідне факс-повідомлення</span>
+                        <span><i class="fax-status-light"></i>Сигнал прийнято</span>
+                    </div>
+                    <div class="fax-machine" role="status" aria-live="polite">
+                        <div class="fax-control-panel">
+                            <span>WESTERN UNION // ЛІНІЯ 04</span>
+                            <span class="fax-controls" aria-hidden="true"><span></span><span></span><span></span></span>
+                        </div>
+                        <div class="fax-feed-slot" aria-hidden="true"></div>
+                        <div class="fax-paper-window">
+                            <article class="fax-paper">
+                                <div class="fax-paper-meta">
+                                    <span>ОТРИМАНО: 21:11</span>
+                                    <span>АРХІВ №18</span>
+                                </div>
+                                <img src="sdr.jpg" alt="Вітальна листівка, отримана факсом">
+                                <div class="fax-paper-footer">
+                                    <span>ПЕРЕДАЧУ ЗАВЕРШЕНО</span>
+                                    <span>— КІНЕЦЬ —</span>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="fax-tray" aria-hidden="true"></div>
+                    </div>
                 </div>
-                <button id="to-gift-stage-btn" class="cyber-btn" style="width: 100%;">
-                    🎁 Отримати подарунок
+                <button id="to-gift-stage-btn" class="rdr-btn" style="width: 100%;">
+                    Тікати далі
                 </button>
             </div>
         </section>
 
+        <!-- Етап 5: Схованка з коробками -->
         <section id="stage-5" class="stage">
             <div id="gift-intro-view" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 16px;">
-                <div class="access-badge">● Термінал видачі призів</div>
-                <h2 class="final-title" style="font-size: clamp(1.5rem, 4.5vw, 2.3rem);">Випробуй свій фарт!</h2>
-                <button id="play-gift-btn" class="cyber-btn" style="font-size: clamp(1.1rem, 3.2vw, 1.4rem); padding: 20px 38px;">
-                    Запустити розіграш
+                <div class="access-badge">● До вас підійшов бомж та пропонує гру</div>
+                <h2 style="font-size: clamp(1.4rem, 4vw, 2.2rem); font-family: var(--font-western); color: #fff;">Знайдіть, де сховано шарик!</h2>
+                <button id="play-gift-btn" class="rdr-btn" style="font-size: clamp(1rem, 3vw, 1.3rem); padding: 18px 34px;">
+                    Розпочати розшук
                 </button>
             </div>
 
             <div id="shell-game-view" class="shell-game-panel" style="display: none;">
-                <div class="game-header" style="width: 100%; border-radius: 8px;">
-                    <span class="game-title">Міні-игра: «Вгадай, де подарок»</span>
-                    <span class="game-badge">3 стакана</span>
+                <div class="game-header" style="width: 100%; border-radius: 2px;">
+                    <span class="game-title">Бомж на вокзалі сказав: "Немецкая рулетка, она же татарское лото, можно выиграть куртку, а можно и пальто"</span>
+                    <span class="game-badge">3 стакани</span>
                 </div>
 
-                <div id="shell-status" class="shell-status-text">Слідкуй уважно за стаканами...</div>
+                <div id="shell-status" class="shell-status-text">Если постараться, можно отыграться, а кто так стоит глаза пучит - ничего не получит. Угадай, где шарик - плачу гонорарик! Раз! Два!..</div>
 
                 <div id="cups-stage" class="cups-stage"></div>
             </div>
 
             <div id="shell-fail-view" class="fail-box" style="display: none;">
-                <div class="easter-egg-alert" style="font-size: 1.2rem;">✖ Мимо! Цей стакан пустий ✖</div>
+                <div class="easter-egg-alert" style="font-size: 1.1rem;">Было да сплыло, уехало - не воротишь.</div>
                 <img
                     class="fail-img"
                     src="https://i.pinimg.com/736x/61/45/1b/61451b1525aa4cef18ffc5259ad7f583.jpg"
                     alt="Помилка вибору"
-                    onerror="this.src='https://placehold.co/400x300/0a0f1e/00f0ff?text=%D0%9C%D0%B8%D0%BC%D0%BE!'"
                 >
-                <button id="retry-shell-btn" class="cyber-btn">
-                    Попробувати ще раз
+                <button id="retry-shell-btn" class="rdr-btn">
+                    Ставлю шапку!
                 </button>
             </div>
 
-            <div id="tg-delivery-view" style="display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; position: relative;">
-                <div class="tg-phone-mockup">
-                    <div class="phone-notch"></div>
-                    <div class="phone-header">
-                        <div class="phone-avatar">💋</div>
-                        <div style="font-family: var(--font-sans);">
-                            <div style="font-weight: bold; font-size: 0.95rem;">стешік💋</div>
-                            <div style="font-size: 0.72rem; color: #2AABEE;">у мережі</div>
-                        </div>
+            <div id="mail-delivery-view" style="display: none; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; position: relative;">
+                <div class="mail-delivery-scene" role="status" aria-live="polite">
+                    <div class="mail-delivery-heading">
+                        <span>ПОШТОВА ДЕПЕША // 1899</span>
+                        <strong>Послання вирушило в дорогу</strong>
                     </div>
-                    <div class="phone-chat-body" id="phone-chat-body">
-                        <div class="tg-bubble"></div>
-                        <div class="tg-bubble outgoing" style="animation-delay: 0.4s;"></div>
-                        <div class="tg-bubble" style="animation-delay: 0.9s;"></div>
-                        <img id="flying-phone-gift" class="flying-neon-gift" src="https://cdn.pixabay.com/photo/2019/12/16/15/47/vector-4699584_960_720.png" alt="Gift">
+                    <div class="mail-flight-trail" aria-hidden="true"></div>
+                    <div class="courier-pigeon" aria-hidden="true">
+                        <svg viewBox="0 0 190 120">
+                            <g fill="#b9b19f">
+                                <path d="M25 67c11-15 30-24 52-24 12-17 31-25 46-18-8 7-11 13-9 20 17 2 32 12 43 27-19-4-31-4-44 3-17 10-42 12-62 4-11-3-20-8-26-12z"/>
+                                <path class="pigeon-wing" d="M54 60c16-28 43-37 70-26-17 3-25 12-30 23 14-7 27-7 38-1-18 17-44 28-69 25-8-1-15-6-9-21z" fill="#827b6e"/>
+                                <path d="M32 63 8 48l10 23-8 17 30-11z" fill="#8f887b"/>
+                                <circle cx="125" cy="37" r="13"/>
+                                <path d="m137 36 22 5-21 7z" fill="#b77b45"/>
+                                <circle cx="129" cy="34" r="2.2" fill="#17120d"/>
+                                <path d="M83 84v12m15-13v13m-15-2-5 4m20-4 5 4" fill="none" stroke="#997a55" stroke-linecap="round" stroke-width="2"/>
+                            </g>
+                        </svg>
+                        <div class="pigeon-letter">✉</div>
                     </div>
+                    <div class="mail-delivery-caption">КУР'ЄРСЬКИЙ ГОЛУБ ДОСТАВЛЯЄ ПОВІДОМЛЕННЯ…</div>
                 </div>
             </div>
         </section>
 
+        <!-- Етап: Оцінка автора -->
         <section id="stage-author-rating" class="stage">
-            <div class="settings-card" style="background: var(--bg-panel); border: 1px solid var(--blue-main); box-shadow: 0 0 30px rgba(0, 240, 255, 0.35); border-radius: 12px; padding: 24px; width: 100%; max-width: 540px; text-align: center; display: flex; flex-direction: column; gap: 14px;">
-                <div class="access-badge" style="border-color: var(--blue-main); color: var(--blue-main); background: rgba(0,240,255,0.08);">
-                    ● Фінальний аудит автора
-                </div>
-                <h2 style="color: #fff; font-size: 1.3rem;">Оціні крутість автора: <span style="color: var(--blue-main);">MaksimBIGBALLS</span></h2>
-                <p style="color: var(--blue-light); font-size: 0.88rem;">Перед фіналом постав чесні бали по полосочкам:</p>
+            <div class="rdr-card" style="max-width: 520px; text-align: center; display: flex; flex-direction: column; gap: 14px;">
+                <div class="access-badge">● Фінальний звіт детектива</div>
+                <h2 style="color: #fff; font-size: 1.2rem; font-family: var(--font-western);">Оцініть роботу розробника: <span style="color: var(--rdr-gold);">MaksimBIGBALLS</span></h2>
+                <p style="color: var(--rdr-dim); font-size: 0.85rem; font-family: var(--font-mono);">Виставте бали за критеріями:</p>
                 
                 <div style="display: flex; flex-direction: column; gap: 4px; text-align: left;">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--blue-light);">
-                        <span>1. Стиль кодописання:</span>
-                        <span id="val-crit-1" style="color: #38bdf8; font-weight: bold;">100/100</span>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--rdr-dim); font-family: var(--font-mono);">
+                        <span>1. Крутість:</span>
+                        <span id="val-crit-1" style="color: var(--rdr-gold); font-weight: bold;">100/100</span>
                     </div>
-                    <input type="range" id="crit-1" min="1" max="100" value="100" style="accent-color: var(--blue-main); cursor: pointer;">
+                    <input type="range" id="crit-1" min="1" max="100" value="100" style="accent-color: var(--rdr-gold); cursor: pointer;">
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 4px; text-align: left;">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--blue-light);">
-                        <span>2. Гумор і харизма:</span>
-                        <span id="val-crit-2" style="color: #38bdf8; font-weight: bold;">100/100</span>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--rdr-dim); font-family: var(--font-mono);">
+                        <span>2. Атмосферність:</span>
+                        <span id="val-crit-2" style="color: var(--rdr-gold); font-weight: bold;">100/100</span>
                     </div>
-                    <input type="range" id="crit-2" min="1" max="100" value="100" style="accent-color: var(--blue-main); cursor: pointer;">
+                    <input type="range" id="crit-2" min="1" max="100" value="100" style="accent-color: var(--rdr-gold); cursor: pointer;">
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 4px; text-align: left;">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--blue-light);">
-                        <span>3. Масштаб особистості BIGBALLS:</span>
-                        <span id="val-crit-3" style="color: #38bdf8; font-weight: bold;">100/100</span>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--rdr-dim); font-family: var(--font-mono);">
+                        <span>3. BIGBALLS:</span>
+                        <span id="val-crit-3" style="color: var(--rdr-gold); font-weight: bold;">100/100</span>
                     </div>
-                    <input type="range" id="crit-3" min="1" max="100" value="100" style="accent-color: var(--blue-main); cursor: pointer;">
+                    <input type="range" id="crit-3" min="1" max="100" value="100" style="accent-color: var(--rdr-gold); cursor: pointer;">
                 </div>
 
-                <button id="submit-rating-btn" class="cyber-btn" style="width: 100%; margin-top: 8px;">
-                    Зберегти оцінку автора [Далі]
+                <button id="submit-rating-btn" class="rdr-btn" style="width: 100%; margin-top: 6px;">
+                    Затвердити звіт [Далі]
                 </button>
             </div>
         </section>
 
-        <div id="negative-rating-overlay" style="position: fixed; inset: 0; background: rgba(3, 7, 18, 0.94); backdrop-filter: blur(6px); z-index: 95; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;">
-            <div class="easter-egg-box" style="max-width: 440px; display: flex; flex-direction: column; gap: 14px; align-items: center;">
-                <div style="color: #38bdf8; font-weight: bold; font-size: 1.3rem; letter-spacing: 1px; text-shadow: 0 0 10px rgba(56, 189, 248, 0.8);">А за шо нэгатів?</div>
-                <img src="https://i.pinimg.com/736x/61/45/1b/61451b1525aa4cef18ffc5259ad7f583.jpg" alt="А за шо негатив" style="max-width: 100%; max-height: 50vh; border-radius: 8px; border: 1px solid var(--blue-light); object-fit: contain; box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);">
-                <button id="close-negative-btn" class="cyber-btn btn-small" style="width: 100%;">Виправити оцінку [ОК]</button>
+        <!-- Негативна оцінка -->
+        <div id="negative-rating-overlay" style="position: fixed; inset: 0; background: rgba(10, 7, 5, 0.92); z-index: 95; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;">
+            <div class="easter-egg-box" style="max-width: 420px; display: flex; flex-direction: column; gap: 14px; align-items: center;">
+                <div style="color: var(--rdr-orange); font-weight: bold; font-size: 1.2rem; font-family: var(--font-western);">А за шо нєгатів?!</div>
+                <img src="https://i.pinimg.com/736x/61/45/1b/61451b1525aa4cef18ffc5259ad7f583.jpg" alt="Ніхто не піде" style="max-width: 100%; max-height: 45vh; border-radius: 2px; border: 1px solid var(--rdr-gold-dim); object-fit: contain;">
+                <button id="close-negative-btn" class="rdr-btn" style="width: 100%; font-size: 0.9rem;">Виправити оцінку [ОК]</button>
             </div>
         </div>
 
+        <!-- Етап 6: Фінальний таймер -->
         <section id="stage-6" class="stage">
             <div class="offline-card">
-                <div class="access-badge" style="border-color: #38bdf8; color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
-                    ● Signal lost // 21.11.2027
+                <div class="access-badge" style="border-color: var(--rdr-orange); color: var(--rdr-orange); background: rgba(200, 100, 0, 0.15);">
+                    ● Зв'язок втрачено // 21.11.2027
                 </div>
 
-                <h1 class="offline-title">САЙТ НЕДОСТУПНИЙ, СВЯЗЬ!</h1>
+                <h1 class="offline-title">СПРАВА ЗАКРИТА, СТАНЦІЯ ПОТЯГІВ ЗНИКЛА!</h1>
 
                 <div class="countdown-grid">
                     <div class="time-unit">
@@ -1135,12 +1268,12 @@
                     </div>
                 </div>
 
-                <div class="target-date-note">
-                    Відновлення з'єднання: 21 листопада 2027 року, 00:00
+                <div style="font-size: 0.9rem; color: var(--rdr-dim); font-family: var(--font-mono);">
+                    Наступне розслідування: 21 листопада 2027 року, 00:00
                 </div>
 
-                <button id="full-restart-btn" class="cyber-btn btn-small btn-ghost" style="margin-top: 8px;">
-                    ↻ Перезапустити протокол
+                <button id="full-restart-btn" class="rdr-btn" style="font-size: 0.85rem; padding: 12px 24px; margin-top: 6px;">
+                    ↻ Почати розслідування наново
                 </button>
             </div>
         </section>
@@ -1150,13 +1283,18 @@
     <script>
         const CONFIG = {
             name: "Стеша",
-            age: 18,
-            message: "Поздравляю тя с днём наступления полной уголовной ответственности, желаю мотивации и ипровизации и всего хорошего, шоколада горячего и чо там еще."
+            age: 18
         };
 
-        class CyberAudio {
+        class NoirAudio {
             constructor() {
                 this.ctx = null;
+                this.rainGain = null;
+                this.isRainPlaying = false;
+                this.ambientNodes = [];
+                this.shuffleTrack = null;
+                this.shuffleStopTimer = null;
+                this.thunderTimer = null;
             }
 
             init() {
@@ -1171,96 +1309,460 @@
                 }
             }
 
-            playBeep(freq = 880, duration = 0.14, type = 'sine', volume = 0.25) {
+            startRainSound() {
+                if (this.isRainPlaying) return;
                 try {
                     this.init();
                     if (!this.ctx) return;
-                    const osc = this.ctx.createOscillator();
-                    const gain = this.ctx.createGain();
-                    osc.type = type;
-                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
-                    osc.frequency.exponentialRampToValueAtTime(freq * 0.85, this.ctx.currentTime + duration);
-                    gain.gain.setValueAtTime(volume, this.ctx.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + duration);
-                    osc.connect(gain);
-                    gain.connect(this.ctx.destination);
-                    osc.start();
-                    osc.stop(this.ctx.currentTime + duration);
+
+                    const bufferSize = this.ctx.sampleRate * 5;
+                    const noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+                    const output = noiseBuffer.getChannelData(0);
+                    for (let i = 0; i < bufferSize; i++) {
+                        output[i] = Math.random() * 2 - 1;
+                    }
+
+                    const whiteNoise = this.ctx.createBufferSource();
+                    whiteNoise.buffer = noiseBuffer;
+                    whiteNoise.loop = true;
+
+                    const filter = this.ctx.createBiquadFilter();
+                    filter.type = 'lowpass';
+                    filter.frequency.setValueAtTime(420, this.ctx.currentTime);
+
+                    this.rainGain = this.ctx.createGain();
+                    this.rainGain.gain.setValueAtTime(0.025, this.ctx.currentTime);
+
+                    whiteNoise.connect(filter);
+                    filter.connect(this.rainGain);
+                    this.rainGain.connect(this.ctx.destination);
+
+                    whiteNoise.start(0);
+                    this.isRainPlaying = true;
+
+                    this.startAmbientWind();
+                    this.scheduleThunder();
                 } catch (e) {}
             }
 
-            playTick() {
-                this.playBeep(1200 + Math.random() * 600, 0.03, 'triangle', 0.04);
+            scheduleThunder() {
+                if (this.thunderTimer) clearTimeout(this.thunderTimer);
+                const delay = 18000 + Math.random() * 22000;
+                this.thunderTimer = setTimeout(() => {
+                    if (this.ctx && this.isRainPlaying) this.playThunder();
+                    this.scheduleThunder();
+                }, delay);
+            }
+
+            playThunder() {
+                try {
+                    const now = this.ctx.currentTime;
+                    const source = this.ctx.createBufferSource();
+                    source.buffer = this.createNoise(2.8);
+
+                    const lowpass = this.ctx.createBiquadFilter();
+                    lowpass.type = 'lowpass';
+                    lowpass.frequency.setValueAtTime(120, now);
+                    lowpass.frequency.exponentialRampToValueAtTime(38, now + 2.8);
+
+                    const gain = this.ctx.createGain();
+                    gain.gain.setValueAtTime(0.0001, now);
+                    gain.gain.exponentialRampToValueAtTime(0.28, now + 0.08);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 2.8);
+
+                    source.connect(lowpass);
+                    lowpass.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    source.start(now);
+                    source.stop(now + 2.8);
+                } catch (e) {}
+            }
+
+            createNoise(duration = 1) {
+                const bufferSize = this.ctx.sampleRate * duration;
+                const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = Math.random() * 2 - 1;
+                }
+                return buffer;
+            }
+
+            startAmbientWind() {
+                if (!this.ctx || this.ambientNodes.length) return;
+                const source = this.ctx.createBufferSource();
+                source.buffer = this.createNoise(8);
+                source.loop = true;
+
+                const filter = this.ctx.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.value = 210;
+                filter.Q.value = 0.35;
+
+                const gain = this.ctx.createGain();
+                gain.gain.value = 0.015;
+
+                source.connect(filter);
+                filter.connect(gain);
+                gain.connect(this.ctx.destination);
+                source.start();
+
+                const windLfo = this.ctx.createOscillator();
+                const windDepth = this.ctx.createGain();
+                windLfo.frequency.value = 0.075;
+                windDepth.gain.value = 90;
+                windLfo.connect(windDepth);
+                windDepth.connect(filter.frequency);
+                windLfo.start();
+
+                const gustLfo = this.ctx.createOscillator();
+                const gustDepth = this.ctx.createGain();
+                gustLfo.frequency.value = 0.045;
+                gustDepth.gain.value = 0.006;
+                gustLfo.connect(gustDepth);
+                gustDepth.connect(gain.gain);
+                gustLfo.start();
+
+                const drone = this.ctx.createOscillator();
+                const droneGain = this.ctx.createGain();
+                drone.type = 'sine';
+                drone.frequency.value = 55;
+                droneGain.gain.value = 0.006;
+                drone.connect(droneGain);
+                droneGain.connect(this.ctx.destination);
+                drone.start();
+
+                this.ambientNodes = [source, windLfo, gustLfo, drone];
+            }
+
+            playKeyClick() {
+                try {
+                    this.init();
+                    if (!this.ctx) return;
+                    const now = this.ctx.currentTime;
+                    const click = this.ctx.createBufferSource();
+                    click.buffer = this.createNoise(0.025);
+                    const filter = this.ctx.createBiquadFilter();
+                    filter.type = 'bandpass';
+                    filter.frequency.value = 700 + Math.random() * 250;
+                    filter.Q.value = 0.65;
+                    const gain = this.ctx.createGain();
+                    gain.gain.setValueAtTime(0.075, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+                    click.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    click.start(now);
+                    click.stop(now + 0.025);
+                } catch (e) {}
+            }
+
+            playTypewriterReturn() {
+                this.playWoodKnock(0.1, 0.07);
+                setTimeout(() => this.playScrape(0.06, 0.035), 35);
+            }
+
+            playScrape(duration = 0.04, volume = 0.08) {
+                try {
+                    this.init();
+                    if (!this.ctx) return;
+                    const now = this.ctx.currentTime;
+                    const source = this.ctx.createBufferSource();
+                    source.buffer = this.createNoise(duration);
+                    const bandpass = this.ctx.createBiquadFilter();
+                    bandpass.type = 'bandpass';
+                    bandpass.frequency.value = 220 + Math.random() * 140;
+                    bandpass.Q.value = 1.4;
+                    const gain = this.ctx.createGain();
+                    gain.gain.setValueAtTime(volume, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+                    source.connect(bandpass);
+                    bandpass.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    source.start(now);
+                    source.stop(now + duration);
+                } catch (e) {}
             }
 
             playError() {
-                this.playBeep(160, 0.35, 'sawtooth', 0.25);
-                setTimeout(() => this.playBeep(120, 0.4, 'sawtooth', 0.25), 140);
+                this.playWoodKnock(0.14, 0.075);
+                setTimeout(() => this.playScrape(0.08, 0.035), 65);
+            }
+
+            playDossierAlert() {
+                this.playWoodKnock(0.2, 0.2);
+                setTimeout(() => this.playWesternPluck(146.83, 0.8, 0.13), 90);
             }
 
             playHit() {
-                this.playBeep(660, 0.09, 'sine', 0.2);
-                setTimeout(() => this.playBeep(990, 0.14, 'sine', 0.2), 70);
+                this.playClueFound();
             }
 
             playMiss() {
-                this.playBeep(240, 0.15, 'square', 0.12);
+                this.playWoodKnock(0.1, 0.04);
+                setTimeout(() => this.playScrape(0.07, 0.025), 45);
             }
 
             playVictory() {
-                const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
-                notes.forEach((freq, idx) => {
-                    setTimeout(() => {
-                        this.playBeep(freq, 0.55, 'triangle', 0.18);
-                    }, idx * 90);
+                [110, 146.83, 196].forEach((freq, index) => {
+                    setTimeout(() => this.playWesternPluck(freq, 1.2, 0.07), index * 240);
+                });
+            }
+
+            playIntroCue() {
+                this.playClockworkStart();
+            }
+
+            playCountdownTick(count) {
+                this.playClockTick(count === 1);
+            }
+
+            playClockworkStart() {
+                this.playScrape(0.22, 0.055);
+                setTimeout(() => this.playClockTick(false), 180);
+            }
+
+            playClockTick(isFinal = false) {
+                try {
+                    this.init();
+                    if (!this.ctx) return;
+                    const now = this.ctx.currentTime;
+                    const tick = this.ctx.createBufferSource();
+                    tick.buffer = this.createNoise(0.035);
+                    const filter = this.ctx.createBiquadFilter();
+                    filter.type = 'bandpass';
+                    filter.frequency.value = isFinal ? 1450 : 1850;
+                    filter.Q.value = 0.75;
+                    const gain = this.ctx.createGain();
+                    gain.gain.setValueAtTime(isFinal ? 0.13 : 0.095, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+                    tick.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    tick.start(now);
+                    tick.stop(now + 0.035);
+
+                    const body = this.ctx.createOscillator();
+                    const bodyGain = this.ctx.createGain();
+                    body.type = 'sine';
+                    body.frequency.value = isFinal ? 680 : 920;
+                    bodyGain.gain.setValueAtTime(isFinal ? 0.035 : 0.024, now);
+                    bodyGain.gain.exponentialRampToValueAtTime(0.001, now + 0.055);
+                    body.connect(bodyGain);
+                    bodyGain.connect(this.ctx.destination);
+                    body.start(now);
+                    body.stop(now + 0.055);
+
+                    if (isFinal) {
+                        setTimeout(() => this.playWoodKnock(0.18, 0.07), 120);
+                    }
+                } catch (e) {}
+            }
+
+            playClueFound() {
+                this.playWoodKnock(0.1, 0.065);
+                setTimeout(() => this.playWesternPluck(146.83, 0.45, 0.055), 60);
+            }
+
+            playCupReveal() {
+                this.playScrape(0.16, 0.045);
+                setTimeout(() => this.playWoodKnock(0.1, 0.06), 120);
+            }
+
+            playSwapSound() {
+                this.playScrape(0.1, 0.028);
+                setTimeout(() => this.playWoodKnock(0.08, 0.035), 80);
+            }
+
+            playActionTap() {
+                this.playWoodKnock(0.07, 0.035);
+            }
+
+            playWoodKnock(duration = 0.12, volume = 0.1) {
+                try {
+                    this.init();
+                    if (!this.ctx) return;
+                    const now = this.ctx.currentTime;
+                    const noise = this.ctx.createBufferSource();
+                    noise.buffer = this.createNoise(duration);
+                    const filter = this.ctx.createBiquadFilter();
+                    filter.type = 'lowpass';
+                    filter.frequency.value = 340;
+                    const noiseGain = this.ctx.createGain();
+                    noiseGain.gain.setValueAtTime(volume * 0.7, now);
+                    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+                    noise.connect(filter);
+                    filter.connect(noiseGain);
+                    noiseGain.connect(this.ctx.destination);
+                    noise.start(now);
+                    noise.stop(now + duration);
+
+                    const body = this.ctx.createOscillator();
+                    const bodyGain = this.ctx.createGain();
+                    body.type = 'sine';
+                    body.frequency.setValueAtTime(115, now);
+                    body.frequency.exponentialRampToValueAtTime(62, now + duration);
+                    bodyGain.gain.setValueAtTime(volume, now);
+                    bodyGain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+                    body.connect(bodyGain);
+                    bodyGain.connect(this.ctx.destination);
+                    body.start(now);
+                    body.stop(now + duration);
+                } catch (e) {}
+            }
+
+            playWesternPluck(freq, duration = 0.42, volume = 0.12) {
+                try {
+                    this.init();
+                    if (!this.ctx) return;
+                    const now = this.ctx.currentTime;
+                    const string = this.ctx.createOscillator();
+                    const overtone = this.ctx.createOscillator();
+                    const filter = this.ctx.createBiquadFilter();
+                    const envelope = this.ctx.createGain();
+                    const overtoneGain = this.ctx.createGain();
+                    const pick = this.ctx.createBufferSource();
+                    const pickFilter = this.ctx.createBiquadFilter();
+                    const pickGain = this.ctx.createGain();
+
+                    string.type = 'triangle';
+                    string.frequency.setValueAtTime(freq, now);
+                    string.frequency.exponentialRampToValueAtTime(freq * 0.992, now + duration);
+                    overtone.type = 'sine';
+                    overtone.frequency.value = freq * 2.01;
+                    filter.type = 'lowpass';
+                    filter.frequency.value = Math.min(1800, freq * 5);
+                    filter.Q.value = 0.45;
+                    envelope.gain.setValueAtTime(0.0001, now);
+                    envelope.gain.exponentialRampToValueAtTime(volume, now + 0.012);
+                    envelope.gain.exponentialRampToValueAtTime(0.001, now + duration);
+                    overtoneGain.gain.setValueAtTime(volume * 0.16, now);
+                    overtoneGain.gain.exponentialRampToValueAtTime(0.001, now + duration * 0.55);
+                    pick.buffer = this.createNoise(0.025);
+                    pickFilter.type = 'highpass';
+                    pickFilter.frequency.value = 1800;
+                    pickGain.gain.setValueAtTime(volume * 0.12, now);
+                    pickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.025);
+
+                    string.connect(filter);
+                    filter.connect(envelope);
+                    envelope.connect(this.ctx.destination);
+                    overtone.connect(overtoneGain);
+                    overtoneGain.connect(filter);
+                    pick.connect(pickFilter);
+                    pickFilter.connect(pickGain);
+                    pickGain.connect(this.ctx.destination);
+                    string.start(now);
+                    overtone.start(now);
+                    pick.start(now);
+                    string.stop(now + duration);
+                    overtone.stop(now + duration);
+                    pick.stop(now + 0.025);
+                } catch (e) {}
+            }
+
+            playShuffleTrack(duration = 9000) {
+                this.stopShuffleTrack();
+                if (!this.shuffleTrack) return;
+
+                backgroundMusic.volume = 0.005;
+                this.shuffleTrack.currentTime = 0;
+                const playback = this.shuffleTrack.play();
+                if (playback && typeof playback.catch === 'function') {
+                    playback.catch(error => {
+                        if (error.name !== 'NotAllowedError') {
+                            console.error('Не вдалося відтворити 1115.MP3.', error);
+                        }
+                    });
+                }
+
+                this.shuffleStopTimer = setTimeout(() => this.stopShuffleTrack(), duration);
+            }
+
+            stopShuffleTrack() {
+                if (this.shuffleStopTimer) {
+                    clearTimeout(this.shuffleStopTimer);
+                    this.shuffleStopTimer = null;
+                }
+                if (this.shuffleTrack) {
+                    this.shuffleTrack.pause();
+                    this.shuffleTrack.currentTime = 0;
+                }
+                backgroundMusic.volume = 0.1;
+            }
+
+        }
+
+        const audio = new NoirAudio();
+        const backgroundMusic = document.getElementById('background-music');
+        audio.shuffleTrack = document.getElementById('shuffle-track-audio');
+        backgroundMusic.volume = 0.1;
+        audio.shuffleTrack.volume = 0.9;
+
+        audio.shuffleTrack.addEventListener('ended', () => audio.stopShuffleTrack());
+        audio.shuffleTrack.addEventListener('error', () => {
+            console.error('Не вдалося завантажити 1115.MP3.', audio.shuffleTrack.error);
+        });
+
+        function startBackgroundMusic() {
+            if (!backgroundMusic.paused) return;
+            const playback = backgroundMusic.play();
+            if (playback && typeof playback.catch === 'function') {
+                playback.catch(error => {
+                    if (error.name !== 'NotAllowedError') {
+                        console.error('Не вдалося відтворити фонову доріжку zvuk1.mp3.', error);
+                    }
                 });
             }
         }
 
-        const audio = new CyberAudio();
+        backgroundMusic.addEventListener('error', () => {
+            console.error('Не вдалося завантажити фонову доріжку zvuk1.mp3.', backgroundMusic.error);
+        });
 
-        const matrixCanvas = document.getElementById('matrix-canvas');
-        const mCtx = matrixCanvas.getContext('2d');
-        let matrixInterval = null;
-        let drops = [];
-        const matrixChars = '01#@$%&*<>[]{}アイウエオカキクケコサシスセソタチツテト0101';
+        const rainCanvas = document.getElementById('rain-canvas');
+        const rCtx = rainCanvas.getContext('2d');
+        let rainInterval = null;
+        let raindrops = [];
 
-        function resizeMatrix() {
-            matrixCanvas.width = window.innerWidth;
-            matrixCanvas.height = window.innerHeight;
-            const fontSize = 16;
-            const columns = Math.floor(matrixCanvas.width / fontSize);
-            drops = Array(columns).fill(1).map(() => Math.random() * -50);
+        function resizeRain() {
+            rainCanvas.width = window.innerWidth;
+            rainCanvas.height = window.innerHeight;
+            const dropsCount = Math.floor(rainCanvas.width / 14);
+            raindrops = Array(dropsCount).fill(1).map(() => ({
+                x: Math.random() * rainCanvas.width,
+                y: Math.random() * rainCanvas.height,
+                length: Math.random() * 22 + 12,
+                speed: Math.random() * 9 + 7,
+                opacity: Math.random() * 0.5 + 0.2
+            }));
         }
 
-        function startMatrix() {
-            resizeMatrix();
-            matrixCanvas.classList.add('active');
-            if (matrixInterval) clearInterval(matrixInterval);
+        function startRain() {
+            resizeRain();
+            if (rainInterval) clearInterval(rainInterval);
+            rainInterval = setInterval(() => {
+                rCtx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
+                rCtx.lineWidth = 1.3;
+                raindrops.forEach(drop => {
+                    rCtx.strokeStyle = `rgba(180, 168, 150, ${drop.opacity})`;
+                    rCtx.beginPath();
+                    rCtx.moveTo(drop.x, drop.y);
+                    rCtx.lineTo(drop.x - 1.2, drop.y + drop.length);
+                    rCtx.stroke();
 
-            matrixInterval = setInterval(() => {
-                mCtx.fillStyle = 'rgba(3, 7, 18, 0.08)';
-                mCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-                mCtx.font = '16px monospace';
-                for (let i = 0; i < drops.length; i++) {
-                    const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-                    mCtx.fillStyle = Math.random() > 0.85 ? '#ffffff' : (Math.random() > 0.4 ? '#00f0ff' : '#70d6ff');
-                    mCtx.fillText(text, i * 16, drops[i] * 16);
+                    drop.y += drop.speed;
+                    drop.x -= 0.35;
 
-                    if (drops[i] * 16 > matrixCanvas.height && Math.random() > 0.975) {
-                        drops[i] = 0;
+                    if (drop.y > rainCanvas.height) {
+                        drop.y = -20;
+                        drop.x = Math.random() * rainCanvas.width;
                     }
-                    drops[i]++;
-                }
-            }, 45);
+                });
+            }, 30);
         }
 
-        function stopMatrix() {
-            matrixCanvas.classList.remove('active');
-            if (matrixInterval) clearInterval(matrixInterval);
-        }
-
-        window.addEventListener('resize', resizeMatrix);
+        window.addEventListener('resize', resizeRain);
 
         const stages = {
             s1: document.getElementById('stage-1'),
@@ -1283,13 +1785,12 @@
 
         function applyConfigToDOM() {
             document.getElementById('target-age-hint').textContent = CONFIG.age;
-            document.getElementById('envelope-letter-text').textContent = CONFIG.message;
             document.getElementById('input-custom-age').value = 0;
         }
 
         applyConfigToDOM();
 
-        const introHeartWrap = document.getElementById('intro-heart-wrap');
+        const introLampWrap = document.getElementById('intro-lamp-wrap');
         const countdownDisplay = document.getElementById('countdown-display');
         const appWrapper = document.getElementById('app-wrapper');
         let isRunning = false;
@@ -1298,22 +1799,21 @@
         window.addEventListener('DOMContentLoaded', () => {
             if (isRunning) return;
             isRunning = true;
+            document.addEventListener('pointerdown', startBackgroundMusic, { once: true });
+            document.addEventListener('keydown', startBackgroundMusic, { once: true });
+            startBackgroundMusic();
             audio.init();
+            audio.startRainSound();
+            startRain();
 
-            introHeartWrap.style.display = 'flex';
-            introHeartWrap.style.animation = 'none';
-            void introHeartWrap.offsetWidth;
-            introHeartWrap.style.animation = 'heartEntrance 2.3s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+            introLampWrap.style.display = 'flex';
             countdownDisplay.style.display = 'none';
 
-            audio.playBeep(528, 0.25, 'sine', 0.16);
-            setTimeout(() => {
-                if (isRunning) audio.playBeep(660, 0.28, 'sine', 0.16);
-            }, 680);
+            audio.playIntroCue();
 
             introTimer = setTimeout(() => {
                 if (!isRunning) return;
-                introHeartWrap.style.display = 'none';
+                introLampWrap.style.display = 'none';
                 countdownDisplay.style.display = 'block';
 
                 let count = 3;
@@ -1322,17 +1822,11 @@
                     if (!isRunning) return;
                     if (count > 0) {
                         countdownDisplay.textContent = count;
-                        countdownDisplay.setAttribute('data-num', count);
-                        countdownDisplay.classList.remove('glitch-tick');
-                        void countdownDisplay.offsetWidth;
-                        countdownDisplay.classList.add('glitch-tick');
-
                         appWrapper.classList.remove('screen-shake');
                         void appWrapper.offsetWidth;
                         appWrapper.classList.add('screen-shake');
 
-                        const pitch = count === 3 ? 660 : (count === 2 ? 880 : 1174);
-                        audio.playBeep(pitch, 0.18, 'sine', 0.3);
+                        audio.playCountdownTick(count);
 
                         count--;
                         setTimeout(runTick, 950);
@@ -1343,13 +1837,13 @@
                 }
 
                 runTick();
-            }, 2250);
+            }, 2300);
         });
 
-        const terminalOutput = document.getElementById('terminal-output');
-        const scrambleGlyphs = '#@$%&*0101_<>[]{}~^';
+        const dossierOutput = document.getElementById('dossier-output');
+        const typewriterGlyphs = 'abcdefghijklmnopqrstuvwxyz0123456789#@&?!';
 
-        function scrambleTextElement(element, finalText, duration = 1100) {
+        function typeWriterEffect(element, finalText, duration = 1200) {
             return new Promise((resolve) => {
                 const length = finalText.length;
                 const startTime = performance.now();
@@ -1367,20 +1861,21 @@
                         } else if (i < revealedCount) {
                             output += finalText[i];
                         } else {
-                            output += scrambleGlyphs[Math.floor(Math.random() * scrambleGlyphs.length)];
+                            output += typewriterGlyphs[Math.floor(Math.random() * typewriterGlyphs.length)];
                         }
                     }
 
                     element.textContent = output;
                     tickCounter++;
-                    if (tickCounter % 4 === 0) {
-                        audio.playTick();
+                    if (tickCounter % 3 === 0) {
+                        audio.playKeyClick();
                     }
 
                     if (progress < 1) {
                         requestAnimationFrame(update);
                     } else {
                         element.textContent = finalText;
+                        audio.playTypewriterReturn();
                         resolve();
                     }
                 }
@@ -1391,29 +1886,28 @@
 
         async function startStage2() {
             switchStage('s2');
-            startMatrix();
-            terminalOutput.innerHTML = '';
+            dossierOutput.innerHTML = '';
 
             const lines = [
-                { text: `> Завантаження бурмалди... [100%]`, isError: false, delay: 400 },
-                { text: `> Закачка приколов і мємав ат автора... 77%`, isError: false, delay: 450 },
-                { text: `> Провірка на рєйджбайт і токсичність... чисто`, isError: false, delay: 500 },
-                { text: `> УВАГА: сервер двісті, пушта нє вивозіт!`, isError: true, delay: 1500 }
+                { text: `> Поіск підозрюваного... [ГОТОВО]`, isAlert: false, delay: 400 },
+                { text: `> Збір інфи туда суда... [100%]`, isAlert: false, delay: 450 },
+                { text: `> Перевірка бурмалди...  [1488%]`, isAlert: false, delay: 500 },
+                { text: `> УВАГА: На вокзалі помічено підозрювану!`, isAlert: true, delay: 1400 }
             ];
 
             for (const item of lines) {
                 const lineEl = document.createElement('div');
-                lineEl.className = 'term-line' + (item.isError ? ' error-line' : '');
-                terminalOutput.appendChild(lineEl);
+                lineEl.className = 'rdr-line' + (item.isAlert ? ' alert-line' : '');
+                dossierOutput.appendChild(lineEl);
 
-                if (item.isError) {
-                    audio.playError();
+                if (item.isAlert) {
+                    audio.playDossierAlert();
                     appWrapper.classList.remove('screen-shake');
                     void appWrapper.offsetWidth;
                     appWrapper.classList.add('screen-shake');
                 }
 
-                await scrambleTextElement(lineEl, item.text, item.isError ? 1200 : 950);
+                await typeWriterEffect(lineEl, item.text, item.isAlert ? 1100 : 900);
                 await new Promise(r => setTimeout(r, item.delay));
             }
 
@@ -1421,25 +1915,26 @@
         }
 
         document.getElementById('submit-age-btn').addEventListener('click', () => {
+            audio.startRainSound();
             const rawVal = document.getElementById('input-custom-age').value;
             const enteredAge = parseInt(rawVal, 10);
             const errorMsgEl = document.getElementById('age-error-msg');
 
             if (isNaN(enteredAge)) {
-                errorMsgEl.textContent = "Введи нормальну цифру!";
+                errorMsgEl.textContent = "Введіть числове значення!";
                 audio.playError();
                 return;
             }
 
             if (enteredAge < 18) {
-                errorMsgEl.textContent = "фу малалєтка";
+                errorMsgEl.textContent = "Документи не дійсні: занадто юний вік.";
                 audio.playError();
                 appWrapper.classList.remove('screen-shake');
                 void appWrapper.offsetWidth;
                 appWrapper.classList.add('screen-shake');
                 return;
             } else if (enteredAge > 18) {
-                errorMsgEl.textContent = "нє врі, жуй кашу дєтсадовец";
+                errorMsgEl.textContent = "Помилка в даних: ви не настільки дорослі!";
                 audio.playError();
                 appWrapper.classList.remove('screen-shake');
                 void appWrapper.offsetWidth;
@@ -1475,7 +1970,7 @@
         function closeEasterEgg() {
             isEasterEggOpen = false;
             easterEggOverlay.classList.remove('active');
-            audio.playBeep(620, 0.08, 'sine', 0.15);
+            audio.playScrape(0.06, 0.045);
         }
 
         easterEggOverlay.addEventListener('click', closeEasterEgg);
@@ -1485,13 +1980,12 @@
         });
 
         const funnyMissMessages = [
-            "Ти шо, дедлайн? Шукай 18!",
-            "Паспорт покажи, несовершеннолітній!",
-            "Брат, ти переплутав кнопочки",
-            "Ауф, мімо каси",
-            "Типа взрослый? Лови 18!",
-            "Помилка: занадто багато крінжа, шукай 18",
-            "Мимо! Цілься в повноліття"
+            "Не та уліка! Шукайте 18!",
+            "Помилковий слід на пероні",
+            "Цей документ не підходить",
+            "Мимо! Шукайте повноліття",
+            "Архівний архів відхилив це",
+            "Зосередьтеся на цифрі 18"
         ];
 
         function showToast(container, x, y, text, isSuccess = false) {
@@ -1514,11 +2008,11 @@
             caughtCount = 0;
             isEasterEggOpen = false;
             easterEggOverlay.classList.remove('active');
-            ageCounterBadge.textContent = `Зхоплено: 0 / 3`;
+            ageCounterBadge.textContent = `Знайдено: 0 / 3`;
 
             const target = CONFIG.age;
-            const mandatoryDecoys = [10, 99, 404, 1488].filter(n => n !== target);
-            const extraDecoys = [25, 69, 100, 228, 777, 1337, 5, 88].filter(n => n !== target);
+            const mandatoryDecoys = [12, 21, 404, 1488].filter(n => n !== target);
+            const extraDecoys = [25, 69, 100, 228, 777, 16, 5, 88].filter(n => n !== target);
             
             const numbersToSpawn = [
                 { val: target, isTarget: true },
@@ -1526,13 +2020,9 @@
                 { val: target, isTarget: true }
             ];
 
-            mandatoryDecoys.forEach(val => {
-                numbersToSpawn.push({ val, isTarget: false });
-            });
-
-            for (let i = 0; i < 5; i++) {
-                const decoy = extraDecoys[i % extraDecoys.length];
-                numbersToSpawn.push({ val: decoy, isTarget: false });
+            mandatoryDecoys.forEach(val => numbersToSpawn.push({ val, isTarget: false }));
+            for (let i = 0; i < 4; i++) {
+                numbersToSpawn.push({ val: extraDecoys[i % extraDecoys.length], isTarget: false });
             }
 
             numbersToSpawn.sort(() => Math.random() - 0.5);
@@ -1543,7 +2033,7 @@
 
             numbersToSpawn.forEach((item) => {
                 const el = document.createElement('div');
-                el.className = 'floating-num';
+                el.className = 'floating-evidence';
                 el.textContent = item.val;
                 arenaAge.appendChild(el);
 
@@ -1555,13 +2045,13 @@
                     isTarget: item.isTarget,
                     x: Math.random() * Math.max(20, width - elW - 20) + 10,
                     y: Math.random() * Math.max(20, height - elH - 20) + 10,
-                    vx: (Math.random() - 0.5) * 4.4,
-                    vy: (Math.random() - 0.5) * 4.4,
+                    vx: (Math.random() - 0.5) * 3.8,
+                    vy: (Math.random() - 0.5) * 3.8,
                     active: true
                 };
 
-                if (Math.abs(entity.vx) < 1.3) entity.vx = entity.vx >= 0 ? 1.8 : -1.8;
-                if (Math.abs(entity.vy) < 1.3) entity.vy = entity.vy >= 0 ? 1.8 : -1.8;
+                if (Math.abs(entity.vx) < 1.2) entity.vx = entity.vx >= 0 ? 1.6 : -1.6;
+                if (Math.abs(entity.vy) < 1.2) entity.vy = entity.vy >= 0 ? 1.6 : -1.6;
 
                 el.addEventListener('pointerdown', (e) => {
                     e.stopPropagation();
@@ -1575,9 +2065,9 @@
                         entity.active = false;
                         el.style.display = 'none';
                         caughtCount++;
-                        ageCounterBadge.textContent = `Зхоплено: ${caughtCount} / 3`;
+                        ageCounterBadge.textContent = `Знайдено: ${caughtCount} / 3`;
                         audio.playHit();
-                        showToast(arenaAge, clickX, clickY, `Є! +1 (${caughtCount}/3)`, true);
+                        showToast(arenaAge, clickX, clickY, `Успіх! (${caughtCount}/3)`, true);
 
                         if (caughtCount >= 3) {
                             cancelAnimationFrame(ageGameAnimId);
@@ -1615,47 +2105,36 @@
                         ent.x += ent.vx;
                         ent.y += ent.vy;
 
-                        if (ent.x <= 4) {
-                            ent.x = 4;
-                            ent.vx = Math.abs(ent.vx);
-                        } else if (ent.x + w >= maxW - 4) {
-                            ent.x = maxW - w - 4;
-                            ent.vx = -Math.abs(ent.vx);
-                        }
+                        if (ent.x <= 4) { ent.x = 4; ent.vx = Math.abs(ent.vx); }
+                        else if (ent.x + w >= maxW - 4) { ent.x = maxW - w - 4; ent.vx = -Math.abs(ent.vx); }
 
-                        if (ent.y <= 4) {
-                            ent.y = 4;
-                            ent.vy = Math.abs(ent.vy);
-                        } else if (ent.y + h >= maxH - 4) {
-                            ent.y = maxH - h - 4;
-                            ent.vy = -Math.abs(ent.vy);
-                        }
+                        if (ent.y <= 4) { ent.y = 4; ent.vy = Math.abs(ent.vy); }
+                        else if (ent.y + h >= maxH - 4) { ent.y = maxH - h - 4; ent.vy = -Math.abs(ent.vy); }
 
                         ent.el.style.transform = `translate3d(${ent.x}px, ${ent.y}px, 0)`;
                     });
                 }
-
                 ageGameAnimId = requestAnimationFrame(updateAgeArena);
             }
 
             ageGameAnimId = requestAnimationFrame(updateAgeArena);
         }
 
-        const charismaBar = document.getElementById('charisma-bar');
-        const charismaPercent = document.getElementById('charisma-percent');
-        const charismaStatus = document.getElementById('charisma-status');
-        const charismaBtn = document.getElementById('charisma-btn');
+        const investigationBar = document.getElementById('investigation-bar');
+        const investigationPercent = document.getElementById('investigation-percent');
+        const investigationStatus = document.getElementById('investigation-status');
+        const investigateBtn = document.getElementById('investigate-btn');
         const evasiveArea = document.getElementById('evasive-area');
-        let charismaVal = 0;
-        let charismaDecayInterval = null;
-        let charismaCompleted = false;
+        let investigationVal = 0;
+        let investigationDecayInterval = null;
+        let investigationCompleted = false;
 
-        function moveCharismaButton() {
+        function moveInvestigateButton() {
             const areaRect = evasiveArea.getBoundingClientRect();
-            const btnW = charismaBtn.offsetWidth || 180;
-            const btnH = charismaBtn.offsetHeight || 54;
-            const padX = Math.max(btnW / 2 + 12, 95);
-            const padY = Math.max(btnH / 2 + 12, 35);
+            const btnW = investigateBtn.offsetWidth || 180;
+            const btnH = investigateBtn.offsetHeight || 54;
+            const padX = Math.max(btnW / 2 + 12, 90);
+            const padY = Math.max(btnH / 2 + 12, 30);
             const minX = padX;
             const maxX = Math.max(minX + 10, areaRect.width - padX);
             const minY = padY;
@@ -1663,126 +2142,75 @@
             const nextX = minX + Math.random() * (maxX - minX);
             const nextY = minY + Math.random() * (maxY - minY);
 
-            charismaBtn.style.left = `${nextX}px`;
-            charismaBtn.style.top = `${nextY}px`;
+            investigateBtn.style.left = `${nextX}px`;
+            investigateBtn.style.top = `${nextY}px`;
         }
 
-        function updateCharismaUI() {
-            const clamped = Math.max(0, Math.min(100, Math.round(charismaVal)));
-            charismaBar.style.width = `${clamped}%`;
-            charismaPercent.textContent = `${clamped}%`;
+        function updateInvestigationUI() {
+            const clamped = Math.max(0, Math.min(100, Math.round(investigationVal)));
+            investigationBar.style.width = `${clamped}%`;
+            investigationPercent.textContent = `${clamped}%`;
         }
 
         function startMiniGame2() {
             switchStage('s3_2');
-            charismaVal = 15;
-            charismaCompleted = false;
-            charismaStatus.textContent = 'НЕСТАБІЛЬНО';
-            charismaStatus.style.background = 'var(--blue-main)';
-            charismaBtn.style.left = '50%';
-            charismaBtn.style.top = '50%';
-            updateCharismaUI();
+            investigationVal = 15;
+            investigationCompleted = false;
+            investigationStatus.textContent = 'НЕСТАБІЛЬНО';
+            investigationStatus.style.background = '#2a2117';
+            investigateBtn.style.left = '50%';
+            investigateBtn.style.top = '50%';
+            updateInvestigationUI();
 
-            if (charismaDecayInterval) clearInterval(charismaDecayInterval);
+            if (investigationDecayInterval) clearInterval(investigationDecayInterval);
 
-            charismaDecayInterval = setInterval(() => {
-                if (charismaCompleted) return;
-                if (charismaVal > 5) {
-                    charismaVal -= 1.2;
-                    updateCharismaUI();
+            investigationDecayInterval = setInterval(() => {
+                if (investigationCompleted) return;
+                if (investigationVal > 5) {
+                    investigationVal -= 1.1;
+                    updateInvestigationUI();
                 }
             }, 100);
         }
 
-        charismaBtn.addEventListener('pointerdown', (e) => {
+        investigateBtn.addEventListener('pointerdown', (e) => {
             e.preventDefault();
-            if (charismaCompleted) return;
+            if (investigationCompleted) return;
 
-            charismaVal += 18;
-            audio.playBeep(500 + charismaVal * 6, 0.09, 'sine', 0.22);
-            updateCharismaUI();
+            investigationVal += 18;
+            audio.playActionTap();
+            updateInvestigationUI();
 
-            if (charismaVal >= 100) {
-                charismaCompleted = true;
-                clearInterval(charismaDecayInterval);
-                charismaStatus.textContent = '100% ПІДТВЕРДЖЕНО';
-                charismaStatus.style.background = '#38bdf8';
+            if (investigationVal >= 100) {
+                investigationCompleted = true;
+                clearInterval(investigationDecayInterval);
+                investigationStatus.textContent = '100% ДОКАЗАНО';
+                investigationStatus.style.background = '#1c3a27';
                 audio.playHit();
 
                 setTimeout(() => {
                     startFinalStage();
                 }, 600);
             } else {
-                moveCharismaButton();
+                moveInvestigateButton();
             }
         });
 
-        const confettiCanvas = document.getElementById('confetti-canvas');
-        const cCtx = confettiCanvas.getContext('2d');
-        let confettiParticles = [];
-        let confettiAnimId = null;
-
-        function launchConfetti() {
-            confettiCanvas.width = window.innerWidth;
-            confettiCanvas.height = window.innerHeight;
-            confettiParticles = [];
-
-            const colors = ['#00f0ff', '#70d6ff', '#38bdf8', '#ffffff', '#1e3a8a'];
-            for (let i = 0; i < 110; i++) {
-                confettiParticles.push({
-                    x: Math.random() * confettiCanvas.width,
-                    y: Math.random() * confettiCanvas.height - confettiCanvas.height,
-                    w: Math.random() * 10 + 5,
-                    h: Math.random() * 6 + 4,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    vx: (Math.random() - 0.5) * 3,
-                    vy: Math.random() * 3.5 + 2,
-                    angle: Math.random() * 360,
-                    spin: (Math.random() - 0.5) * 8
-                });
-            }
-
-            function renderConfetti() {
-                cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-                confettiParticles.forEach(p => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    p.angle += p.spin;
-
-                    if (p.y > confettiCanvas.height + 20) {
-                        p.y = -20;
-                        p.x = Math.random() * confettiCanvas.width;
-                    }
-
-                    cCtx.save();
-                    cCtx.translate(p.x, p.y);
-                    cCtx.rotate((p.angle * Math.PI) / 180);
-                    cCtx.fillStyle = p.color;
-                    cCtx.shadowColor = p.color;
-                    cCtx.shadowBlur = 8;
-                    cCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-                    cCtx.restore();
-                });
-
-                confettiAnimId = requestAnimationFrame(renderConfetti);
-            }
-
-            if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
-            renderConfetti();
-        }
-
         function startFinalStage() {
             applyConfigToDOM();
+            const paperWindow = document.querySelector('.fax-paper-window');
+            paperWindow.style.animation = 'none';
+            paperWindow.style.height = '0';
+            void paperWindow.offsetWidth;
+            paperWindow.style.animation = '';
             switchStage('s4');
             audio.playVictory();
-            launchConfetti();
         }
 
-        const gameAudioEl = document.getElementById('game-audio');
         const giftIntroView = document.getElementById('gift-intro-view');
         const shellGameView = document.getElementById('shell-game-view');
         const shellFailView = document.getElementById('shell-fail-view');
-        const tgDeliveryView = document.getElementById('tg-delivery-view');
+        const mailDeliveryView = document.getElementById('mail-delivery-view');
         const playGiftBtn = document.getElementById('play-gift-btn');
         const shellStatus = document.getElementById('shell-status');
         const cupsStage = document.getElementById('cups-stage');
@@ -1795,8 +2223,6 @@
         let activeSwapInterval = null;
 
         toGiftStageBtn.addEventListener('click', () => {
-            if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
-            cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
             startGiftStageIntro();
         });
 
@@ -1804,16 +2230,17 @@
             giftIntroView.style.display = 'flex';
             shellGameView.style.display = 'none';
             shellFailView.style.display = 'none';
-            tgDeliveryView.style.display = 'none';
+            mailDeliveryView.style.display = 'none';
             switchStage('s5');
-            audio.playBeep(780, 0.1, 'sine', 0.2);
+            audio.playWesternPluck(220, 0.6, 0.08);
         }
 
         playGiftBtn.addEventListener('click', () => {
             audio.init();
+            audio.startRainSound();
             giftIntroView.style.display = 'none';
             shellFailView.style.display = 'none';
-            tgDeliveryView.style.display = 'none';
+            mailDeliveryView.style.display = 'none';
             shellGameView.style.display = 'flex';
             shellCanPick = false;
             cupsStage.innerHTML = '';
@@ -1831,16 +2258,13 @@
                     const prizeImg = document.createElement('img');
                     prizeImg.className = 'prize-item';
                     prizeImg.src = 'https://cdn.pixabay.com/photo/2019/12/16/15/47/vector-4699584_960_720.png';
-                    prizeImg.alt = 'Схований подарок';
-                    prizeImg.onerror = function () {
-                        this.src = 'https://placehold.co/120x120/0a0f1e/00f0ff?text=%F0%9F%8E%81';
-                    };
+                    prizeImg.alt = 'Приз';
                     slot.appendChild(prizeImg);
                     winningPrizeImg = prizeImg;
                 }
 
                 const cupEl = document.createElement('div');
-                cupEl.className = 'cyber-cup';
+                cupEl.className = 'noir-cup';
                 cupEl.innerHTML = `
                     <div class="cup-stripe"></div>
                     <div class="cup-stripe" style="margin-top: 24px;"></div>
@@ -1862,24 +2286,21 @@
                 cupObjects.push(cupObj);
             }
 
-            shellStatus.textContent = 'Ось де подарунок на початку! Запам\'ятовуй...';
+            shellStatus.textContent = 'Знайдіть де шар!';
 
             cupObjects[winningCupId].cupEl.classList.add('lifted');
-            audio.playBeep(740, 0.14, 'sine', 0.22);
+            audio.playCupReveal();
 
             setTimeout(() => {
                 cupObjects[winningCupId].cupEl.classList.remove('lifted');
                 if (winningPrizeImg) winningPrizeImg.style.visibility = 'hidden';
-                audio.playBeep(520, 0.12, 'sine', 0.2);
+                audio.playWoodKnock(0.1, 0.055);
 
                 setTimeout(() => {
-                    shellStatus.textContent = 'Звучить трек: стакани тусуються...';
+                    shellStatus.textContent = 'Бомж мішає шари та співає...';
 
                     isSwappingDuringAudio = true;
-                    try {
-                        gameAudioEl.currentTime = 0;
-                        gameAudioEl.play().catch(() => {});
-                    } catch (e) {}
+                    audio.playShuffleTrack(10000);
 
                     let lastPairKey = '';
                     activeSwapInterval = setInterval(() => {
@@ -1908,35 +2329,30 @@
                         cupA.slotEl.style.left = cupSlotPositions[cupA.slotPos];
                         cupB.slotEl.style.left = cupSlotPositions[cupB.slotPos];
 
-                        audio.playBeep(450 + Math.random() * 200, 0.05, 'triangle', 0.08);
-                    }, 420);
-
-                    gameAudioEl.onended = () => {
-                        stopAudioSwapping(cupObjects);
-                    };
+                        audio.playSwapSound();
+                    }, 650);
 
                     setTimeout(() => {
                         if (isSwappingDuringAudio) {
                             stopAudioSwapping(cupObjects);
                         }
-                    }, 9000);
+                    }, 10000);
 
-                }, 800);
-            }, 1200);
+                }, 900);
+            }, 1400);
         });
 
         function stopAudioSwapping(cupObjects) {
             if (!isSwappingDuringAudio) return;
             isSwappingDuringAudio = false;
             clearInterval(activeSwapInterval);
+            audio.stopShuffleTrack();
 
-            shellStatus.textContent = 'Вибери стакан, під яким лежить подарок!';
+            shellStatus.textContent = 'Где шарик?';
             shellCanPick = true;
 
             cupObjects.forEach(c => {
                 c.slotEl.classList.add('clickable');
-                c.slotEl.style.cursor = 'pointer';
-                c.cupEl.style.cursor = 'pointer';
             });
         }
 
@@ -1946,16 +2362,20 @@
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        async function playTelegramPhoneAnimation() {
+        async function playMailDeliveryAnimation() {
             shellGameView.style.display = 'none';
-            tgDeliveryView.style.display = 'flex';
+            const courier = mailDeliveryView.querySelector('.courier-pigeon');
+            courier.style.animation = 'none';
+            void courier.offsetWidth;
+            courier.style.animation = '';
+            mailDeliveryView.style.display = 'flex';
 
-            audio.playBeep(680, 0.15, 'sine', 0.25);
-            await sleep(1800);
+            audio.playScrape(0.35, 0.055);
+            await sleep(4100);
             audio.playVictory();
-            await sleep(2000);
+            await sleep(700);
 
-            tgDeliveryView.style.display = 'none';
+            mailDeliveryView.style.display = 'none';
             startAuthorRatingStage();
         }
 
@@ -1968,10 +2388,10 @@
             chosenCup.cupEl.classList.add('lifted');
 
             if (chosenCup.id === winningCupId) {
-                shellStatus.textContent = 'Є! Успішно знайдено!';
+                shellStatus.textContent = 'Да хорош! Повезло!';
                 audio.playHit();
-                await sleep(1050);
-                await playTelegramPhoneAnimation();
+                await sleep(1000);
+                await playMailDeliveryAnimation();
             } else {
                 shellStatus.textContent = 'ПУСТО...';
                 audio.playError();
@@ -1986,7 +2406,7 @@
         }
 
         retryShellBtn.addEventListener('click', () => {
-            audio.playBeep(660, 0.1, 'sine', 0.2);
+            audio.playCupReveal();
             startGiftStageIntro();
         });
 
@@ -2004,7 +2424,7 @@
 
         function startAuthorRatingStage() {
             switchStage('sAuthorRating');
-            audio.playBeep(820, 0.1, 'triangle', 0.2);
+            audio.playWesternPluck(196, 0.75, 0.08);
         }
 
         document.getElementById('submit-rating-btn').addEventListener('click', () => {
@@ -2026,7 +2446,7 @@
 
         document.getElementById('close-negative-btn').addEventListener('click', () => {
             negativeOverlay.style.display = 'none';
-            audio.playBeep(620, 0.08, 'sine', 0.15);
+            audio.playWoodKnock(0.1, 0.05);
         });
 
         let offlineCountdownInterval = null;
@@ -2057,11 +2477,12 @@
 
         function resetEntireProtocol() {
             if (introTimer) clearTimeout(introTimer);
-            if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
             if (offlineCountdownInterval) clearInterval(offlineCountdownInterval);
             if (activeSwapInterval) clearInterval(activeSwapInterval);
-            cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
-            stopMatrix();
+            audio.stopShuffleTrack();
+            if (audio.thunderTimer) clearTimeout(audio.thunderTimer);
+            audio.thunderTimer = null;
+            if (rainInterval) clearInterval(rainInterval);
             isRunning = false;
             isSwappingDuringAudio = false;
             CONFIG.age = 18;
