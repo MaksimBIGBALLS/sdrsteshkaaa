@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=UnifrakturCook:wght@700&family=Cormorant+Unicase:wght@500;700&family=Cormorant+SC:wght@600;700&display=swap">
     <title>бурмалда</title>
+    <meta name="theme-color" content="#070405">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-14 -16 28 32'%3E%3Cpath d='M0-14C-5-6-5 1 0 8C5 1 5-6 0-14ZM-12-2C-14 5-7 10 0 8C-7 6-9 1-12-2ZM12-2C14 5 7 10 0 8C7 6 9 1 12-2ZM-7 10H7V13H-7Z' fill='%23e8b765'/%3E%3C/svg%3E">
     <style>
         :root {
-            --rdr-dark: #0d0a07;
+            --rdr-dark: #0a0605;
             --rdr-paper: #211910;
             --rdr-paper-trans: rgba(29, 23, 16, 0.92);
-            --rdr-gold: #c6a969;
-            --rdr-gold-dim: #806a43;
+            --rdr-gold: #e0a540;
+            --rdr-gold-dim: #8a5d22;
             --rdr-red: #721c16;
             --rdr-orange: #b56f35;
             --rdr-text: #ede5d2;
             --rdr-dim: #bdb091;
-            --font-western: 'Old Standard TT', Georgia, serif;
-            --silver: #b9b1a0;
-            --font-mono: 'Cormorant Garamond', Georgia, serif;
+            --font-western: 'Cloister Black', Georgia, serif;
+            --silver: #d9bf8a;
+            --font-mono: 'EB Garamond', Georgia, serif;
         }
 
         * {
@@ -52,14 +54,14 @@
             mix-blend-mode: overlay;
         }
 
-        /* Локальне фонове зображення з папки: fonxxx.jpg із фільтром RDR2 */
+        /* Локальне фонове зображення з папки: fonxxx.png із фільтром RDR2 */
         #bg-image-container {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('fonxxx.jpg');
+            background-image: url('fonxxx.png');
             background-size: cover;
             background-position: center;
             z-index: 1;
@@ -85,7 +87,7 @@
             inset: 0;
             background:
                 radial-gradient(circle at 50% 44%, transparent 34%, rgba(5, 3, 2, 0.62) 72%, rgba(5, 3, 2, 0.96) 100%),
-                linear-gradient(180deg, rgba(198,169,105,.025), transparent 20%, transparent 80%, rgba(0,0,0,.22));
+                linear-gradient(180deg, rgba(224,165,64,.025), transparent 20%, transparent 80%, rgba(0,0,0,.22));
             z-index: 3;
             pointer-events: none;
             animation: vignetteBreath 8s ease-in-out infinite;
@@ -115,8 +117,8 @@
             height: 1px;
             z-index: 20;
             pointer-events: none;
-            background: linear-gradient(90deg, transparent 4%, rgba(198,169,105,.55) 18%, transparent 42%, transparent 58%, rgba(198,169,105,.55) 82%, transparent 96%);
-            box-shadow: 0 0 12px rgba(198,169,105,.18);
+            background: linear-gradient(90deg, transparent 4%, rgba(224,165,64,.55) 18%, transparent 42%, transparent 58%, rgba(224,165,64,.55) 82%, transparent 96%);
+            box-shadow: 0 0 12px rgba(224,165,64,.18);
         }
 
         #app-wrapper::before { top: 18px; }
@@ -143,7 +145,7 @@
             content: "";
             position: absolute;
             inset: 12px;
-            border: 1px solid rgba(198,169,105,.12);
+            border: 1px solid rgba(224,165,64,.12);
             box-shadow: inset 0 0 50px rgba(0,0,0,.45);
             pointer-events: none;
         }
@@ -155,7 +157,7 @@
                 linear-gradient(180deg, #392d20 0%, #1a150f 100%);
             color: var(--rdr-gold);
             border: 1px solid var(--rdr-gold-dim);
-            outline: 1px solid rgba(198,169,105,.22);
+            outline: 1px solid rgba(224,165,64,.22);
             outline-offset: 3px;
             padding: 16px 32px;
             font-family: var(--font-western);
@@ -165,7 +167,7 @@
             text-transform: uppercase;
             cursor: pointer;
             border-radius: 1px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.78), inset 0 0 12px rgba(198,169,105,.12);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.78), inset 0 0 12px rgba(224,165,64,.12);
             transition: all 0.15s ease;
             position: relative;
             text-align: center;
@@ -231,10 +233,10 @@
             width: 100%;
             max-width: 720px;
             background:
-                radial-gradient(circle at 20% 10%, rgba(198,169,105,.06), transparent 28%),
+                radial-gradient(circle at 20% 10%, rgba(224,165,64,.06), transparent 28%),
                 var(--rdr-paper-trans);
             border: 1px solid var(--rdr-gold-dim);
-            outline: 1px solid rgba(198,169,105,.16);
+            outline: 1px solid rgba(224,165,64,.16);
             outline-offset: 6px;
             box-shadow: 0 18px 55px rgba(0,0,0,0.94), inset 0 0 38px rgba(0,0,0,.58);
             border-radius: 2px;
@@ -283,10 +285,10 @@
             height: 82vh;
             max-height: 620px;
             background:
-                radial-gradient(circle at 50% 0%, rgba(198,169,105,.07), transparent 32%),
+                radial-gradient(circle at 50% 0%, rgba(224,165,64,.07), transparent 32%),
                 var(--rdr-paper-trans);
             border: 1px solid var(--rdr-gold-dim);
-            outline: 1px solid rgba(198,169,105,.14);
+            outline: 1px solid rgba(224,165,64,.14);
             outline-offset: 5px;
             border-radius: 2px;
             box-shadow: 0 22px 65px rgba(0,0,0,0.94);
@@ -610,7 +612,7 @@
         .fax-controls span {
             width: 9px;
             height: 9px;
-            border: 1px solid #806a43;
+            border: 1px solid #8a5d22;
             border-radius: 50%;
             background: #211910;
         }
@@ -618,7 +620,7 @@
         .fax-feed-slot {
             height: 8px;
             background: #080706;
-            border: 1px solid #0b0907;
+            border: 1px solid #0d0807;
             box-shadow: inset 0 2px 4px #000;
         }
 
@@ -852,7 +854,7 @@
             top: 57%;
             left: 12%;
             width: 76%;
-            border-top: 1px dashed rgba(198,169,105,.24);
+            border-top: 1px dashed rgba(224,165,64,.24);
             transform: rotate(-10deg);
         }
 
@@ -884,7 +886,7 @@
             bottom: 0;
             width: 30px;
             height: 23px;
-            border: 1px solid #806a43;
+            border: 1px solid #8a5d22;
             background: #d3c09a;
             color: #302315;
             font: bold 15px/21px var(--font-western);
@@ -1003,28 +1005,28 @@
         /* === Noir + Belle Epoque: warm gold with tarnished silver === */
         #pips{position:fixed;top:calc(10px + env(safe-area-inset-top));left:0;right:0;z-index:30;display:flex;justify-content:center;gap:8px;pointer-events:none}
         .pip{width:15px;height:15px;fill:none;stroke:var(--rdr-gold-dim);stroke-width:1.6;transition:.5s}
-        .pip.on{fill:var(--rdr-gold);stroke:var(--silver);filter:drop-shadow(0 0 5px rgba(198,169,105,.5))}
-        .stage.active::before{border:3px double rgba(185,177,160,.16)}
-        .stage.active::after{content:"";position:absolute;left:50%;bottom:26px;width:22px;height:22px;transform:translateX(-50%);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21C4 15 1 10.5 2.6 7C4.2 3.8 8.5 3.6 12 8C15.5 3.6 19.8 3.8 21.4 7C23 10.5 20 15 12 21Z' fill='none' stroke='%23b9b1a0' stroke-width='1.4'/%3E%3C/svg%3E") center/contain no-repeat;opacity:.7;pointer-events:none}
-        .clock-icon-svg{width:clamp(170px,42vw,280px);height:clamp(170px,42vw,280px);fill:none;overflow:visible;filter:drop-shadow(0 0 18px rgba(198,169,105,.28))}
+        .pip.on{fill:var(--rdr-gold);stroke:var(--silver);filter:drop-shadow(0 0 5px rgba(224,165,64,.5))}
+        .stage.active::before{border:3px double rgba(217,191,138,.16)}
+        .stage.active::after{content:"";position:absolute;left:50%;bottom:26px;width:22px;height:22px;transform:translateX(-50%);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C9 7 9 12 12 17C15 12 15 7 12 2ZM5 9C4 13 8 16 12 17C8 15 6 12 5 9ZM19 9C20 13 16 16 12 17C16 15 18 12 19 9ZM8 19H16V21H8Z' fill='none' stroke='%23d9bf8a' stroke-width='1.4'/%3E%3C/svg%3E") center/contain no-repeat;opacity:.7;pointer-events:none}
+        .clock-icon-svg{width:clamp(170px,42vw,280px);height:clamp(170px,42vw,280px);fill:none;overflow:visible;filter:drop-shadow(0 0 18px rgba(224,165,64,.28))}
         .clock-icon-svg .hd{stroke-dasharray:100;stroke-dashoffset:100;animation:heartDraw 1.9s ease forwards}
         @keyframes heartDraw{to{stroke-dashoffset:0}}
-        .intro-title{font:400 clamp(2rem,8vw,3.4rem) var(--font-western);letter-spacing:.06em;margin-top:.4rem;background:linear-gradient(100deg,#8d8678 20%,#f0e6c8 45%,#c6a969 55%,#8d8678 80%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 2.4s linear infinite}
+        .intro-title{font:400 clamp(2rem,8vw,3.4rem) var(--font-western);letter-spacing:.06em;margin-top:.4rem;background:linear-gradient(100deg,#8a7358 20%,#ffe9bd 45%,#e0a540 55%,#8a7358 80%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 2.4s linear infinite}
         @keyframes shimmer{to{background-position:-250% 0}}
         .rdr-card,.offline-card,.fail-box,.easter-egg-box{position:relative}
-        .rdr-card::before,.letter-card::before,.offline-card::before,.fail-box::before{content:"";position:absolute;top:-10px;left:50%;width:74px;height:18px;transform:translateX(-50%);background:#0d0a07 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 18'%3E%3Cpath d='M0 9H26M48 9H74' stroke='%23806a43'/%3E%3Cpath d='M37 2L44 9L37 16L30 9Z' fill='%23c6a969'/%3E%3C/svg%3E") center/contain no-repeat;pointer-events:none}
-        .rdr-card,.letter-card,.offline-card,.game-panel{box-shadow:0 18px 55px rgba(0,0,0,.94),inset 0 0 38px rgba(0,0,0,.58),0 0 45px rgba(198,169,105,.07)}
+        .rdr-card::before,.letter-card::before,.offline-card::before,.fail-box::before{content:"";position:absolute;top:-10px;left:50%;width:74px;height:18px;transform:translateX(-50%);background:#0a0605 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 74 18'%3E%3Cpath d='M0 9H26M48 9H74' stroke='%237a6350'/%3E%3Cpath d='M37 1C34 5 34 9 37 13C40 9 40 5 37 1ZM31 6C30 10 33 12 37 13C34 11 32 9 31 6ZM43 6C44 10 41 12 37 13C40 11 42 9 43 6ZM33 15H41V17H33Z' fill='%23e0a540'/%3E%3C/svg%3E") center/contain no-repeat;pointer-events:none}
+        .rdr-card,.letter-card,.offline-card,.game-panel{box-shadow:0 18px 55px rgba(0,0,0,.94),inset 0 0 38px rgba(0,0,0,.58),0 0 45px rgba(224,165,64,.07)}
         .rdr-btn{overflow:hidden;font-style:italic;text-transform:none;letter-spacing:.05em;border-color:var(--rdr-gold-dim)}
-        .rdr-btn::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(240,230,200,.28),transparent);transform:skewX(-20deg);transition:left .6s}
+        .rdr-btn::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,240,200,.28),transparent);transform:skewX(-20deg);transition:left .6s}
         .rdr-btn:hover::after{left:130%}
         .rdr-btn:focus-visible{outline:2px solid var(--silver);outline-offset:4px}
         .rdr-header,.access-badge,.fax-status{text-transform:none;font-style:italic;letter-spacing:.06em}
-        .offline-title{background:linear-gradient(100deg,#b9b1a0,#f0e6c8 50%,#c6a969);-webkit-background-clip:text;background-clip:text;color:transparent!important;font-weight:400}
+        .offline-title{background:linear-gradient(100deg,#d9bf8a,#ffe9bd 50%,#e0a540);-webkit-background-clip:text;background-clip:text;color:transparent!important;font-weight:400}
         .time-num,.game-badge,.floating-evidence,.investigation-label,#age-counter{font-family:var(--font-western);font-variant-numeric:lining-nums}
-        .floating-evidence{box-shadow:0 4px 15px rgba(0,0,0,.8),0 0 14px rgba(198,169,105,.12)}
-        .progress-fill{background:linear-gradient(90deg,#806a43,#c6a969,#e0d9c7)}
-        .mail-delivery-scene{border:3px double var(--rdr-gold-dim);background:radial-gradient(ellipse at 50% 55%,#1f1810,#050403 72%)}
-        .mail-delivery-scene::after{content:"";position:absolute;top:11%;right:9%;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f0e6c8,#8d8678 70%);opacity:.5;box-shadow:0 0 30px rgba(198,169,105,.25)}
+        .floating-evidence{box-shadow:0 4px 15px rgba(0,0,0,.8),0 0 14px rgba(224,165,64,.12)}
+        .progress-fill{background:linear-gradient(90deg,#8a5d22,#e0a540,#f3e2bd)}
+        .mail-delivery-scene{border:3px double var(--rdr-gold-dim);background:radial-gradient(ellipse at 50% 55%,#1b2233,#0a0605 72%)}
+        .mail-delivery-scene::after{content:"";position:absolute;top:11%;right:9%;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe9bd,#8a7358 70%);opacity:.5;box-shadow:0 0 30px rgba(224,165,64,.25)}
         .mail-heart-bg{position:absolute;left:50%;top:54%;height:96%;aspect-ratio:1;transform:translate(-50%,-50%);opacity:.45}
         .mail-trail{position:absolute;inset:0;width:100%;height:100%}
         .mail-trail path{stroke-dashoffset:100;animation:heartDraw 4.2s linear forwards}
@@ -1037,10 +1039,10 @@
         @media (prefers-reduced-motion:reduce){.intro-title,.clock-icon-svg .hd,.mail-trail path{animation:none;stroke-dashoffset:0}}
     
         /* === MAX: baroque heart frame, dust, grain, rays, corners === */
-        ::selection{background:#806a43;color:#0d0a07}
-        #frame{position:fixed;left:50%;top:50%;width:min(130vw,760px);height:auto;transform:translate(-50%,-50%);z-index:2;opacity:.2;pointer-events:none;filter:drop-shadow(0 0 22px rgba(198,169,105,.25));animation:breathe 7s ease-in-out infinite}
+        ::selection{background:#8a5d22;color:#0a0605}
+        #frame{position:fixed;left:50%;top:50%;width:min(130vw,760px);height:auto;transform:translate(-50%,-50%);z-index:2;opacity:.2;pointer-events:none;filter:drop-shadow(0 0 22px rgba(224,165,64,.25));animation:breathe 7s ease-in-out infinite}
         @keyframes breathe{0%,100%{opacity:.14}50%{opacity:.27}}
-        #rays{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;background:conic-gradient(from 195deg at 50% -12%,transparent 0 8%,rgba(198,169,105,.07) 12%,transparent 16% 24%,rgba(185,177,160,.06) 28%,transparent 32% 100%);animation:sway 14s ease-in-out infinite alternate}
+        #rays{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;background:conic-gradient(from 195deg at 50% -12%,transparent 0 8%,rgba(224,165,64,.07) 12%,transparent 16% 24%,rgba(217,191,138,.06) 28%,transparent 32% 100%);animation:sway 14s ease-in-out infinite alternate}
         @keyframes sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
         #dust{position:fixed;inset:0;width:100%;height:100%;z-index:4;pointer-events:none}
         .rdr-vignette::after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.1;mix-blend-mode:overlay}
@@ -1049,8 +1051,8 @@
         @keyframes bloom{0%{opacity:.9;transform:scale(.3)}100%{opacity:0;transform:scale(9)}}
         .shell-game-panel{position:relative}
         .rdr-card::after,.letter-card::after,.offline-card::after,.fail-box::after,.game-panel::after,.shell-game-panel::after{content:"";position:absolute;inset:7px;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 3L17 10L10 17L3 10Z' fill='none' stroke='%23c6a969' stroke-width='1'/%3E%3Ccircle cx='10' cy='10' r='1.6' fill='%23e0d9c7'/%3E%3C/svg%3E") 0 0/20px 20px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 3L17 10L10 17L3 10Z' fill='none' stroke='%23c6a969' stroke-width='1'/%3E%3Ccircle cx='10' cy='10' r='1.6' fill='%23e0d9c7'/%3E%3C/svg%3E") 100% 0/20px 20px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 3L17 10L10 17L3 10Z' fill='none' stroke='%23c6a969' stroke-width='1'/%3E%3Ccircle cx='10' cy='10' r='1.6' fill='%23e0d9c7'/%3E%3C/svg%3E") 0 100%/20px 20px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 3L17 10L10 17L3 10Z' fill='none' stroke='%23c6a969' stroke-width='1'/%3E%3Ccircle cx='10' cy='10' r='1.6' fill='%23e0d9c7'/%3E%3C/svg%3E") 100% 100%/20px 20px no-repeat}
-        .rdr-btn:hover{box-shadow:0 0 26px rgba(198,169,105,.35),inset 0 0 14px rgba(198,169,105,.18)}
-        .sp{position:fixed;z-index:50;pointer-events:none;border-radius:50%;background:radial-gradient(circle,#fff6d8,#c6a969 60%,transparent);animation:spk .8s ease-out forwards}
+        .rdr-btn:hover{box-shadow:0 0 26px rgba(224,165,64,.35),inset 0 0 14px rgba(224,165,64,.18)}
+        .sp{position:fixed;z-index:50;pointer-events:none;border-radius:50%;background:radial-gradient(circle,#fff6d8,#e0a540 60%,transparent);animation:spk .8s ease-out forwards}
         @keyframes spk{to{opacity:0;transform:translateY(-22px) scale(.2)}}
         @media (prefers-reduced-motion:reduce){#frame,#rays{animation:none}#bloom.go{animation:none}}
             /* v-polish */
@@ -1062,7 +1064,7 @@
         @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
         @media (prefers-reduced-motion:reduce){body.ready #frame{animation:none;opacity:.2}.clock-icon-svg{animation:none}}
             /* === pigeon v2 + attributes === */
-        .mail-delivery-scene{background:#050403;border:3px double var(--rdr-gold-dim)}
+        .mail-delivery-scene{background:#0a0605;border:3px double var(--rdr-gold-dim)}
         .mail-delivery-scene::after{display:none}
         .scene-svg{position:absolute;inset:0;width:100%;height:100%}
         .scene-svg .tw{animation:tw 2.4s ease-in-out infinite}
@@ -1083,10 +1085,10 @@
         .mail-delivery-caption .c1{animation:capOut .4s 4.2s forwards}
         .mail-delivery-caption .c2{opacity:0;color:var(--rdr-gold);animation:capIn .5s 4.5s forwards}
         @keyframes capOut{to{opacity:0}}@keyframes capIn{to{opacity:1}}
-        .seal{position:absolute;right:22px;top:-28px;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#b0554a,#6e2a24 70%);box-shadow:0 4px 14px rgba(0,0,0,.7),inset 0 0 8px rgba(0,0,0,.5);outline:2px dotted rgba(232,201,189,.3);outline-offset:-8px;color:#e8c9bd;font:1.6rem var(--font-western);transform:rotate(-12deg);z-index:2}
+        .seal{position:absolute;right:22px;top:-28px;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#b0554a,#6e2a24 70%);box-shadow:0 4px 14px rgba(0,0,0,.7),inset 0 0 8px rgba(0,0,0,.5);outline:2px dotted rgba(232,164,106,.3);outline-offset:-8px;color:#e8c9bd;font:1.6rem var(--font-western);transform:rotate(-12deg);z-index:2}
             /* === v3: livelier motion + lightbox === */
         @keyframes cardRise{from{opacity:0;transform:translateY(46px) scale(.93);filter:blur(8px)}60%{filter:blur(0)}to{opacity:1;transform:none;filter:none}}
-        @keyframes cardGlow{50%{box-shadow:0 18px 55px rgba(0,0,0,.94),inset 0 0 38px rgba(0,0,0,.58),0 0 60px rgba(198,169,105,.16)}}
+        @keyframes cardGlow{50%{box-shadow:0 18px 55px rgba(0,0,0,.94),inset 0 0 38px rgba(0,0,0,.58),0 0 60px rgba(224,165,64,.16)}}
         @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
         .stage.active .rdr-card,.stage.active .letter-card,.stage.active .game-panel{animation:cardRise .95s cubic-bezier(.2,.8,.2,1) both,cardGlow 5s 1s ease-in-out infinite}
         .stage.active .rdr-card>*,.stage.active .letter-card>*{animation:fadeUp .6s cubic-bezier(.2,.8,.2,1) both}
@@ -1095,33 +1097,33 @@
         .stage.active .rdr-card>:nth-child(3),.stage.active .letter-card>:nth-child(3){animation-delay:.43s}
         .stage.active .rdr-card>:nth-child(4),.stage.active .letter-card>:nth-child(4){animation-delay:.52s}
         .stage.active .rdr-card>:nth-child(n+5),.stage.active .letter-card>:nth-child(n+5){animation-delay:.6s}
-        @keyframes btnPulse{50%{box-shadow:0 0 22px rgba(198,169,105,.28)}}
+        @keyframes btnPulse{50%{box-shadow:0 0 22px rgba(224,165,64,.28)}}
         .rdr-btn:not(:hover):not(:disabled){animation:btnPulse 2.8s ease-in-out infinite}
         .rdr-btn:active{transform:scale(.95)}
         .pip.on{transform-box:fill-box;transform-origin:center;animation:pipPop .7s cubic-bezier(.3,1.6,.5,1)}
         @keyframes pipPop{0%{transform:scale(.3)}55%{transform:scale(1.8)}100%{transform:scale(1)}}
-        @keyframes evGlow{50%{filter:drop-shadow(0 0 12px rgba(198,169,105,.55))}}
+        @keyframes evGlow{50%{filter:drop-shadow(0 0 12px rgba(224,165,64,.55))}}
         .floating-evidence{animation:evGlow 2s ease-in-out infinite}
-        @keyframes numGlow{50%{text-shadow:0 0 18px rgba(198,169,105,.7)}}
+        @keyframes numGlow{50%{text-shadow:0 0 18px rgba(224,165,64,.7)}}
         .time-num{animation:numGlow 2s ease-in-out infinite}
         .progress-fill{background-size:200% 100%;animation:barShine 2s linear infinite}
         @keyframes barShine{to{background-position:-200% 0}}
         .offline-title{background-size:250% 100%;animation:shimmer 4s linear infinite}
         #frame{translate:var(--mx,0px) var(--my,0px);transition:translate .6s ease-out}
         #rays{translate:calc(var(--mx,0px)*-.6) 0;transition:translate .8s ease-out}
-        #lb{position:fixed;inset:0;z-index:100;display:grid;place-items:center;overflow:hidden;background:rgba(5,4,3,.95);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;touch-action:none}
+        #lb{position:fixed;inset:0;z-index:100;display:grid;place-items:center;overflow:hidden;background:rgba(10,6,5,.95);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;touch-action:none}
         #lb.open{opacity:1;visibility:visible}
-        #lbImg{max-width:92vw;max-height:84vh;cursor:grab;user-select:none;-webkit-user-drag:none;transform-origin:center;will-change:transform;transition:transform .25s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 0 1px #806a43,0 0 0 8px #0b0907,0 0 0 9px #806a43,0 30px 80px #000;touch-action:none}
+        #lbImg{max-width:92vw;max-height:84vh;cursor:grab;user-select:none;-webkit-user-drag:none;transform-origin:center;will-change:transform;transition:transform .25s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 0 1px #8a5d22,0 0 0 8px #0d0807,0 0 0 9px #8a5d22,0 30px 80px #000;touch-action:none}
         #lbImg.drag{transition:none;cursor:grabbing}
         .lb-bar{position:absolute;top:calc(14px + env(safe-area-inset-top));right:14px;display:flex;gap:8px;z-index:2}
-        .lb-bar button{width:44px;height:44px;border:1px solid var(--rdr-gold-dim);background:#0b0907;color:var(--rdr-gold);font:1.4rem var(--font-western);cursor:pointer;border-radius:2px;transition:.2s}
-        .lb-bar button:hover{background:var(--rdr-gold);color:#0d0a07}
+        .lb-bar button{width:44px;height:44px;border:1px solid var(--rdr-gold-dim);background:#0d0807;color:var(--rdr-gold);font:1.4rem var(--font-western);cursor:pointer;border-radius:2px;transition:.2s}
+        .lb-bar button:hover{background:var(--rdr-gold);color:#0a0605}
         .lb-bar button:focus-visible{outline:2px solid var(--silver);outline-offset:3px}
         .lb-hint{position:absolute;bottom:calc(14px + env(safe-area-inset-bottom));left:12px;right:12px;text-align:center;font-style:italic;font-size:.95rem;color:var(--rdr-gold-dim);pointer-events:none}
         .fax-paper img{cursor:zoom-in;transition:transform .3s,filter .3s}
         .fax-paper img:hover{transform:scale(1.02);filter:brightness(1.08)}
-        .fax-paper img:focus-visible{outline:2px solid #6f6759;outline-offset:3px}
-        .zoom-cue{text-align:center;font-style:italic;font-size:.9rem;color:#6f6759;padding-top:4px}
+        .fax-paper img:focus-visible{outline:2px solid #7a6350;outline-offset:3px}
+        .zoom-cue{text-align:center;font-style:italic;font-size:.9rem;color:#7a6350;padding-top:4px}
         @media (prefers-reduced-motion:reduce){.stage.active .rdr-card,.stage.active .letter-card,.stage.active .game-panel,.stage.active .rdr-card>*,.stage.active .letter-card>*,.rdr-btn,.pip.on,.floating-evidence,.time-num,.progress-fill,.offline-title,.scene-svg .tw,.scene-svg .cl,.scene-svg .march{animation:none}#lbImg{transition:none}}
             #stage-4.stage.active::after{display:none}
             /* === v4: gate + juice === */
@@ -1130,61 +1132,331 @@
         .rdr-btn:disabled{opacity:.6;cursor:not-allowed;filter:grayscale(.6);animation:none;border-style:dashed}
         .rdr-btn .lk{width:1em;height:1em;vertical-align:-.12em;margin-right:.45rem;fill:none;stroke:currentColor;stroke-width:2}
         .rdr-btn.rdr-btn.unlocked{animation:unlock .9s ease}
-        @keyframes unlock{0%{transform:scale(.9);box-shadow:0 0 0 rgba(198,169,105,0)}40%{transform:scale(1.06);box-shadow:0 0 44px rgba(198,169,105,.85)}100%{transform:none}}
+        @keyframes unlock{0%{transform:scale(.9);box-shadow:0 0 0 rgba(224,165,64,0)}40%{transform:scale(1.06);box-shadow:0 0 44px rgba(224,165,64,.85)}100%{transform:none}}
         .fax-paper{position:relative}
         .need-view{animation:needGlow 1.6s ease-in-out infinite}
-        @keyframes needGlow{0%,100%{outline:3px solid rgba(138,63,58,0);outline-offset:3px;box-shadow:0 0 0 rgba(198,169,105,0)}50%{outline:3px solid rgba(138,63,58,.75);outline-offset:7px;box-shadow:0 0 28px rgba(198,169,105,.6)}}
-        button.zoom-cue{display:block;margin:6px auto 0;background:none;border:0;border-bottom:1px dashed #6f6759;color:#4a3f2a;font:italic .95rem var(--font-mono);cursor:pointer;padding:0 2px}
-        button.zoom-cue.need{color:#8a3f3a;animation:cueBlink 1.2s ease-in-out infinite}
+        @keyframes needGlow{0%,100%{outline:3px solid rgba(138,63,58,0);outline-offset:3px;box-shadow:0 0 0 rgba(224,165,64,0)}50%{outline:3px solid rgba(138,63,58,.75);outline-offset:7px;box-shadow:0 0 28px rgba(224,165,64,.6)}}
+        button.zoom-cue{display:block;margin:6px auto 0;background:none;border:0;border-bottom:1px dashed #7a6350;color:#4a3f2a;font:italic .95rem var(--font-mono);cursor:pointer;padding:0 2px}
+        button.zoom-cue.need{color:#7a1420;animation:cueBlink 1.2s ease-in-out infinite}
         @keyframes cueBlink{50%{opacity:.45}}
-        .stamp{position:absolute;left:50%;top:48%;opacity:0;pointer-events:none;border:3px double #8a3f3a;color:#8a3f3a;padding:.25rem 1rem;font:700 clamp(1.2rem,4.5vw,1.9rem) var(--font-western);letter-spacing:.16em;mix-blend-mode:multiply;transform:translate(-50%,-50%) rotate(-14deg)}
+        .stamp{position:absolute;left:50%;top:48%;opacity:0;pointer-events:none;border:3px double #7a1420;color:#7a1420;padding:.25rem 1rem;font:700 clamp(1.2rem,4.5vw,1.9rem) var(--font-western);letter-spacing:.16em;mix-blend-mode:multiply;transform:translate(-50%,-50%) rotate(-14deg)}
         .stamp.go{animation:slam .6s cubic-bezier(.2,1.4,.4,1) forwards}
         @keyframes slam{0%{opacity:0;transform:translate(-50%,-50%) rotate(-14deg) scale(3.4)}55%{opacity:.95;transform:translate(-50%,-50%) rotate(-14deg) scale(.9)}100%{opacity:.88;transform:translate(-50%,-50%) rotate(-14deg) scale(1)}}
         @media (prefers-reduced-motion:reduce){.need-view,button.zoom-cue.need,.rdr-btn.unlocked{animation:none}.stamp.go{animation:none;opacity:.88}}
+            /* === v5: Kingdom of knights & princesses === */
+        .flag{transform-box:fill-box;transform-origin:0 50%;animation:wave 1.3s ease-in-out infinite alternate}
+        @keyframes wave{to{transform:skewY(12deg) scaleX(.82)}}
+        .intro-title{font-size:clamp(1.8rem,7vw,3rem)}
+        .clock-icon-svg{filter:drop-shadow(0 0 22px rgba(224,165,64,.35))}
+        body{background-image:radial-gradient(ellipse at 50% 18%,#4a1218 0,#1f0c0b 46%,#0a0605 82%)}
+        @media (prefers-reduced-motion:reduce){.flag{animation:none}}
+            /* === v6: GOTHIC HALL === */
+        #floor{position:fixed;left:0;right:0;bottom:0;height:30vh;z-index:2;pointer-events:none;background:linear-gradient(0deg,rgba(224,165,64,.13),rgba(179,32,47,.05) 45%,transparent)}
+        #rain{opacity:.16}
+        h1,h2,.game-title,.access-badge{letter-spacing:.05em}
+        .floating-evidence{border-radius:50%!important;min-width:66px;height:66px;display:grid;place-items:center;padding:0!important;background:radial-gradient(circle at 35% 30%,#c0323d,#7a1420 70%)!important;border:2px solid #4a0b12!important;color:#ffe2a8!important;font-family:var(--font-western)!important;outline:2px dotted rgba(255,226,168,.35);outline-offset:-8px;box-shadow:0 5px 14px rgba(0,0,0,.85),inset 0 0 10px rgba(0,0,0,.55)}
+        .br-track{position:relative;height:36px;border:1px solid var(--rdr-gold-dim);background:#100907;overflow:hidden}
+        .br-zone{position:absolute;top:0;bottom:0;background:linear-gradient(90deg,rgba(74,160,96,.15),rgba(74,170,100,.65),rgba(74,160,96,.15));border-left:1px solid #5fbf7a;border-right:1px solid #5fbf7a;transition:left .3s,width .3s}
+        .br-needle{position:absolute;top:-2px;bottom:-2px;left:0;width:4px;background:#ffd58a;box-shadow:0 0 12px #ffb84d}
+        .br-track.miss{animation:brMiss .4s}
+        @keyframes brMiss{25%{box-shadow:inset 0 0 26px #b3202f;transform:translateX(-5px)}60%{transform:translateX(5px)}}
+        .br-chains{font-size:1.7rem;letter-spacing:.35rem;min-height:2.2rem;filter:drop-shadow(0 0 6px rgba(224,165,64,.45))}
+            /* === v7: GRACEFUL - Cloister Black, filigree, bokeh === */
+        @font-face{font-family:'Cloister Black';src:local('Cloister Black'),local('CloisterBlack'),local('Cloister Black Regular'),url('CloisterBlack.woff2') format('woff2'),url('CloisterBlack.ttf') format('truetype'),url('CloisterBlack.otf') format('opentype'),url('Cloister Black.ttf') format('truetype');font-display:swap}
+        :root{--font-western:'Cloister Black','UnifrakturCook','EB Garamond',Georgia,serif;--font-mono:'EB Garamond',Georgia,serif}
+        body{font-family:'EB Garamond',Georgia,serif}
+        .latin{font-family:'Cloister Black','UnifrakturCook',serif;font-size:clamp(2rem,6.4vw,3rem);line-height:1.05;font-weight:400;color:#f3e2bd;text-shadow:0 0 22px rgba(224,165,64,.5);text-transform:none;letter-spacing:.02em;text-align:center;width:100%}
+        .latin::after{content:"";display:block;height:14px;margin:.35rem auto 0;width:min(240px,64%);background:linear-gradient(90deg,transparent,#8a5d22 35%,#8a5d22 65%,transparent) center/100% 1px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M7 1L13 7L7 13L1 7Z' fill='none' stroke='%23e0a540'/%3E%3Ccircle cx='7' cy='7' r='1.6' fill='%23e0a540'/%3E%3C/svg%3E") center/14px no-repeat}
+        .intro-title{font-family:'Cloister Black','UnifrakturCook',serif!important;font-weight:400;font-size:clamp(3rem,12vw,5.4rem)!important;letter-spacing:.02em;text-transform:none}
+        .intro-sub{font-style:italic;letter-spacing:.18em;color:#b8a58a;margin-top:-.2rem}
+        .pip{stroke-width:1.1}
+        .rdr-card,.letter-card,.offline-card,.game-panel{border:1px solid rgba(224,165,64,.5)!important;outline:1px solid rgba(224,165,64,.16)!important;outline-offset:7px;border-radius:2px;background-image:linear-gradient(180deg,rgba(60,18,22,.35),rgba(10,6,5,.7))!important}
+        .rdr-card::after,.letter-card::after,.offline-card::after,.fail-box::after,.game-panel::after,.shell-game-panel::after{inset:6px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(0 12 12)' fill='none' stroke='%23e0a540'%3E%3Cpath d='M2 23V12C2 6 6 2 12 2H23' stroke-width='1'/%3E%3Cpath d='M6 23V15C6 10 10 6 15 6H23' stroke-width='.6' opacity='.6'/%3E%3Ccircle cx='5' cy='5' r='1.8' fill='%23e0a540' stroke='none'/%3E%3C/g%3E%3C/svg%3E") 0 0/26px 26px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(90 12 12)' fill='none' stroke='%23e0a540'%3E%3Cpath d='M2 23V12C2 6 6 2 12 2H23' stroke-width='1'/%3E%3Cpath d='M6 23V15C6 10 10 6 15 6H23' stroke-width='.6' opacity='.6'/%3E%3Ccircle cx='5' cy='5' r='1.8' fill='%23e0a540' stroke='none'/%3E%3C/g%3E%3C/svg%3E") 100% 0/26px 26px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)' fill='none' stroke='%23e0a540'%3E%3Cpath d='M2 23V12C2 6 6 2 12 2H23' stroke-width='1'/%3E%3Cpath d='M6 23V15C6 10 10 6 15 6H23' stroke-width='.6' opacity='.6'/%3E%3Ccircle cx='5' cy='5' r='1.8' fill='%23e0a540' stroke='none'/%3E%3C/g%3E%3C/svg%3E") 0 100%/26px 26px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(180 12 12)' fill='none' stroke='%23e0a540'%3E%3Cpath d='M2 23V12C2 6 6 2 12 2H23' stroke-width='1'/%3E%3Cpath d='M6 23V15C6 10 10 6 15 6H23' stroke-width='.6' opacity='.6'/%3E%3Ccircle cx='5' cy='5' r='1.8' fill='%23e0a540' stroke='none'/%3E%3C/g%3E%3C/svg%3E") 100% 100%/26px 26px no-repeat!important}
+        .rdr-btn{background:linear-gradient(180deg,rgba(224,165,64,.12),rgba(179,32,47,.16))!important;border:1px solid rgba(224,165,64,.7)!important;font-family:'EB Garamond',serif!important;font-style:italic;font-size:1.25rem!important;letter-spacing:.09em;text-transform:none!important}
+        .access-badge,.game-title{font-family:'EB Garamond',serif;font-variant:small-caps;letter-spacing:.12em}
+        .time-num{font-size:clamp(2rem,7vw,3.4rem)!important}
+        #bokeh{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+        #bokeh i{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,213,138,.5),rgba(224,165,64,.12) 55%,transparent 70%);filter:blur(2px);animation:bk linear infinite}
+        @keyframes bk{0%{transform:translate(0,0) scale(1);opacity:0}20%{opacity:var(--o)}80%{opacity:var(--o)}100%{transform:translate(var(--dx),-140px) scale(1.25);opacity:0}}
+        @media (prefers-reduced-motion:reduce){#bokeh i{animation:none;opacity:.08}}
+
+        /* ===================================================================
+           v8: ГОТИЧНА ЗАЛА - стиль з фото (свічі, бордовий оксамит, золото, темний мармур)
+           =================================================================== */
+        @font-face{font-family:'GothicCustom';src:local('GothicCustom'),url('gothic.woff2') format('woff2'),url('gothic.ttf') format('truetype'),url('gothic.otf') format('opentype');font-display:swap}
+        :root{
+            --rdr-dark:#070405; --rdr-paper:#160d10; --rdr-paper-trans:rgba(17,10,13,.93);
+            --rdr-gold:#e8b765; --rdr-gold-dim:#8f6428; --rdr-red:#7a1420; --rdr-orange:#d98a4a;
+            --rdr-text:#f3e8d2; --rdr-dim:#c8b894; --silver:#e3cfa0;
+            --velvet:#6e0f1d; --velvet-deep:#33060f; --candle:#ffb85c;
+            --font-gothic:'GothicCustom','Cloister Black','UnifrakturCook','Cormorant Unicase','Cormorant SC',serif;
+            --font-western:var(--font-gothic);
+            --font-mono:'EB Garamond',Georgia,serif;
+            --dm:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 .5L11.5 6L6 11.5L.5 6Z' fill='%23e8b765' stroke='%23fff0c8' stroke-width='.5'/%3E%3C/svg%3E");
+        }
+
+        /* фон: сама зала з фото, без сепії */
+        #bg-image-container{filter:brightness(.82) saturate(1.08) contrast(1.05)}
+        #rain-canvas{opacity:.22}
+        .rdr-vignette{background:radial-gradient(circle at 50% 46%,transparent 30%,rgba(5,2,3,.6) 70%,rgba(5,2,3,.95) 100%),linear-gradient(180deg,rgba(255,170,70,.03),transparent 22%,transparent 78%,rgba(40,0,6,.28))}
+
+        /* миготіння свічок з боків і від люстри */
+        #candles{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;
+            background:
+                radial-gradient(circle at 4% 24%,rgba(255,170,70,.34),transparent 15%),
+                radial-gradient(circle at 18% 60%,rgba(255,170,70,.2),transparent 10%),
+                radial-gradient(circle at 63% 8%,rgba(255,170,70,.36),transparent 17%),
+                radial-gradient(circle at 63% 54%,rgba(255,170,70,.18),transparent 9%),
+                radial-gradient(circle at 96% 26%,rgba(255,170,70,.3),transparent 14%);
+            animation:candleFlicker 3.3s linear infinite}
+        @keyframes candleFlicker{0%,100%{opacity:.85}9%{opacity:1}19%{opacity:.68}31%{opacity:.96}46%{opacity:.76}58%{opacity:1}71%{opacity:.8}86%{opacity:.95}}
+        @media (prefers-reduced-motion:reduce){#candles{animation:none;opacity:.8}}
+
+        /* текст: читабельний гарамонд, заголовки - готичні */
+        body,.rdr-lines,.rdr-line,.game-desc,.shell-status-text,.peep-desc,p{font-family:'EB Garamond',Georgia,serif}
+        .rdr-lines{font-size:clamp(1.05rem,2.6vw,1.3rem)}
+        .game-desc{font-size:clamp(1rem,2.4vw,1.15rem)}
+        h1,h2,.game-title,.offline-title,.access-badge,.rdr-header,.easter-egg-alert,.mail-delivery-heading strong,.peep-count,.latin{
+            font-family:var(--font-gothic)!important;font-variant:normal!important;font-style:normal!important}
+        .game-title{font-size:clamp(1.2rem,3.2vw,1.55rem);letter-spacing:.07em;color:#f6dfaa;text-shadow:0 0 14px rgba(255,170,70,.35)}
+        .access-badge{font-size:clamp(.82rem,2.2vw,.98rem);letter-spacing:.1em;background:linear-gradient(180deg,rgba(110,15,29,.55),rgba(51,6,15,.7));border:1px solid rgba(232,183,101,.7);color:#f3dba4;font-weight:700}
+        .rdr-header{font-size:clamp(.85rem,2.2vw,1rem);font-weight:700;letter-spacing:.1em;padding:8px 12px;background:linear-gradient(90deg,transparent,rgba(110,15,29,.6) 18%,rgba(110,15,29,.6) 82%,transparent);border-bottom:1px solid rgba(232,183,101,.7)}
+        .offline-title{font-size:clamp(1.6rem,4.6vw,2.7rem);font-weight:700!important;line-height:1.25}
+        .time-num{font-family:'Cormorant SC','Cormorant Unicase',serif!important;font-weight:700;text-shadow:0 0 16px rgba(255,170,70,.45)}
+        .time-lbl,.game-badge,.investigation-label,#age-counter{font-family:'Cormorant SC','EB Garamond',serif!important;font-weight:700;letter-spacing:.08em}
+        .floating-evidence{font-family:'Cormorant SC','EB Garamond',serif!important;font-weight:700}
+        .intro-title{font-weight:700}
+
+        /* панелі: темний мармур у золотій оправі */
+        .rdr-card,.letter-card,.offline-card,.game-panel,.shell-game-panel,.fail-box,.easter-egg-box{
+            background:
+                radial-gradient(120% 55% at 50% -8%,rgba(255,184,92,.12),transparent 62%),
+                repeating-linear-gradient(115deg,rgba(255,255,255,.014) 0 2px,transparent 2px 11px),
+                linear-gradient(180deg,rgba(34,21,26,.95),rgba(11,7,9,.97))!important;
+            border:1px solid rgba(232,183,101,.66)!important;
+            outline:1px solid rgba(232,183,101,.2)!important;outline-offset:7px;
+            border-radius:3px;
+            box-shadow:0 22px 60px rgba(0,0,0,.95),inset 0 0 55px rgba(0,0,0,.65),0 0 55px rgba(255,170,70,.09)}
+        .fail-box,.easter-egg-box{border-color:rgba(200,60,70,.75)!important;box-shadow:0 22px 60px rgba(0,0,0,.95),inset 0 0 55px rgba(0,0,0,.65),0 0 40px rgba(170,30,45,.3)}
+
+        /* готична арка-фронтон над карткою */
+        .rdr-card::before,.letter-card::before,.offline-card::before,.fail-box::before{
+            top:-31px;width:140px;height:32px;
+            background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 32'%3E%3Cpath d='M0 32C40 30 56 18 70 4C84 18 100 30 140 32Z' fill='%23140a0d' stroke='%23e8b765' stroke-width='1.4'/%3E%3Cpath d='M70 11C66 16 66 21 70 26C74 21 74 16 70 11Z' fill='%23e8b765'/%3E%3Ccircle cx='70' cy='3' r='2.2' fill='%23e8b765'/%3E%3C/svg%3E") center/contain no-repeat!important}
+
+        /* шапки ігор - бордовий оксамит із золотою торочкою */
+        .game-header{position:relative;background:linear-gradient(180deg,#7d1527 0%,#4b0a16 60%,#33060f 100%)!important;border-bottom:2px solid var(--rdr-gold)!important;box-shadow:inset 0 1px 0 rgba(255,225,170,.3),inset 0 -14px 24px rgba(0,0,0,.35)}
+        .game-header::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:10px;pointer-events:none;
+            background:repeating-linear-gradient(90deg,var(--rdr-gold) 0 2px,transparent 2px 7px);opacity:.75;
+            -webkit-mask:linear-gradient(180deg,#000,transparent);mask:linear-gradient(180deg,#000,transparent)}
+        .game-badge{background:linear-gradient(180deg,#2a0a10,#14070a);border:1px solid var(--rdr-gold);color:#f6dfaa}
+        .game-desc{background:rgba(12,7,9,.8)}
+
+        /* кнопки: бордовий оксамит, золоті ромби, свічкове сяйво */
+        .rdr-btn{
+            font-family:var(--font-gothic)!important;font-style:normal!important;font-weight:700;
+            font-size:clamp(1.1rem,2.7vw,1.35rem)!important;letter-spacing:.07em;text-transform:none!important;
+            color:#f8e8c2;padding:15px 44px;
+            background:
+                var(--dm) left 14px center/11px no-repeat,
+                var(--dm) right 14px center/11px no-repeat,
+                radial-gradient(120% 150% at 50% 0%,rgba(255,150,120,.26),transparent 55%),
+                linear-gradient(180deg,#8d1a2d 0%,#56091b 55%,#33060f 100%)!important;
+            border:1px solid #e8b765!important;outline:1px solid rgba(232,183,101,.36)!important;outline-offset:3px;
+            text-shadow:0 1px 2px #000,0 0 10px rgba(255,180,90,.35);
+            box-shadow:0 8px 22px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,225,170,.35),inset 0 -10px 18px rgba(0,0,0,.4)}
+        .rdr-btn:hover{color:#fff;filter:brightness(1.22);box-shadow:0 0 30px rgba(255,170,70,.45),inset 0 1px 0 rgba(255,225,170,.45)}
+        .rdr-btn:disabled{filter:grayscale(.7) brightness(.8)}
+
+        /* печатки, шкали, таймер */
+        .progress-track{background:#0d0608;border:1px solid var(--rdr-gold)}
+        .progress-fill{background:linear-gradient(90deg,#6e0f1d,#b3202f,#e8b765,#f6dfaa);background-size:200% 100%}
+        .time-unit{background:linear-gradient(180deg,#2a0a10,#12070a);border:1px solid var(--rdr-gold)}
+        input[type=number]{background:#0d0608!important;border-color:var(--rdr-gold)!important;font-family:'Cormorant SC',serif!important;font-weight:700}
+        .toast-msg{background:#14070a;font-family:'EB Garamond',serif}
+        .br-track{border-color:var(--rdr-gold);background:#0d0608}
+        .br-zone{background:linear-gradient(90deg,rgba(40,120,70,.2),rgba(60,150,90,.7),rgba(40,120,70,.2))}
+        .noir-cup{background:linear-gradient(180deg,#5a0f1c,#2a060d);border-color:var(--rdr-gold)}
+        .fax-machine{background:linear-gradient(145deg,#2a1216,#120709 70%)}
+
+        /* ===== Випробування I: вічко у брамі ===== */
+        #stage-peep{overflow-y:auto;justify-content:safe center}
+        .peep-card{max-width:580px!important;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:22px 22px 24px}
+        .peep-desc{font-size:clamp(.95rem,2.3vw,1.1rem);line-height:1.45;color:var(--rdr-dim);max-width:48ch}
+        .peep-count{font-size:1.15rem;letter-spacing:.12em;color:var(--rdr-gold)}
+        .peep-count b{font-weight:700;color:#fff}
+        .peep-door{position:relative;width:100%;display:grid;place-items:center;padding:14px 0;border:1px solid #000;overflow:hidden;
+            background:repeating-linear-gradient(90deg,#2d1a10 0 46px,#120a06 46px 49px,#25160d 49px 95px,#120a06 95px 98px);
+            box-shadow:inset 0 0 40px #000,0 0 0 1px rgba(232,183,101,.28)}
+        .peep-door::before,.peep-door::after{content:"";position:absolute;left:0;right:0;height:12px;
+            background:radial-gradient(circle,#8a8a90 0 2px,transparent 3px) 0 50%/28px 100% repeat-x,linear-gradient(180deg,#38383e,#131316);box-shadow:0 2px 6px #000}
+        .peep-door::before{top:12%}.peep-door::after{bottom:12%}
+        .peep-ring{--S:min(36vh,76vw,380px);position:relative;z-index:1;width:var(--S);height:var(--S);padding:10px;border-radius:50%;
+            background:conic-gradient(from 20deg,#6b4318,#f3dba4,#8f6428,#e8b765,#5a3812,#f3dba4,#8f6428,#6b4318);
+            box-shadow:0 10px 30px #000,0 0 0 2px #1a0e06,inset 0 0 8px rgba(0,0,0,.6)}
+        .peep-scene{--lx:50%;--ly:50%;--lr:70px;position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:#050304;
+            box-shadow:inset 0 0 0 2px #1a0e06,inset 0 0 30px #000;cursor:crosshair;touch-action:manipulation;
+            background:radial-gradient(circle at 50% 42%,#a8662c 0%,#5a2e16 42%,#1c0d09 100%)}
+        .peep-scene::before{content:"";position:absolute;inset:-14%;background:url('fonxxx.png') 50% 35%/cover;filter:blur(2px) brightness(1.9) saturate(1.2);opacity:.45;mix-blend-mode:overlay}
+        .peep-knight{position:absolute;height:50%;width:auto;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;user-select:none;-webkit-user-drag:none;filter:brightness(1.7) contrast(1.05) drop-shadow(0 0 8px rgba(0,0,0,.85))}
+        .peep-dark{position:absolute;inset:0;pointer-events:none;transition:opacity .6s;
+            background:radial-gradient(circle var(--lr) at var(--lx) var(--ly),rgba(3,1,2,0) 0%,rgba(3,1,2,0) 45%,rgba(3,1,2,.55) 78%,rgba(3,1,2,.985) 100%)}
+        .peep-glow{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+            background:radial-gradient(circle var(--lr) at var(--lx) var(--ly),rgba(255,176,80,.3),rgba(255,176,80,.06) 55%,transparent 100%)}
+        .peep-scene.found .peep-dark{opacity:.1}
+        .peep-orb{position:absolute;left:0;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;pointer-events:none;will-change:transform;
+            background:radial-gradient(circle,#fffbe8 0,#ffd98a 42%,#ffb050 72%,transparent 74%);
+            box-shadow:0 0 14px 6px rgba(255,190,90,.7),0 0 40px 14px rgba(255,150,50,.35)}
+        .peep-scene.lit .peep-orb{box-shadow:0 0 18px 9px rgba(255,236,170,.95),0 0 56px 22px rgba(255,170,60,.5)}
+        .peep-scene::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+            background:radial-gradient(circle at 30% 22%,rgba(255,255,255,.16),transparent 26%),radial-gradient(circle,transparent 58%,rgba(0,0,0,.65) 100%)}
+        .peep-ring.knock{animation:peepKnock .26s ease}
+        @keyframes peepKnock{0%{transform:none}30%{transform:translate(-4px,2px)}60%{transform:translate(4px,-2px)}100%{transform:none}}
+        .peep-ring.miss{animation:brMiss .4s}
+        .peep-msg{min-height:1.6em;font-style:italic;font-size:1.1rem;color:var(--rdr-text)}
+        @media (max-height:700px){.peep-desc{font-size:.9rem}.peep-card{gap:7px;padding:16px}}
+
+
+        /* ===================================================================
+           v9: лицар передає свиток, фон shar.png, шар під кубками, шліфування
+           =================================================================== */
+        /* другий фон (shar.png) плавно підміняє залу на час гри */
+        #bg-image-container{transition:opacity 1.2s ease}
+        #bg-shar{position:fixed;inset:0;z-index:1;pointer-events:none;background:url('shar.png') center/cover no-repeat;opacity:0;transition:opacity 1.2s ease;filter:brightness(.82) contrast(1.05)}
+        body.bg-shar #bg-shar{opacity:1}
+        body.bg-shar #bg-image-container{opacity:0}
+        body.bg-shar #candles{animation:none;opacity:0}
+        #candles{transition:opacity 1.2s ease}
+
+        /* розповідь: лицар передає свиток та підіймає забрало */
+        .knight-narr{display:flex;align-items:center;justify-content:center;gap:14px;width:100%;max-width:600px;padding:8px 14px;
+            background:linear-gradient(90deg,transparent,rgba(110,15,29,.55) 12%,rgba(110,15,29,.55) 88%,transparent);
+            border-top:1px solid rgba(232,183,101,.5);border-bottom:1px solid rgba(232,183,101,.5)}
+        .kn-face{width:58px;height:58px;flex:none;border-radius:50%;object-fit:cover;object-position:50% 6%;background:#0a0506;
+            border:2px solid var(--rdr-gold);box-shadow:0 0 18px rgba(255,170,70,.35),inset 0 0 10px #000}
+        .knight-narr p{font-size:clamp(1.02rem,2.6vw,1.2rem);font-style:italic;line-height:1.35;color:var(--rdr-text);text-align:left}
+        .stage.active .knight-narr .n1,.stage.active .knight-narr .n2{opacity:0;animation:fadeUp .9s cubic-bezier(.2,.8,.2,1) both}
+        .stage.active .knight-narr .n1{animation-delay:.4s}
+        .stage.active .knight-narr .n2{animation-delay:1.8s;color:#f6dfaa}
+        .stage.active .knight-narr .kn-face{animation:visorGlow 1.2s 2s ease-out 1}
+        @keyframes visorGlow{0%{box-shadow:0 0 0 rgba(255,220,150,0)}40%{box-shadow:0 0 34px 8px rgba(255,220,150,.85)}100%{box-shadow:0 0 18px rgba(255,170,70,.35)}}
+        .letter-container{gap:12px}
+
+        /* лицар пропонує гру */
+        .offer-knight{height:min(26vh,210px);width:auto;max-width:60vw;object-fit:contain;pointer-events:none;
+            filter:drop-shadow(0 0 18px rgba(255,170,70,.3)) drop-shadow(0 12px 14px #000);animation:knightIdle 4.5s ease-in-out infinite}
+        @keyframes knightIdle{50%{transform:translateY(-5px)}}
+
+        /* шар під кубком */
+        .prize-item.prize-ball{width:54px;height:54px;bottom:14px;border-radius:50%;filter:none;
+            background:radial-gradient(circle at 32% 28%,#fff6dc 0 7%,#ffd27a 16%,#d1404a 52%,#5a0b17 100%);
+            box-shadow:inset -7px -9px 13px rgba(0,0,0,.5),0 0 18px rgba(255,170,70,.5)}
+        .prize-item.prize-ball::after{content:"";position:absolute;left:50%;bottom:-8px;width:70%;height:9px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.65),transparent 70%)}
+        .cup-slot:focus-visible{outline:2px solid var(--silver);outline-offset:6px;border-radius:4px}
+
+        /* кнопка звуку */
+        #sound-toggle{position:fixed;top:calc(12px + env(safe-area-inset-top));right:14px;z-index:60;width:42px;height:42px;display:grid;place-items:center;padding:0;cursor:pointer;
+            color:var(--rdr-gold);background:linear-gradient(180deg,#5a0f1c,#2a060d);border:1px solid var(--rdr-gold);border-radius:50%;box-shadow:0 4px 14px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,225,170,.3);transition:filter .2s,transform .2s}
+        #sound-toggle:hover{filter:brightness(1.3)}#sound-toggle:active{transform:scale(.92)}
+        #sound-toggle:focus-visible{outline:2px solid var(--silver);outline-offset:3px}
+        #sound-toggle svg{width:22px;height:22px}
+        #sound-toggle .off{display:none}#sound-toggle.muted .on{display:none}#sound-toggle.muted .off{display:inline}
+
+        /* шліфування: прокрутка на низьких екранах, фокус, мобільні */
+        #stage-2,#stage-age-input,#stage-4,#stage-5,#stage-author-rating,#stage-6{overflow-y:auto;justify-content:safe center;scrollbar-width:thin;scrollbar-color:#8f6428 transparent}
+        #stage-4 .fax-paper-window{--fax-paper-height:clamp(200px,38vh,360px)}
+        #stage-4 .fax-paper img{max-height:min(280px,30vh)}
+        .rdr-btn:focus-visible,input:focus-visible,input[type=range]:focus-visible{outline:2px solid var(--silver)!important;outline-offset:4px}
+        input[type=range]{accent-color:var(--rdr-gold)}
+        .stage.active::after{display:none}
+        @media (max-width:480px){
+            .rdr-card,.letter-card,.offline-card{padding:18px 16px}
+            .rdr-btn{padding:14px 30px}
+            .kn-face{width:48px;height:48px}
+            #sound-toggle{width:38px;height:38px;right:10px}
+            .game-panel{height:86vh}
+        }
+        @media (max-height:640px){.offer-knight{height:18vh}.knight-narr{padding:5px 10px}}
+        @media (prefers-reduced-motion:reduce){.offer-knight,.knight-narr .n1,.knight-narr .n2,.kn-face{animation:none!important;opacity:1}}
+
+    
+        /* Екран "Лицар пішов" */
+        #stage-uhod{padding:0;cursor:pointer}
+        #stage-uhod .uhod-bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,3,2,.15),rgba(5,3,2,.1) 45%,rgba(5,3,2,.78)),url('uhod.png') center/cover no-repeat #0a0605;filter:sepia(.35) contrast(1.05) brightness(.85)}
+        #stage-uhod .uhod-text{position:relative;z-index:2;margin-top:auto;padding:0 24px calc(11vh + env(safe-area-inset-bottom));text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
+        #stage-uhod .uhod-title{font-family:var(--font-western);font-size:clamp(2.2rem,8vw,4.4rem);color:var(--rdr-gold);letter-spacing:.04em;text-shadow:0 2px 18px rgba(0,0,0,.95),0 0 28px rgba(224,165,64,.35)}
+        #stage-uhod .uhod-sub{font-family:var(--font-mono);font-style:italic;font-size:clamp(1rem,3vw,1.3rem);color:var(--rdr-text);text-shadow:0 2px 12px rgba(0,0,0,.95)}
+        #stage-uhod .uhod-hint{font-family:var(--font-mono);font-size:.8rem;color:var(--rdr-dim);opacity:0;text-shadow:0 1px 8px #000}
+        #stage-uhod.active .uhod-title{animation:uhodIn 1.6s ease both}
+        #stage-uhod.active .uhod-sub{animation:uhodIn 1.6s .6s ease both}
+        #stage-uhod.active .uhod-hint{animation:uhodIn 1.2s 3s ease both}
+        @keyframes uhodIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+    
+        /* ===== Літаючі мем-картинки в золотих рамах ===== */
+        #mem-layer{position:fixed;inset:0;z-index:15;pointer-events:none;overflow:hidden}
+        .mem-fly{position:absolute;left:0;top:0;width:clamp(96px,17vw,170px);opacity:0;transition:opacity .9s ease;will-change:transform}
+        .mem-fly.show{opacity:1}
+        .mem-frame{position:relative;padding:7px;border:1px solid #2a1608;border-radius:2px;
+            background:conic-gradient(from 20deg,#6b4318,#f3dba4,#8f6428,#e8b765,#5a3812,#f3dba4,#8f6428,#6b4318);
+            box-shadow:0 14px 34px rgba(0,0,0,.9),0 0 26px rgba(255,170,70,.28),inset 0 0 6px rgba(0,0,0,.6)}
+        .mem-mat{padding:5px;background:linear-gradient(180deg,#5a0f1c,#2a060d);border:1px solid #e8b765;box-shadow:inset 0 0 12px rgba(0,0,0,.7)}
+        .mem-mat img{display:block;width:100%;height:auto;max-height:34vh;object-fit:cover;border:1px solid #14070a;filter:sepia(.22) contrast(1.05) saturate(1.05) brightness(.96)}
+        .mem-frame::after{content:"";position:absolute;inset:-6px;pointer-events:none;
+            background:var(--dm) 0 0/14px no-repeat,var(--dm) 100% 0/14px no-repeat,var(--dm) 0 100%/14px no-repeat,var(--dm) 100% 100%/14px no-repeat}
+        @media (max-width:480px){.mem-fly{width:clamp(80px,26vw,120px)}}
     </style>
 </head>
 <body>
     <audio id="background-music" src="zvuk1.mp3" preload="metadata" loop></audio>
-    <audio id="shuffle-track-audio" src="1115.MP3" preload="auto" loop></audio>
 
     <div id="bg-image-container"></div>
+    <div id="bg-shar" aria-hidden="true"></div>
+    <div id="candles" aria-hidden="true"></div>
+    <button id="sound-toggle" type="button" aria-label="Вимкнути звук" title="Звук"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="sp" d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path class="on" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="off" d="M16 9l5 6M21 9l-5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
     <div class="rdr-vignette"></div>
+    <div id="bokeh" aria-hidden="true"></div>
+    <div id="floor" aria-hidden="true"></div>
     <div id="pips" aria-hidden="true"></div>
     <div id="rays" aria-hidden="true"></div>
     <svg id="frame" viewBox="0 0 600 660" aria-hidden="true">
         <defs>
-            <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e6dcc0"/><stop offset=".5" stop-color="#c6a969"/><stop offset="1" stop-color="#8d8678"/></linearGradient>
-            <symbol id="rose" viewBox="-32 -32 64 64"><g fill="#0b0907" stroke="url(#sg)" stroke-width="1.3" stroke-linejoin="round">
-<path fill="none" d="M-6 20C-24 24-31 10-28 3C-18 4-9 9-6 20ZM6 20C24 24 31 10 28 3C18 4 9 9 6 20Z"/>
-<g id="ring"><path d="M0-3C-10-9-9-25 0-27C9-25 10-9 0-3Z"/><path transform="rotate(72)" d="M0-3C-10-9-9-25 0-27C9-25 10-9 0-3Z"/><path transform="rotate(144)" d="M0-3C-10-9-9-25 0-27C9-25 10-9 0-3Z"/><path transform="rotate(216)" d="M0-3C-10-9-9-25 0-27C9-25 10-9 0-3Z"/><path transform="rotate(288)" d="M0-3C-10-9-9-25 0-27C9-25 10-9 0-3Z"/></g>
-<g transform="rotate(36) scale(.68)"><use href="#ring"/></g><g transform="rotate(8) scale(.4)"><use href="#ring"/></g>
-<path fill="none" d="M-2 0C0-2 3-1 2 2C0 4-3 3-3 0"/></g></symbol>
+            <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3e2bd"/><stop offset=".5" stop-color="#e0a540"/><stop offset="1" stop-color="#8a5d22"/></linearGradient>
+            <symbol id="fleur" viewBox="-14 -16 28 32"><path d="M0-14C-5-6-5 1 0 8C5 1 5-6 0-14ZM-12-2C-14 5-7 10 0 8C-7 6-9 1-12-2ZM12-2C14 5 7 10 0 8C7 6 9 1 12-2ZM-7 10H7V13H-7Z" fill="url(#sg)"/></symbol>
         </defs>
-        <g fill="none" stroke="url(#sg)">
-            <path stroke-width="7" d="M300 600C70 440 20 260 100 140C160 55 260 80 300 170C340 80 440 55 500 140C580 260 530 440 300 600Z"/>
-            <path stroke="#806a43" stroke-width="1.5" stroke-dasharray="2 6" d="M300 572C100 428 62 268 128 166C174 96 254 112 300 192C346 112 426 96 472 166C538 268 500 428 300 572Z"/>
-            <path stroke-width="2" d="M120 120C90 90 110 60 140 76C160 88 150 110 130 104M480 120C510 90 490 60 460 76C440 88 450 110 470 104M200 600C170 625 215 650 240 628M400 600C430 625 385 650 360 628"/>
+        <g fill="none" stroke="url(#sg)" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke-width="3" d="M130 630V270C130 160 215 80 300 20C385 80 470 160 470 270V630Z"/>
+            <path stroke="#8a5d22" stroke-width="1.5" stroke-dasharray="2 6" d="M152 610V275C152 180 225 108 300 56C375 108 448 180 448 275V610Z"/>
+            <path stroke-width="2" d="M178 610V385Q178 320 239 282Q300 320 300 385V610M300 610V385Q300 320 361 282Q422 320 422 385V610"/>
+            <circle cx="300" cy="200" r="46" stroke-width="1.6"/><circle cx="300" cy="200" r="14" stroke-width="2"/>
+            <circle cx="331.0" cy="200.0" r="9" stroke-width="1.2"/><circle cx="321.9" cy="221.9" r="9" stroke-width="1.2"/><circle cx="300.0" cy="231.0" r="9" stroke-width="1.2"/><circle cx="278.1" cy="221.9" r="9" stroke-width="1.2"/><circle cx="269.0" cy="200.0" r="9" stroke-width="1.2"/><circle cx="278.1" cy="178.1" r="9" stroke-width="1.2"/><circle cx="300.0" cy="169.0" r="9" stroke-width="1.2"/><circle cx="321.9" cy="178.1" r="9" stroke-width="1.2"/><circle cx="239" cy="262" r="9" stroke-width="1.4"/><circle cx="361" cy="262" r="9" stroke-width="1.4"/><path stroke-width="1.2" d="M300 154V246M254 200H346"/>
+            <path stroke-width="3" d="M110 632H490"/><path stroke-width="1.5" d="M96 652H504"/>
         </g>
-        <g fill="url(#sg)"><path d="M300 52C286 86 288 112 300 134C312 112 314 86 300 52Z"/><path d="M300 134C268 96 236 94 224 114C250 112 276 120 300 146C324 120 350 112 376 114C364 94 332 96 300 134Z"/><circle cx="300" cy="158" r="7"/><circle cx="300" cy="612" r="7"/><path d="M300 622C288 640 291 654 300 656C309 654 312 640 300 622Z"/></g>
-        <use href="#rose" x="37" y="195" width="110" height="110"/><use href="#rose" x="453" y="195" width="110" height="110"/>
+        <g stroke="url(#sg)" stroke-width="3" fill="#7a1420"><path d="M40 90H116V330L78 372L40 330Z"/><path d="M484 90H560V330L522 372L484 330Z"/></g>
+        <use href="#fleur" x="48" y="150" width="60" height="68"/><use href="#fleur" x="492" y="150" width="60" height="68"/>
     </svg>
     <canvas id="dust" aria-hidden="true"></canvas>
     <canvas id="fx" aria-hidden="true"></canvas>
-    <svg id="bloom" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21C4 15 1 10.5 2.6 7C4.2 3.8 8.5 3.6 12 8C15.5 3.6 19.8 3.8 21.4 7C23 10.5 20 15 12 21Z" fill="none" stroke="#c6a969" stroke-width=".5"/></svg>
+    <svg id="bloom" viewBox="-14 -16 28 32" aria-hidden="true"><path d="M0-10C-4-4-4 2 0 8C4 2 4-4 0-10ZM-8-2C-9 3-4 7 0 8C-5 6-6 2-8-2ZM8-2C9 3 4 7 0 8C5 6 6 2 8-2Z" fill="none" stroke="#e0a540" stroke-width=".5"/></svg>
     <canvas id="rain-canvas"></canvas>
 
+    <div id="mem-layer" aria-hidden="true"></div>
     <main id="app-wrapper">
 
         <!-- Етап 1: Інтро -->
         <section id="stage-1" class="stage active">
             <div id="intro-lamp-wrap">
                 <svg class="clock-icon-svg" viewBox="0 0 400 400" aria-hidden="true">
-                    <defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e0d9c7"/><stop offset=".5" stop-color="#c6a969"/><stop offset="1" stop-color="#b9b1a0"/></linearGradient></defs>
-                    <path class="hd" pathLength="100" d="M200 372C40 262 8 160 58 88C100 30 172 48 200 108C228 48 300 30 342 88C392 160 360 262 200 372Z" fill="none" stroke="url(#hg)" stroke-width="6"/>
-                    <path d="M200 350C58 252 32 166 74 104C106 58 166 70 200 126C234 70 294 58 326 104C368 166 342 252 200 350Z" fill="none" stroke="#806a43" stroke-width="1.5" stroke-dasharray="2 5"/>
-                    <circle cx="200" cy="112" r="5" fill="#c6a969"/><circle cx="200" cy="380" r="5" fill="#b9b1a0"/>
+                    <defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3e2bd"/><stop offset=".5" stop-color="#e0a540"/><stop offset="1" stop-color="#d9bf8a"/></linearGradient></defs>
+                    <g stroke="url(#hg)" stroke-width="5" stroke-linecap="round" opacity=".8"><path d="M60 70L340 350"/><path d="M340 70L60 350"/></g>
+                    <path d="M90 130H310V245C310 312 252 350 200 374C148 350 90 312 90 245Z" fill="#0d0807" stroke="none"/>
+                    <path class="hd" pathLength="100" d="M90 130H310V245C310 312 252 350 200 374C148 350 90 312 90 245Z" fill="none" stroke="url(#hg)" stroke-width="6"/>
+                    <path d="M104 144H296V244C296 302 246 336 200 356C154 336 104 302 104 244Z" fill="none" stroke="#8a5d22" stroke-width="1.5" stroke-dasharray="2 5"/>
+                    <path d="M200 144V356M104 220H296" stroke="#8a5d22" stroke-width="1" opacity=".6"/>
+                    <path transform="translate(200 226) scale(4.6)" d="M0-10C-4-4-4 2 0 8C4 2 4-4 0-10ZM-8-2C-9 3-4 7 0 8C-5 6-6 2-8-2ZM8-2C9 3 4 7 0 8C5 6 6 2 8-2Z" fill="#e0a540" stroke="#8a5d22" stroke-width=".4"/>
+                    <path d="M126 118L140 66L170 92L200 48L230 92L260 66L274 118Z" fill="#0d0807" stroke="url(#hg)" stroke-width="4" stroke-linejoin="round"/>
+                    <circle cx="140" cy="62" r="5" fill="#e0a540"/><circle cx="200" cy="44" r="6" fill="#b3202f"/><circle cx="260" cy="62" r="5" fill="#e0a540"/>
                 </svg>
-                <h1 class="intro-title">Бурмалда</h1>
+                <h1 class="intro-title">Burmalda</h1><p class="intro-sub">Замок</p>
             </div>
             <div id="countdown-display" data-num="3">3</div>
         </section>
@@ -1193,27 +1465,49 @@
         <section id="stage-2" class="stage">
             <div class="rdr-card">
                 <div class="rdr-header">
-                    <span>СЕКРЕТНИЙ АРХІВ // ДОСЬЄ №18</span>
-                    <span>[СТАТУС: КОНФІДЕНЦІЙНО]</span>
+                    <span>ПОКОЇ ПРИНЦЕСИ // ОПІВНІЧНА ВАРТА</span>
+                    <span>[ТИХО…]</span>
                 </div>
                 <div id="dossier-output" class="rdr-lines"></div>
+            </div>
+        </section>
+
+                <!-- Етап: Вічко у брамі (хтось стукає) -->
+        <section id="stage-peep" class="stage">
+            <div class="rdr-card peep-card">
+                <div class="access-badge">● ХТОСЬ СТУКАЄ У БРАМУ // ВИПРОБУВАННЯ I</div>
+                <span class="game-title">«Вічко у брамі»</span>
+                <p class="peep-desc">За дверима хтось стукає опівночі. Крізь вічко видно лише морок, і тільки блукаючий вогник вихоплює з нього обриси. Щойно він освітить силует лицаря, швидко натисни «Це він!»</p>
+                <div class="peep-count" id="peepCount">Стук <b id="peepN">1</b> з 3</div>
+                <div class="peep-door">
+                    <div class="peep-ring" id="peepRing">
+                        <div class="peep-scene" id="peepScene">
+                            <img id="peepKnight" class="peep-knight" src="ricar.png" alt="Силует лицаря" draggable="false">
+                            <div class="peep-dark"></div>
+                            <div class="peep-glow"></div>
+                            <div class="peep-orb" id="peepOrb"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="peep-msg" id="peepMsg" aria-live="polite"></div>
+                <button class="rdr-btn" id="peepHit" style="width:100%">⚜ Це він!</button>
             </div>
         </section>
 
         <!-- Етап: Введення віку -->
         <section id="stage-age-input" class="stage">
             <div class="rdr-card" style="max-width: 460px; text-align: center; display: flex; flex-direction: column; gap: 16px;">
-                <h2 style="color: var(--rdr-gold); font-size: 1.2rem; font-family: var(--font-western);">// ПРОВІРКА ДОКУМЕНТІВ НА ВОКЗАЛІ</h2>
+                <h2 style="color: var(--rdr-gold); font-size: 1.2rem; font-family: var(--font-western);">Лицар питає крізь двері</h2>
                 <div style="display: flex; justify-content: center;">
                     <img src="https://i.pinimg.com/736x/83/c5/a1/83c5a1b8059db3fb0311def5097fe5e6.jpg" alt="Архівне фото" style="max-width: 130px; max-height: 110px; border-radius: 2px; border: 2px solid var(--rdr-gold-dim); object-fit: cover;">
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 6px; text-align: left;">
-                    <label for="input-custom-age" style="font-size: 0.85rem; color: var(--rdr-dim); font-family: var(--font-mono);">Справжній вік підозрюваного:</label>
+                    <label for="input-custom-age" style="font-size: 0.85rem; color: var(--rdr-dim); font-family: var(--font-mono);">Назви, принцесо, число своїх літ:</label>
                     <input type="number" id="input-custom-age" min="0" max="150" value="0" style="background: #120e0a; border: 2px solid var(--rdr-gold-dim); color: #fff; padding: 10px; border-radius: 2px; font-family: var(--font-mono); font-size: 1.2rem; text-align: center; outline: none;">
                 </div>
                 <div id="age-error-msg" style="color: var(--rdr-orange); font-size: 0.88rem; font-weight: bold; min-height: 1.2em; font-family: var(--font-mono);"></div>
                 <button id="submit-age-btn" class="rdr-btn" style="width: 100%;">
-                    Підтвердити показання
+                    Скласти присягу
                 </button>
             </div>
         </section>
@@ -1222,11 +1516,11 @@
         <section id="stage-3-1" class="stage">
             <div class="game-panel">
                 <div class="game-header">
-                    <span class="game-title">РОЗШУК 1/2: «Знайди вік серед папірців»</span>
-                    <span id="age-counter" class="game-badge">Знайдено: 0 / 3</span>
+                    <span class="game-title">ВИПРОБУВАННЯ II: «Знайди печатки літ»</span>
+                    <span id="age-counter" class="game-badge">Печаток: 0 / 3</span>
                 </div>
                 <div class="game-desc">
-                    Офіцер сумнівається у ваших даних. Знайдіть і вилучіть уліку з вашим новим віком (<strong id="target-age-hint" style="color: #fff;">18</strong>) рівно 3 рази!
+                    Лицар за дверима сумнівається щодо твоїх літ. Знайди і вилучи печатку з числом (<strong id="target-age-hint" style="color: #fff;">18</strong>) рівно тричі!
                 </div>
                 <div id="arena-age"></div>
             </div>
@@ -1235,7 +1529,7 @@
         <!-- Пасхалка -->
         <div id="easter-egg-overlay">
             <div class="easter-egg-box">
-                <div class="easter-egg-alert">⚠ ЗНАЙДЕНО ПОБОЧНУ УЛІКУ // ЗРИВ ОПЕРАЦІЇ ⚠</div>
+                <div class="easter-egg-alert">⚠ ХИБНА ПЕЧАТКА // ВАРТА ПОЧУЛА ШЕЛЕСТ ⚠</div>
                 <img id="easter-egg-img" class="easter-egg-img" src="https://images.glavred.info/2020_09/1600248548-1833.jpg?r=48328" alt="Улика">
                 <button id="close-easter-egg-btn" class="rdr-btn" style="font-size: 0.9rem; padding: 10px 20px;">Повернутися до пошуку [X]</button>
             </div>
@@ -1245,16 +1539,16 @@
         <section id="stage-3-2" class="stage">
             <div class="game-panel">
                 <div class="game-header">
-                    <span class="game-title">РОЗШУК 2/2: «Тиск на допиті»</span>
-                    <span id="investigation-status" class="game-badge">НЕСТАБІЛЬНО</span>
+                    <span class="game-title">ВИПРОБУВАННЯ III: «Допит крізь двері»</span>
+                    <span id="investigation-status" class="game-badge">ХИТКО</span>
                 </div>
                 <div class="game-desc">
-                    Офіцер Андрюшка Бурім підозрює вас! Швидко натискай кнопку "Обурмалдіть 💓".
+                    Лицар сумнівається що він прийшов в той замок. Переконай його натискаючи кнопку "Обурмалдіть ⚜".
                 </div>
                 <div id="arena-investigation">
                     <div class="investigation-meter-wrap">
                         <div class="investigation-label">
-                            <span>Рівень довіри:</span>
+                            <span>Довіра лицаря:</span>
                             <span id="investigation-percent">0%</span>
                         </div>
                         <div class="progress-track">
@@ -1262,37 +1556,53 @@
                         </div>
                     </div>
                     <div id="evasive-area">
-                        <button id="investigate-btn" class="rdr-btn">Обурмалдіть 💓</button>
+                        <button id="investigate-btn" class="rdr-btn">Обурмалдіть ⚜</button>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Етап 4: Факс-повідомлення -->
+        <section id="stage-bridge" class="stage">
+            <div class="rdr-card" style="max-width: 640px; text-align: center; display: flex; flex-direction: column; gap: 14px;">
+                <div class="access-badge">● ПІДЙОМНИЙ МІСТ // ВИПРОБУВАННЯ IV</div>
+                <span class="game-title">«Опусти міст»</span>
+                <p>Лицар чекає по той бік рову, а міст піднято! Вдар по ланцюгу, коли золота стріла стоїть у зеленій зоні. Потрібно влучити тричі поспіль.</p>
+                <div class="br-track" id="brTrack"><div class="br-zone" id="brZone"></div><div class="br-needle" id="brNeedle"></div></div>
+                <div class="br-chains" id="brChains" aria-live="polite"></div>
+                <div id="brMsg" style="min-height:1.5em;font-style:italic" aria-live="polite"></div>
+                <button class="rdr-btn" id="brHit" style="width:100%">⚔ Вдарити по ланцюгу</button>
+            </div>
+        </section>
+
         <section id="stage-4" class="stage">
             <div class="letter-container">
-                <div class="access-badge">● ВИ ПІДСТРЕЛИЛИ ОФІЦЕРА, СПРАВА ВИКРАДЕНА // Розшифровано успішно</div>
+                <div class="access-badge">● МІСТ ОПУЩЕНО, ЛИЦАР ПЕРЕДАВ СУВІЙ // Шифр розкрито</div>
+                <div class="knight-narr" role="status">
+                    <img class="kn-face" src="ricar.png" alt="" draggable="false">
+                    <p><span class="n1">Лицар передає свиток</span> <span class="n2">та легко підіймає забрало…</span></p>
+                </div>
                 <div class="letter-card">
                     <div class="fax-status">
-                        <span>Вхідне факс-повідомлення</span>
-                        <span><i class="fax-status-light"></i>Сигнал прийнято</span>
+                        <span>Вхідний сувій з вежі</span>
+                        <span><i class="fax-status-light"></i>Печатку зламано</span>
                     </div>
                     <div class="fax-machine" role="status" aria-live="polite">
                         <div class="fax-control-panel">
-                            <span>WESTERN UNION // ЛІНІЯ 04</span>
+                            <span>ПОШТА КОРОЛІВСТВА // ВЕЖА IV</span>
                             <span class="fax-controls" aria-hidden="true"><span></span><span></span><span></span></span>
                         </div>
                         <div class="fax-feed-slot" aria-hidden="true"></div>
                         <div class="fax-paper-window">
                             <article class="fax-paper">
                                 <div class="fax-paper-meta">
-                                    <span>ОТРИМАНО: 21:11</span>
-                                    <span>АРХІВ №18</span>
+                                    <span>ОТРИМАНО: 00:11</span>
+                                    <span>ГРАМОТА №18</span>
                                 </div>
-                                <img src="sdr.jpg" alt="Вітальна листівка, отримана факсом">
+                                <img src="sdr.png" alt="Вітальна листівка, отримана факсом">
                                 <div class="fax-paper-footer">
-                                    <span>ПЕРЕДАЧУ ЗАВЕРШЕНО</span>
-                                    <span>— КІНЕЦЬ —</span>
+                                    <span>ГОНЕЦЬ ВІДБУВ</span>
+                                    <span>КІНЕЦЬ</span>
                                 </div>
                             </article>
                         </div>
@@ -1300,41 +1610,42 @@
                     </div>
                 </div>
                 <button id="to-gift-stage-btn" class="rdr-btn" style="width: 100%;">
-                    Тікати далі
+                    Рушити далі
                 </button>
             </div>
         </section>
 
         <!-- Етап 5: Схованка з коробками -->
         <section id="stage-5" class="stage">
-            <div id="gift-intro-view" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 16px;">
-                <div class="access-badge">● До вас підійшов бомж та пропонує гру</div>
-                <h2 style="font-size: clamp(1.4rem, 4vw, 2.2rem); font-family: var(--font-western); color: #fff;">Знайдіть, де сховано шарик!</h2>
+            <div id="gift-intro-view" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 16px;">
+                <img class="offer-knight" src="ricar.png" alt="Лицар з піднятим забралом" draggable="false">
+                <div class="access-badge">● Лицар, піднявши забрало, пропонує принцесі гру</div>
+                <h2 style="font-size: clamp(1.4rem, 4vw, 2.2rem); font-family: var(--font-western); color: #fff;">Знайди, під яким кубком сховано шар!</h2>
                 <button id="play-gift-btn" class="rdr-btn" style="font-size: clamp(1rem, 3vw, 1.3rem); padding: 18px 34px;">
-                    Розпочати розшук
+                    Розпочати випробування
                 </button>
             </div>
 
             <div id="shell-game-view" class="shell-game-panel" style="display: none;">
                 <div class="game-header" style="width: 100%; border-radius: 2px;">
-                    <span class="game-title">Бомж на вокзалі сказав: "Немецкая рулетка, она же татарское лото, можно выиграть куртку, а можно и пальто"</span>
-                    <span class="game-badge">3 стакани</span>
+                    <span class="game-title">Лицар мовив: «Три кубки, одна доля: вгадай, де шар, і здобудеш подарунок!»</span>
+                    <span class="game-badge">3 кубки</span>
                 </div>
 
-                <div id="shell-status" class="shell-status-text">Если постараться, можно отыграться, а кто так стоит глаза пучит - ничего не получит. Угадай, где шарик - плачу гонорарик! Раз! Два!..</div>
+                <div id="shell-status" class="shell-status-text">Хто пильний, той і виграє, а хто дивиться вбік, тому нічого. Вгадай, де шар, і буде тобі нагорода! Раз! Два!..</div>
 
                 <div id="cups-stage" class="cups-stage"></div>
             </div>
 
             <div id="shell-fail-view" class="fail-box" style="display: none;">
-                <div class="easter-egg-alert" style="font-size: 1.1rem;">Было да сплыло, уехало - не воротишь.</div>
+                <div class="easter-egg-alert" style="font-size: 1.1rem;">Було та минуло, не повернеш.</div>
                 <img
                     class="fail-img"
                     src="https://i.pinimg.com/736x/61/45/1b/61451b1525aa4cef18ffc5259ad7f583.jpg"
                     alt="Помилка вибору"
                 >
                 <button id="retry-shell-btn" class="rdr-btn">
-                    Ставлю шапку!
+                    Ставлю свою корону!
                 </button>
             </div>
 
@@ -1342,54 +1653,65 @@
                 <div class="mail-delivery-scene" role="status" aria-live="polite">
                     <svg class="scene-svg" viewBox="0 0 700 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                         <defs>
-                            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050403"/><stop offset=".72" stop-color="#1f1810"/><stop offset="1" stop-color="#3a2d1c"/></linearGradient>
-                            <radialGradient id="moonG"><stop offset="0" stop-color="#f4ead0"/><stop offset="1" stop-color="#8d8678"/></radialGradient>
-                            <radialGradient id="glowG"><stop offset="0" stop-color="#f0d89a" stop-opacity=".85"/><stop offset="1" stop-color="#c6a969" stop-opacity="0"/></radialGradient>
-                            <linearGradient id="pgg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8e0cc"/><stop offset="1" stop-color="#8d8678"/></linearGradient>
+                            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a0605"/><stop offset=".72" stop-color="#1b2233"/><stop offset="1" stop-color="#5a2f22"/></linearGradient>
+                            <radialGradient id="moonG"><stop offset="0" stop-color="#f4ead0"/><stop offset="1" stop-color="#8a7358"/></radialGradient>
+                            <radialGradient id="glowG"><stop offset="0" stop-color="#f0d89a" stop-opacity=".85"/><stop offset="1" stop-color="#e0a540" stop-opacity="0"/></radialGradient>
+                            <linearGradient id="pgg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b4d52"/><stop offset="1" stop-color="#171116"/></linearGradient>
                             <path id="route" d="M-60 330C100 300 160 130 330 140C480 150 520 260 606 292"/>
                         </defs>
                         <rect width="700" height="420" fill="url(#sky)"/>
-                        <g fill="#e0d9c7"><circle class="tw" cx="40" cy="40" r="1.2" style="animation-delay:0s"/><circle class="tw" cx="110" cy="90" r="1" style="animation-delay:0.6s"/><circle class="tw" cx="190" cy="30" r="1.4" style="animation-delay:1.1s"/><circle class="tw" cx="260" cy="80" r="1" style="animation-delay:1.7s"/><circle class="tw" cx="330" cy="45" r="1.2" style="animation-delay:0.3s"/><circle class="tw" cx="400" cy="100" r="1" style="animation-delay:0.9s"/><circle class="tw" cx="450" cy="30" r="1.4" style="animation-delay:1.5s"/><circle class="tw" cx="520" cy="120" r="1" style="animation-delay:0.2s"/><circle class="tw" cx="640" cy="40" r="1.2" style="animation-delay:1.2s"/><circle class="tw" cx="670" cy="110" r="1" style="animation-delay:0.7s"/><circle class="tw" cx="60" cy="150" r="1" style="animation-delay:1.9s"/><circle class="tw" cx="150" cy="170" r="1.2" style="animation-delay:0.4s"/><circle class="tw" cx="620" cy="170" r="1" style="animation-delay:1.3s"/></g>
-                        <circle cx="560" cy="70" r="80" fill="url(#glowG)" opacity=".35"/><circle cx="560" cy="70" r="27" fill="url(#moonG)"/><circle cx="552" cy="63" r="5" fill="#6f6759" opacity=".4"/><circle cx="568" cy="78" r="3.5" fill="#6f6759" opacity=".4"/>
-                        <path d="M200 372C40 262 8 160 58 88C100 30 172 48 200 108C228 48 300 30 342 88C392 160 360 262 200 372Z" transform="translate(150 -20) scale(.85)" fill="none" stroke="#806a43" stroke-width="2" opacity=".3"/>
-                        <g fill="#b9b1a0" opacity=".09"><g class="cl"><ellipse cx="0" cy="130" rx="70" ry="12"/><ellipse cx="30" cy="122" rx="40" ry="12"/></g><g class="cl" style="animation-delay:-9s"><ellipse cx="0" cy="190" rx="90" ry="10"/><ellipse cx="-24" cy="182" rx="44" ry="11"/></g></g>
-                        <path fill="#17130e" d="M0 420V300h50v-40l10-30 10 30v40h40v-70h30v70h40v-30l20-50 20 50v30h50v-60h40v60h60V290h30v-50l14-34 14 34v50h60v-40h50v40h40v130Z"/>
-                        <path fill="#0a0806" d="M0 420V345h40v-22h14v22h30v-44l14-20 14 20v44h26v-30h34v30h20v-52l18-30 18 30v52h30v-20h40v20h26v-38l12-14 12 14v38h40v90Z"/>
+                        <g fill="#f3e2bd"><circle class="tw" cx="40" cy="40" r="1.2" style="animation-delay:0s"/><circle class="tw" cx="110" cy="90" r="1" style="animation-delay:0.6s"/><circle class="tw" cx="190" cy="30" r="1.4" style="animation-delay:1.1s"/><circle class="tw" cx="260" cy="80" r="1" style="animation-delay:1.7s"/><circle class="tw" cx="330" cy="45" r="1.2" style="animation-delay:0.3s"/><circle class="tw" cx="400" cy="100" r="1" style="animation-delay:0.9s"/><circle class="tw" cx="450" cy="30" r="1.4" style="animation-delay:1.5s"/><circle class="tw" cx="520" cy="120" r="1" style="animation-delay:0.2s"/><circle class="tw" cx="640" cy="40" r="1.2" style="animation-delay:1.2s"/><circle class="tw" cx="670" cy="110" r="1" style="animation-delay:0.7s"/><circle class="tw" cx="60" cy="150" r="1" style="animation-delay:1.9s"/><circle class="tw" cx="150" cy="170" r="1.2" style="animation-delay:0.4s"/><circle class="tw" cx="620" cy="170" r="1" style="animation-delay:1.3s"/></g>
+                        <circle cx="560" cy="70" r="80" fill="url(#glowG)" opacity=".35"/><circle cx="560" cy="70" r="27" fill="url(#moonG)"/><circle cx="552" cy="63" r="5" fill="#7a6350" opacity=".4"/><circle cx="568" cy="78" r="3.5" fill="#7a6350" opacity=".4"/>
+                        <path d="M120 420V230C120 150 190 90 300 30C410 90 480 150 480 230V420Z" transform="translate(0 -10)" fill="none" stroke="#8a5d22" stroke-width="2" opacity=".3"/>
+                        <g fill="#d9bf8a" opacity=".09"><g class="cl"><ellipse cx="0" cy="130" rx="70" ry="12"/><ellipse cx="30" cy="122" rx="40" ry="12"/></g><g class="cl" style="animation-delay:-9s"><ellipse cx="0" cy="190" rx="90" ry="10"/><ellipse cx="-24" cy="182" rx="44" ry="11"/></g></g>
+                        <path fill="#1b1614" d="M0 420V318L70 262L140 304L230 240L320 296L410 236L510 290L600 255L700 300V420Z"/>
+                        <g fill="#0a0806"><rect x="0" y="342" width="430" height="78"/><path d="M0 336h430" stroke="#0a0806" stroke-width="12" stroke-dasharray="12 12"/><rect x="36" y="268" width="46" height="152"/><rect x="186" y="246" width="58" height="174"/><rect x="346" y="286" width="42" height="134"/><path d="M28 268L59 212L90 268Z" fill="#3a0d12"/><path d="M178 246L215 184L252 246Z" fill="#3a0d12"/><path d="M338 286L367 238L396 286Z" fill="#3a0d12"/><path d="M430 420V372Q500 340 572 370V420Z"/></g>
+                        <g stroke="#d9bf8a"><path d="M215 184V158M59 212V188M367 238V216"/></g><g fill="#b3202f"><path class="flag" d="M215 158L240 166L215 174Z"/><path class="flag" d="M59 188L82 196L59 204Z"/><path class="flag" d="M367 216L390 224L367 232Z"/></g>
                         <rect class="tw" x="52" y="338" width="5" height="8" fill="#f0d89a" style="animation-delay:0.2s"/><rect class="tw" x="124" y="330" width="5" height="8" fill="#f0d89a" style="animation-delay:1.1s"/><rect class="tw" x="205" y="350" width="5" height="8" fill="#f0d89a" style="animation-delay:0.6s"/><rect class="tw" x="268" y="336" width="5" height="8" fill="#f0d89a" style="animation-delay:1.6s"/><rect class="tw" x="330" y="344" width="5" height="8" fill="#f0d89a" style="animation-delay:0.9s"/><rect class="tw" x="412" y="332" width="5" height="8" fill="#f0d89a" style="animation-delay:0.4s"/><rect class="tw" x="474" y="352" width="5" height="8" fill="#f0d89a" style="animation-delay:1.3s"/><rect class="tw" x="530" y="340" width="5" height="8" fill="#f0d89a" style="animation-delay:0.1s"/>
                         <circle cx="606" cy="292" r="44" fill="url(#glowG)" class="tw" style="animation-duration:3s"/>
-                        <path d="M572 420V268l34-28 34 28V420Z" fill="#0b0907" stroke="#3a3328"/>
-                        <path d="M590 316V298a16 16 0 0 1 32 0V316Z" fill="#f0d89a" class="tw" style="animation-duration:3s"/><path d="M590 316V298a16 16 0 0 1 32 0V316ZM606 282V316M590 300H622" fill="none" stroke="#6f6759"/>
-                        <use href="#route" fill="none" stroke="#c6a969" stroke-width="1.2" stroke-dasharray="3 9" opacity=".4" class="march"/>
-                        <path d="M0 0c4-6 10-6 14 0c-4 6-10 6-14 0z" fill="#d8d0bd" opacity="0"><animateMotion path="M110 255c10 20-15 40 0 70s15 40 0 90" begin="0.8s" dur="2.4s" rotate="auto" fill="remove"/><animate attributeName="opacity" values="0;.9;0" begin="0.8s" dur="2.4s"/></path><path d="M0 0c4-6 10-6 14 0c-4 6-10 6-14 0z" fill="#d8d0bd" opacity="0"><animateMotion path="M205 175c10 20-15 40 0 70s15 40 0 90" begin="1.5s" dur="2.4s" rotate="auto" fill="remove"/><animate attributeName="opacity" values="0;.9;0" begin="1.5s" dur="2.4s"/></path><path d="M0 0c4-6 10-6 14 0c-4 6-10 6-14 0z" fill="#d8d0bd" opacity="0"><animateMotion path="M335 145c10 20-15 40 0 70s15 40 0 90" begin="2.2s" dur="2.4s" rotate="auto" fill="remove"/><animate attributeName="opacity" values="0;.9;0" begin="2.2s" dur="2.4s"/></path><path d="M0 0c4-6 10-6 14 0c-4 6-10 6-14 0z" fill="#d8d0bd" opacity="0"><animateMotion path="M455 175c10 20-15 40 0 70s15 40 0 90" begin="2.9s" dur="2.4s" rotate="auto" fill="remove"/><animate attributeName="opacity" values="0;.9;0" begin="2.9s" dur="2.4s"/></path>
+                        <path d="M572 420V250h68v170Z" fill="#0d0807" stroke="#4a362b"/><path d="M562 250L606 176L650 250Z" fill="#5a1218"/><path d="M606 176V148" stroke="#d9bf8a"/><path class="flag" d="M606 148L634 157L606 166Z" fill="#b3202f"/>
+                        <path d="M590 318V298Q590 284 606 270Q622 284 622 298V318Z" fill="#ffcf7a" class="tw" style="animation-duration:3s"/><path d="M590 318V298Q590 284 606 270Q622 284 622 298V318ZM606 276V318M590 302H622" fill="none" stroke="#8a5d22"/>
+                        <use href="#route" fill="none" stroke="#e0a540" stroke-width="1.2" stroke-dasharray="3 9" opacity=".4" class="march"/>
+                        <path d="M0 0c4-6 10-6 14 0c-4 6-10 6-14 0z" fill="#e2cfa0" opacity="0"><animateMotion path="M110 255c10 20-15 40 0 70s15 40 0 90" begin="0.8s" dur="2.4s" rotate="auto" fill="remove"/><animate attributeName="opacity" values="0;.9;0" begin="0.8s" dur="2.4s"/></path><path d="M0 0c4-6 10-6 14 0c-4 6-10 6-14 0z" fill="#e2cfa0" opacity="0"><animateMotion path="M205 175c10 20-15 40 0 70s15 40 0 90" begin="1.5s" dur="2.4s" rotate="auto" fill="remove"/><animate attributeName="opacity" values="0;.9;0" begin="1.5s" dur="2.4s"/></path><path d="M0 0c4-6 10-6 14 0c-4 6-10 6-14 0z" fill="#e2cfa0" opacity="0"><animateMotion path="M335 145c10 20-15 40 0 70s15 40 0 90" begin="2.2s" dur="2.4s" rotate="auto" fill="remove"/><animate attributeName="opacity" values="0;.9;0" begin="2.2s" dur="2.4s"/></path><path d="M0 0c4-6 10-6 14 0c-4 6-10 6-14 0z" fill="#e2cfa0" opacity="0"><animateMotion path="M455 175c10 20-15 40 0 70s15 40 0 90" begin="2.9s" dur="2.4s" rotate="auto" fill="remove"/><animate attributeName="opacity" values="0;.9;0" begin="2.9s" dur="2.4s"/></path>
                         <g>
                             <animateMotion dur="4.2s" begin="0s" fill="freeze" rotate="auto" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines=".35 .05 .6 .95"><mpath href="#route"/></animateMotion>
                             <animate attributeName="opacity" from="1" to="0" begin="4.1s" dur=".4s" fill="freeze"/>
                             <g transform="scale(.62) translate(-95 -62)">
-                                <path class="wing far" d="M70 52c10-30 36-44 64-36-16 5-22 14-24 26 12-4 24-3 34 4-20 12-46 16-74 6z" fill="#5a5448"/>
+                                <path class="wing far" d="M70 52c10-30 36-44 64-36-16 5-22 14-24 26 12-4 24-3 34 4-20 12-46 16-74 6z" fill="#120d11"/>
                                 <path d="M25 67c11-15 30-24 52-24 12-17 31-25 46-18-8 7-11 13-9 20 17 2 32 12 43 27-19-4-31-4-44 3-17 10-42 12-62 4-11-3-20-8-26-12z" fill="url(#pgg)"/>
-                                <path d="M32 63 8 48l10 23-8 17 30-11z" fill="#8d8678"/><circle cx="125" cy="37" r="13" fill="url(#pgg)"/><path d="m137 36 22 5-21 7z" fill="#c6a969"/><circle cx="129" cy="34" r="2.2" fill="#0b0907"/>
-                                <path class="wing" d="M54 60c16-28 43-37 70-26-17 3-25 12-30 23 14-7 27-7 38-1-18 17-44 28-69 25-8-1-15-6-9-21z" fill="#6f6759" stroke="#b9b1a0"/>
-                                <g class="swing"><path d="M88 90V112" stroke="#b9b1a0" stroke-width="1.5"/><rect x="70" y="112" width="36" height="25" fill="#d8d0bd" stroke="#806a43"/><path d="M70 112L88 127L106 112" fill="none" stroke="#806a43"/><path d="M88 132C83 128 82 124 85 123.4C86.7 123 87.7 124 88 124.8C88.3 124 89.3 123 91 123.4C94 124 93 128 88 132Z" fill="#8a3f3a"/></g>
+                                <path d="M32 63 8 48l10 23-8 17 30-11z" fill="#1a1318"/><circle cx="125" cy="37" r="13" fill="url(#pgg)"/><path d="m137 36 22 5-21 7z" fill="#e0a540"/><circle cx="129" cy="34" r="2.4" fill="#ffcf7a"/>
+                                <path class="wing" d="M54 60c16-28 43-37 70-26-17 3-25 12-30 23 14-7 27-7 38-1-18 17-44 28-69 25-8-1-15-6-9-21z" fill="#241a20" stroke="#7a6350"/>
+                                <g class="swing"><path d="M88 90V112" stroke="#d9bf8a" stroke-width="1.5"/><rect x="70" y="112" width="36" height="25" fill="#e2cfa0" stroke="#8a5d22"/><path d="M70 112L88 127L106 112" fill="none" stroke="#8a5d22"/><path d="M88 132C83 128 82 124 85 123.4C86.7 123 87.7 124 88 124.8C88.3 124 89.3 123 91 123.4C94 124 93 128 88 132Z" fill="#7a1420"/></g>
                             </g>
                         </g>
-                        <g transform="translate(606 292)"><path class="burst" d="M0 8C-8 2-11-3-9.4-6C-7.8-9.2-3.5-9.4 0-5C3.5-9.4 7.8-9.2 9.4-6C11-3 8 2 0 8Z" fill="#c6a969"/><circle class="spark" r="3" fill="#f0d89a" style="--a:0deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:45deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:90deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:135deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:180deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:225deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:270deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:315deg"/></g>
+                        <g transform="translate(606 292)"><path class="burst" d="M0-10C-4-4-4 2 0 8C4 2 4-4 0-10ZM-8-2C-9 3-4 7 0 8C-5 6-6 2-8-2ZM8-2C9 3 4 7 0 8C5 6 6 2 8-2Z" fill="#e0a540"/><circle class="spark" r="3" fill="#f0d89a" style="--a:0deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:45deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:90deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:135deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:180deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:225deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:270deg"/><circle class="spark" r="3" fill="#f0d89a" style="--a:315deg"/></g>
                     </svg>
-                    <div class="mail-delivery-heading"><span>ПОШТОВА ДЕПЕША // 1899</span><strong>Послання вирушило в дорогу</strong></div>
-                    <div class="mail-delivery-caption"><span class="c1">КУР'ЄРСЬКИЙ ГОЛУБ ДОСТАВЛЯЄ ПОВІДОМЛЕННЯ…</span><span class="c2">ЛИСТ ДОСТАВЛЕНО ♥</span></div>
+                    <div class="mail-delivery-heading"><span>ПОШТА КОРОЛІВСТВА // ВІСТКА ДЛЯ ПРИНЦЕСИ</span><strong>Чорний ворон летить крізь ніч</strong></div>
+                    <div class="mail-delivery-caption"><span class="c1">ЧОРНИЙ ВОРОН НЕСЕ ВІСТКУ ДО ВЕЖІ…</span><span class="c2">ВІСТКУ ВРУЧЕНО ⚜</span></div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Етап: Лицар пішов -->
+        <section id="stage-uhod" class="stage">
+            <div class="uhod-bg"></div>
+            <div class="uhod-text">
+                <h2 class="uhod-title">Лицар пішов</h2>
+                <p class="uhod-sub">Лише відлуння кроків тоне в тумані…</p>
+                <p class="uhod-hint">торкнись, щоб продовжити</p>
             </div>
         </section>
 
         <!-- Етап: Оцінка автора -->
         <section id="stage-author-rating" class="stage">
             <div class="rdr-card" style="max-width: 520px; text-align: center; display: flex; flex-direction: column; gap: 14px;">
-                <div class="access-badge">● Фінальний звіт детектива</div>
-                <h2 style="color: #fff; font-size: 1.2rem; font-family: var(--font-western);">Оцініть роботу розробника: <span style="color: var(--rdr-gold);">MaksimBIGBALLS</span></h2>
-                <p style="color: var(--rdr-dim); font-size: 0.85rem; font-family: var(--font-mono);">Виставте бали за критеріями:</p>
+                <div class="access-badge">● Остаточний вирок літописця</div>
+                <h2 style="color: #fff; font-size: 1.2rem; font-family: var(--font-western);">Оціни працю майстра-розробника: <span style="color: var(--rdr-gold);">MaksimBIGBALLS</span></h2>
+                <p style="color: var(--rdr-dim); font-size: 0.85rem; font-family: var(--font-mono);">Постав бали за заслуги:</p>
                 
                 <div style="display: flex; flex-direction: column; gap: 4px; text-align: left;">
                     <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--rdr-dim); font-family: var(--font-mono);">
-                        <span>1. Крутість:</span>
+                        <span>1. Звитяга:</span>
                         <span id="val-crit-1" style="color: var(--rdr-gold); font-weight: bold;">100/100</span>
                     </div>
                     <input type="range" id="crit-1" min="1" max="100" value="100" style="accent-color: var(--rdr-gold); cursor: pointer;">
@@ -1397,7 +1719,7 @@
 
                 <div style="display: flex; flex-direction: column; gap: 4px; text-align: left;">
                     <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--rdr-dim); font-family: var(--font-mono);">
-                        <span>2. Атмосферність:</span>
+                        <span>2. Похмура велич:</span>
                         <span id="val-crit-2" style="color: var(--rdr-gold); font-weight: bold;">100/100</span>
                     </div>
                     <input type="range" id="crit-2" min="1" max="100" value="100" style="accent-color: var(--rdr-gold); cursor: pointer;">
@@ -1412,7 +1734,7 @@
                 </div>
 
                 <button id="submit-rating-btn" class="rdr-btn" style="width: 100%; margin-top: 6px;">
-                    Затвердити звіт [Далі]
+                    Скріпити печаткою [Далі]
                 </button>
             </div>
         </section>
@@ -1420,21 +1742,21 @@
         <!-- Негативна оцінка -->
         <div id="negative-rating-overlay" style="position: fixed; inset: 0; background: rgba(10, 7, 5, 0.92); z-index: 95; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;">
             <div class="easter-egg-box" style="max-width: 420px; display: flex; flex-direction: column; gap: 14px; align-items: center;">
-                <div style="color: var(--rdr-orange); font-weight: bold; font-size: 1.2rem; font-family: var(--font-western);">А за шо нєгатів?!</div>
-                <img src="https://i.pinimg.com/736x/61/45/1b/61451b1525aa4cef18ffc5259ad7f583.jpg" alt="Ніхто не піде" style="max-width: 100%; max-height: 45vh; border-radius: 2px; border: 1px solid var(--rdr-gold-dim); object-fit: contain;">
-                <button id="close-negative-btn" class="rdr-btn" style="width: 100%; font-size: 0.9rem;">Виправити оцінку [ОК]</button>
+                <div style="color: var(--rdr-orange); font-weight: bold; font-size: 1.2rem; font-family: var(--font-western);">А за шо нєгатів?</div>
+                <img src="https://i.pinimg.com/736x/ec/49/02/ec4902d7f940b2a3846b37cece8a614b.jpg" alt="Ніхто не піде" style="max-width: 100%; max-height: 45vh; border-radius: 2px; border: 1px solid var(--rdr-gold-dim); object-fit: contain;">
+                <button id="close-negative-btn" class="rdr-btn" style="width: 100%; font-size: 0.9rem;">Виправити вирок [ОК]</button>
             </div>
         </div>
 
         <!-- Етап 6: Фінальний таймер -->
         <section id="stage-6" class="stage">
             <div class="offline-card">
-                <div class="seal" aria-hidden="true">♥</div>
+                <div class="seal" aria-hidden="true">⚜</div>
                 <div class="access-badge" style="border-color: var(--rdr-orange); color: var(--rdr-orange); background: rgba(200, 100, 0, 0.15);">
-                    ● Зв'язок втрачено // 21.11.2027
+                    ● Вежа поринула в морок // 21.11.2027
                 </div>
 
-                <h1 class="offline-title">СПРАВА ЗАКРИТА, СТАНЦІЯ ПОТЯГІВ ЗНИКЛА!</h1>
+                <h1 class="offline-title">ЛИЦАР ЗНИК У ТУМАНІ, ЗАМОК ЗАЧИНЕНО ДО НАСТУПНОГО СТУКУ!</h1>
 
                 <div class="countdown-grid">
                     <div class="time-unit">
@@ -1456,11 +1778,11 @@
                 </div>
 
                 <div style="font-size: 0.9rem; color: var(--rdr-dim); font-family: var(--font-mono);">
-                    Наступне розслідування: 21 листопада 2027 року, 00:00
+                    Наступний стук у браму: 21 листопада 2027 року, опівночі
                 </div>
 
                 <button id="full-restart-btn" class="rdr-btn" style="font-size: 0.85rem; padding: 12px 24px; margin-top: 6px;">
-                    ↻ Почати розслідування наново
+                    ↻ Почати наново
                 </button>
             </div>
         </section>
@@ -1470,7 +1792,7 @@
     <div id="lb" role="dialog" aria-modal="true" aria-label="Перегляд листівки" aria-hidden="true">
     <div class="lb-bar"><button id="lbOut" aria-label="Зменшити">−</button><button id="lbIn" aria-label="Збільшити">+</button><button id="lbReset" aria-label="Скинути масштаб" style="font-size:.95rem">1:1</button><button id="lbX" aria-label="Закрити">×</button></div>
     <img id="lbImg" alt="Вітальна листівка" draggable="false">
-    <p class="lb-hint">Колесо миші або щипок — масштаб · перетягування — рух · подвійний клік — 2.5× · Esc — закрити</p>
+    <p class="lb-hint">Колесо миші або щипок: масштаб · перетягування: рух · подвійний клік: 2.5× · Esc: закрити</p>
 </div>
 <script>
         const CONFIG = {
@@ -1484,8 +1806,13 @@
                 this.rainGain = null;
                 this.isRainPlaying = false;
                 this.ambientNodes = [];
-                this.shuffleTrack = null;
+                this.shuffleBus = null;
+                this.shuffleNoise = null;
+                this.shuffleTimer = null;
                 this.shuffleStopTimer = null;
+                this.shuffleStep = 0;
+                this.shuffleNext = 0;
+                this.shuffleBeat = 0.65;
                 this.thunderTimer = null;
             }
 
@@ -1496,7 +1823,7 @@
                         this.ctx = new AudioCtx();
                     }
                 }
-                if (this.ctx && this.ctx.state === 'suspended') {
+                if (this.ctx && this.ctx.state === 'suspended' && !window.__muted) {
                     this.ctx.resume();
                 }
             }
@@ -1853,21 +2180,185 @@
                 } catch (e) {}
             }
 
+            /* ===== Музика перемішування: «Блеф на Дикому Заході» =====
+               Синтезована в реальному часі: темп 92 BPM (удар = 0.65 с, як і обміни кубків),
+               ре мінор, контрабас, гітарний твенг, ковбойський свист/наспівування, щітки та тихий там-там. */
+            _shuffleBusInit() {
+                if (this.shuffleBus) return;
+                const c = this.ctx;
+                const bus = c.createGain();
+                bus.gain.value = 0.0001;
+                const comp = c.createDynamicsCompressor();
+                comp.threshold.value = -20;
+                comp.ratio.value = 3;
+                const dry = c.createGain();
+                dry.gain.value = 0.85;
+                const wet = c.createGain();
+                wet.gain.value = 0.32;
+                const verb = c.createConvolver();
+                const len = Math.floor(c.sampleRate * 1.8);
+                const ir = c.createBuffer(2, len, c.sampleRate);
+                for (let ch = 0; ch < 2; ch++) {
+                    const d = ir.getChannelData(ch);
+                    for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6);
+                }
+                verb.buffer = ir;
+                bus.connect(dry); dry.connect(comp);
+                bus.connect(verb); verb.connect(wet); wet.connect(comp);
+                comp.connect(c.destination);
+                this.shuffleBus = bus;
+                this.shuffleNoise = this.createNoise(0.6);
+            }
+
+            _sTone(type, freq, t, dur, vol, cutoff, attack = 0.008) {
+                const c = this.ctx;
+                const o = c.createOscillator();
+                const f = c.createBiquadFilter();
+                const g = c.createGain();
+                o.type = type;
+                o.frequency.setValueAtTime(freq, t);
+                f.type = 'lowpass';
+                f.frequency.value = cutoff;
+                g.gain.setValueAtTime(0.0001, t);
+                g.gain.exponentialRampToValueAtTime(vol, t + attack);
+                g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+                o.connect(f); f.connect(g); g.connect(this.shuffleBus);
+                o.start(t);
+                o.stop(t + dur + 0.05);
+            }
+
+            _sNoise(t, dur, vol, filterType, freq, q = 1) {
+                const c = this.ctx;
+                const n = c.createBufferSource();
+                n.buffer = this.shuffleNoise;
+                const f = c.createBiquadFilter();
+                f.type = filterType;
+                f.frequency.value = freq;
+                f.Q.value = q;
+                const g = c.createGain();
+                g.gain.setValueAtTime(vol, t);
+                g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+                n.connect(f); f.connect(g); g.connect(this.shuffleBus);
+                n.start(t);
+                n.stop(t + dur + 0.02);
+            }
+
+            _sKick(t, vol) {
+                const c = this.ctx;
+                const o = c.createOscillator();
+                const g = c.createGain();
+                o.type = 'sine';
+                o.frequency.setValueAtTime(110, t);
+                o.frequency.exponentialRampToValueAtTime(42, t + 0.22);
+                g.gain.setValueAtTime(vol, t);
+                g.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+                o.connect(g); g.connect(this.shuffleBus);
+                o.start(t);
+                o.stop(t + 0.32);
+            }
+
+            // свист / наспівування з вібрато
+            _sHum(freq, t, dur, vol) {
+                const c = this.ctx;
+                const o1 = c.createOscillator();
+                const o2 = c.createOscillator();
+                const mix2 = c.createGain();
+                const lfo = c.createOscillator();
+                const lfoG = c.createGain();
+                const f = c.createBiquadFilter();
+                const g = c.createGain();
+                o1.type = 'sine';
+                o2.type = 'triangle';
+                o1.frequency.value = freq;
+                o2.frequency.value = freq * 1.004;
+                mix2.gain.value = 0.18;
+                lfo.frequency.value = 5.3;
+                lfoG.gain.setValueAtTime(0, t);
+                lfoG.gain.linearRampToValueAtTime(freq * 0.011, t + Math.min(0.35, dur * 0.6));
+                f.type = 'lowpass';
+                f.frequency.value = 2200;
+                const end = t + dur;
+                g.gain.setValueAtTime(0.0001, t);
+                g.gain.exponentialRampToValueAtTime(vol, t + 0.07);
+                g.gain.setValueAtTime(vol, Math.max(t + 0.08, end - 0.1));
+                g.gain.exponentialRampToValueAtTime(0.0001, end);
+                lfo.connect(lfoG); lfoG.connect(o1.frequency); lfoG.connect(o2.frequency);
+                o1.connect(f); o2.connect(mix2); mix2.connect(f); f.connect(g); g.connect(this.shuffleBus);
+                o1.start(t); o2.start(t); lfo.start(t);
+                o1.stop(end + 0.05); o2.stop(end + 0.05); lfo.stop(end + 0.05);
+            }
+
+            _shuffleStep(step, t) {
+                const sd = this.shuffleBeat / 2;           // 1/8 нота
+                const s = step % 32;                        // 4 такти по 8 вісімок
+                const bar = Math.floor(s / 8);
+                const inBar = s % 8;
+                const beat = inBar / 2;
+
+                // Dm | Bb | C | A7
+                const roots  = [73.42, 58.27, 65.41, 55.00];
+                const fifths = [110.00, 87.31, 98.00, 82.41];
+                const chords = [
+                    [146.83, 174.61, 220.00, 293.66],
+                    [116.54, 146.83, 174.61, 233.08],
+                    [130.81, 164.81, 196.00, 261.63],
+                    [110.00, 138.59, 164.81, 196.00]
+                ];
+                const melody = {
+                    0: [440.00, 3], 3: [587.33, 1], 4: [698.46, 2], 6: [659.25, 2],
+                    8: [587.33, 3], 11: [523.25, 1], 12: [466.16, 2], 14: [440.00, 2],
+                    16: [659.25, 3], 19: [587.33, 1], 20: [523.25, 2], 22: [392.00, 2],
+                    24: [659.25, 2], 26: [554.37, 2], 28: [440.00, 4]
+                };
+
+                // контрабас
+                if (inBar % 2 === 0) {
+                    const fq = (beat % 2 === 0) ? roots[bar] : fifths[bar];
+                    this._sTone('triangle', fq, t, sd * 1.8, 0.34, 420, 0.012);
+                    this._sTone('sine', fq * 2, t, sd * 0.9, 0.05, 700, 0.01);
+                }
+                // тихий там-там на 1 і 3
+                if (inBar === 0 || inBar === 4) this._sKick(t, inBar === 0 ? 0.36 : 0.24);
+                // щітки: хет на кожній вісімці + «шурх» на 2 і 4
+                this._sNoise(t, 0.04, inBar % 2 ? 0.05 : 0.028, 'highpass', 6500);
+                if (inBar === 2 || inBar === 6) this._sNoise(t, 0.13, 0.075, 'bandpass', 1900, 0.8);
+                // гітарний твенг по слабких долях
+                if (inBar % 2 === 1) {
+                    const ch = chords[bar];
+                    const fq = ch[[0, 1, 2, 1][(inBar - 1) / 2]] * ((inBar === 7) ? 2 : 1);
+                    this._sTone('triangle', fq, t, 0.5, 0.11, 1900, 0.006);
+                    this._sTone('sine', fq * 2.01, t, 0.22, 0.02, 3000, 0.004);
+                    this._sNoise(t, 0.02, 0.012, 'highpass', 2500);
+                }
+                // свист-наспівування
+                if (melody[s]) this._sHum(melody[s][0], t, melody[s][1] * sd * 0.96, 0.11);
+            }
+
             playShuffleTrack(duration = 9000) {
                 this.stopShuffleTrack();
-                if (!this.shuffleTrack) return;
-
                 backgroundMusic.volume = 0.005;
-                this.shuffleTrack.currentTime = 0;
-                const playback = this.shuffleTrack.play();
-                if (playback && typeof playback.catch === 'function') {
-                    playback.catch(error => {
-                        if (error.name !== 'NotAllowedError') {
-                            console.error('Не вдалося відтворити 1115.MP3.', error);
+                try {
+                    this.init();
+                    if (!this.ctx) return;
+                    this._shuffleBusInit();
+                    const c = this.ctx;
+                    const now = c.currentTime;
+                    this.shuffleStep = 0;
+                    this.shuffleNext = now + 0.08;
+                    this.shuffleBus.gain.cancelScheduledValues(now);
+                    this.shuffleBus.gain.setValueAtTime(0.0001, now);
+                    this.shuffleBus.gain.linearRampToValueAtTime(0.9, now + 0.5);
+                    const pump = () => {
+                        while (this.shuffleNext < c.currentTime + 0.4) {
+                            this._shuffleStep(this.shuffleStep++, this.shuffleNext);
+                            this.shuffleNext += this.shuffleBeat / 2;
                         }
-                    });
+                    };
+                    pump();
+                    this.shuffleTimer = setInterval(pump, 100);
+                } catch (e) {
+                    console.error('Не вдалося запустити музику перемішування.', e);
                 }
-
                 this.shuffleStopTimer = setTimeout(() => this.stopShuffleTrack(), duration);
             }
 
@@ -1876,9 +2367,18 @@
                     clearTimeout(this.shuffleStopTimer);
                     this.shuffleStopTimer = null;
                 }
-                if (this.shuffleTrack) {
-                    this.shuffleTrack.pause();
-                    this.shuffleTrack.currentTime = 0;
+                if (this.shuffleTimer) {
+                    clearInterval(this.shuffleTimer);
+                    this.shuffleTimer = null;
+                }
+                if (this.shuffleBus && this.ctx) {
+                    try {
+                        const now = this.ctx.currentTime;
+                        const g = this.shuffleBus.gain;
+                        g.cancelScheduledValues(now);
+                        g.setValueAtTime(Math.max(g.value, 0.0001), now);
+                        g.linearRampToValueAtTime(0.0001, now + 0.3);
+                    } catch (e) {}
                 }
                 backgroundMusic.volume = 0.1;
             }
@@ -1887,14 +2387,7 @@
 
         const audio = new NoirAudio();
         const backgroundMusic = document.getElementById('background-music');
-        audio.shuffleTrack = document.getElementById('shuffle-track-audio');
         backgroundMusic.volume = 0.1;
-        audio.shuffleTrack.volume = 0.9;
-
-        audio.shuffleTrack.addEventListener('ended', () => audio.stopShuffleTrack());
-        audio.shuffleTrack.addEventListener('error', () => {
-            console.error('Не вдалося завантажити 1115.MP3.', audio.shuffleTrack.error);
-        });
 
         function startBackgroundMusic() {
             if (!backgroundMusic.paused) return;
@@ -1959,18 +2452,21 @@
         const stages = {
             s1: document.getElementById('stage-1'),
             s2: document.getElementById('stage-2'),
+            peep: document.getElementById('stage-peep'),
             sAgeInput: document.getElementById('stage-age-input'),
             s3_1: document.getElementById('stage-3-1'),
             s3_2: document.getElementById('stage-3-2'),
+            bridge: document.getElementById('stage-bridge'),
             s4: document.getElementById('stage-4'),
             s5: document.getElementById('stage-5'),
+            sUhod: document.getElementById('stage-uhod'),
             sAuthorRating: document.getElementById('stage-author-rating'),
             s6: document.getElementById('stage-6')
         };
 
-        const PIPORDER = ['s1','s2','sAgeInput','s3_1','s3_2','s4','s5','sAuthorRating','s6'];
+        const PIPORDER = ['s1','s2','peep','sAgeInput','s3_1','s3_2','bridge','s4','s5','sUhod','sAuthorRating','s6'];
         const pipsEl = document.getElementById('pips');
-        pipsEl.innerHTML = '<svg class="pip" viewBox="0 0 24 24"><path d="M12 21C4 15 1 10.5 2.6 7C4.2 3.8 8.5 3.6 12 8C15.5 3.6 19.8 3.8 21.4 7C23 10.5 20 15 12 21Z"/></svg>'.repeat(9);
+        pipsEl.innerHTML = '<svg class="pip" viewBox="0 0 24 24"><path d="M5 21V11C5 6 9 3 12 1C15 3 19 6 19 11V21Z"/></svg>'.repeat(12);
 
         function switchStage(stageKey) {
             const pi = PIPORDER.indexOf(stageKey) + 1;
@@ -2090,10 +2586,10 @@
             dossierOutput.innerHTML = '';
 
             const lines = [
-                { text: `> Поіск підозрюваного... [ГОТОВО]`, isAlert: false, delay: 400 },
-                { text: `> Збір інфи туда суда... [100%]`, isAlert: false, delay: 450 },
-                { text: `> Перевірка бурмалди...  [999%]`, isAlert: false, delay: 500 },
-                { text: `> УВАГА: На вокзалі помічено підозрювану!`, isAlert: true, delay: 1400 }
+                { text: `> Опівнічна тиша в покоях принцеси... [ТИХО]`, isAlert: false, delay: 400 },
+                { text: `> Свічки догорають у баштовій залі... [ГОРЯТЬ]`, isAlert: false, delay: 450 },
+                { text: `> Чути кроки біля важкої брами... [БЛИЗЬКО]`, isAlert: false, delay: 500 },
+                { text: `> ТРИВОГА: Вартові повідомляють, щохтось стукає у браму, глянь у вічко!`, isAlert: true, delay: 1400 }
             ];
 
             for (const item of lines) {
@@ -2112,7 +2608,7 @@
                 await new Promise(r => setTimeout(r, item.delay));
             }
 
-            switchStage('sAgeInput');
+            startPeephole();
         }
 
         document.getElementById('submit-age-btn').addEventListener('click', () => {
@@ -2122,20 +2618,20 @@
             const errorMsgEl = document.getElementById('age-error-msg');
 
             if (isNaN(enteredAge)) {
-                errorMsgEl.textContent = "Введіть числове значення!";
+                errorMsgEl.textContent = "Назви число, мила душе!";
                 audio.playError();
                 return;
             }
 
             if (enteredAge < 18) {
-                errorMsgEl.textContent = "Документи не дійсні: занадто юний вік.";
+                errorMsgEl.textContent = "Грамота недійсна: ти надто юна.";
                 audio.playError();
                 appWrapper.classList.remove('screen-shake');
                 void appWrapper.offsetWidth;
                 appWrapper.classList.add('screen-shake');
                 return;
             } else if (enteredAge > 18) {
-                errorMsgEl.textContent = "Помилка в даних: ви не настільки дорослі!";
+                errorMsgEl.textContent = "Хибна присяга: ти не настільки доросла!";
                 audio.playError();
                 appWrapper.classList.remove('screen-shake');
                 void appWrapper.offsetWidth;
@@ -2181,11 +2677,11 @@
         });
 
         const funnyMissMessages = [
-            "Не та уліка! Шукайте 18!",
-            "Помилковий слід на пероні",
-            "Цей документ не підходить",
-            "Мимо! Шукайте повноліття",
-            "Архівний архів відхилив це",
+            "Не та печатка! Шукай 18!",
+            "Хибний слід у темниці",
+            "Ця печатка фальшива",
+            "Мимо! Шукай повноліття",
+            "Літописець відхилив це",
             "Зосередьтеся на цифрі 18"
         ];
 
@@ -2209,7 +2705,7 @@
             caughtCount = 0;
             isEasterEggOpen = false;
             easterEggOverlay.classList.remove('active');
-            ageCounterBadge.textContent = `Знайдено: 0 / 3`;
+            ageCounterBadge.textContent = `Печаток: 0 / 3`;
 
             const target = CONFIG.age;
             const mandatoryDecoys = [12, 21, 404, 999].filter(n => n !== target);
@@ -2266,7 +2762,7 @@
                         entity.active = false;
                         el.style.display = 'none';
                         caughtCount++;
-                        ageCounterBadge.textContent = `Знайдено: ${caughtCount} / 3`;
+                        ageCounterBadge.textContent = `Печаток: ${caughtCount} / 3`;
                         audio.playHit();
                         showToast(arenaAge, clickX, clickY, `Успіх! (${caughtCount}/3)`, true);
 
@@ -2357,7 +2853,7 @@
             switchStage('s3_2');
             investigationVal = 15;
             investigationCompleted = false;
-            investigationStatus.textContent = 'НЕСТАБІЛЬНО';
+            investigationStatus.textContent = 'ХИТКО';
             investigationStatus.style.background = '#2a2117';
             investigateBtn.style.left = '50%';
             investigateBtn.style.top = '50%';
@@ -2385,7 +2881,7 @@
             if (investigationVal >= 100) {
                 investigationCompleted = true;
                 clearInterval(investigationDecayInterval);
-                investigationStatus.textContent = '100% ДОКАЗАНО';
+                investigationStatus.textContent = '100% СКРІПЛЕНО ПРИСЯГОЮ';
                 investigationStatus.style.background = '#1c3a27';
                 audio.playHit();
 
@@ -2406,6 +2902,7 @@
             paperWindow.style.animation = '';
             switchStage('s4');
             audio.playVictory();
+            setTimeout(() => { if (stages.s4.classList.contains('active')) { audio.playScrape(.3, .07); audio.playWesternPluck(392, .6, .05); } }, 2000);
             if (window.__faxLock) window.__faxLock();
         }
 
@@ -2428,7 +2925,14 @@
             startGiftStageIntro();
         });
 
+        /* фон shar.png на час гри з кубками; після гри повертається звичайний */
+        const sharProbe = new Image(); sharProbe.src = 'shar.png';
+        function setSharBackground(on) {
+            document.body.classList.toggle('bg-shar', !!on && sharProbe.complete && sharProbe.naturalWidth > 0);
+        }
+
         function startGiftStageIntro() {
+            setSharBackground(true);
             giftIntroView.style.display = 'flex';
             shellGameView.style.display = 'none';
             shellFailView.style.display = 'none';
@@ -2454,13 +2958,15 @@
             for (let i = 0; i < 3; i++) {
                 const slot = document.createElement('div');
                 slot.className = 'cup-slot';
+                slot.tabIndex = 0; slot.setAttribute('role', 'button'); slot.setAttribute('aria-label', 'Кубок ' + (i + 1));
+                slot.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); slot.click(); } });
                 slot.style.left = cupSlotPositions[i];
 
                 if (i === winningCupId) {
-                    const prizeImg = document.createElement('img');
-                    prizeImg.className = 'prize-item';
-                    prizeImg.src = 'https://cdn.pixabay.com/photo/2019/12/16/15/47/vector-4699584_960_720.png';
-                    prizeImg.alt = 'Приз';
+                    const prizeImg = document.createElement('div');
+                    prizeImg.className = 'prize-item prize-ball';
+                    prizeImg.setAttribute('role', 'img');
+                    prizeImg.setAttribute('aria-label', 'Шар');
                     slot.appendChild(prizeImg);
                     winningPrizeImg = prizeImg;
                 }
@@ -2488,7 +2994,7 @@
                 cupObjects.push(cupObj);
             }
 
-            shellStatus.textContent = 'Знайдіть де шар!';
+            shellStatus.textContent = 'Знайди, де шар!';
 
             cupObjects[winningCupId].cupEl.classList.add('lifted');
             audio.playCupReveal();
@@ -2499,7 +3005,7 @@
                 audio.playWoodKnock(0.1, 0.055);
 
                 setTimeout(() => {
-                    shellStatus.textContent = 'Бомж мішає шари та співає...';
+                    shellStatus.textContent = 'Лицар мішає кубки та наспівує...';
 
                     isSwappingDuringAudio = true;
                     audio.playShuffleTrack(10000);
@@ -2550,7 +3056,7 @@
             clearInterval(activeSwapInterval);
             audio.stopShuffleTrack();
 
-            shellStatus.textContent = 'Где шарик?';
+            shellStatus.textContent = 'Де шар?';
             shellCanPick = true;
 
             cupObjects.forEach(c => {
@@ -2576,7 +3082,7 @@
             await sleep(700);
 
             mailDeliveryView.style.display = 'none';
-            startAuthorRatingStage();
+            startUhodStage();
         }
 
         async function handleCupChoice(chosenCup, winningPrizeImg, cupObjects) {
@@ -2588,12 +3094,13 @@
             chosenCup.cupEl.classList.add('lifted');
 
             if (chosenCup.id === winningCupId) {
-                shellStatus.textContent = 'Да хорош! Повезло!';
+                shellStatus.textContent = 'Слава! Тобі усміхнулась фортуна!';
                 audio.playHit();
                 await sleep(1000);
+                setSharBackground(false);
                 await playMailDeliveryAnimation();
             } else {
-                shellStatus.textContent = 'ПУСТО...';
+                shellStatus.textContent = 'ПОРОЖНЬО...';
                 audio.playError();
                 appWrapper.classList.remove('screen-shake');
                 void appWrapper.offsetWidth;
@@ -2621,6 +3128,19 @@
         crit1.addEventListener('input', () => { valCrit1.textContent = crit1.value + '/100'; });
         crit2.addEventListener('input', () => { valCrit2.textContent = crit2.value + '/100'; });
         crit3.addEventListener('input', () => { valCrit3.textContent = crit3.value + '/100'; });
+
+        let uhodTimer = 0;
+        function startUhodStage() {
+            switchStage('sUhod');
+            audio.playWesternPluck(147, 1.1, 0.08);
+            const go = () => {
+                clearTimeout(uhodTimer);
+                if (!stages.sUhod.classList.contains('active')) return;
+                startAuthorRatingStage();
+            };
+            stages.sUhod.onclick = go;
+            uhodTimer = setTimeout(go, 5500);
+        }
 
         function startAuthorRatingStage() {
             switchStage('sAuthorRating');
@@ -2680,6 +3200,7 @@
             if (offlineCountdownInterval) clearInterval(offlineCountdownInterval);
             if (activeSwapInterval) clearInterval(activeSwapInterval);
             audio.stopShuffleTrack();
+            setSharBackground(false);
             if (audio.thunderTimer) clearTimeout(audio.thunderTimer);
             audio.thunderTimer = null;
             if (rainInterval) clearInterval(rainInterval);
@@ -2709,7 +3230,7 @@
                     q.y -= q.v; q.x += Math.sin(t / 1800 + q.p) * .25;
                     if (q.y < -5) { q.y = dc.height + 5; q.x = Math.random() * dc.width; }
                     dx.globalAlpha = .25 + .35 * Math.abs(Math.sin(t / 900 + q.p));
-                    dx.fillStyle = '#e6d3a0'; dx.beginPath(); dx.arc(q.x, q.y, q.r, 0, 6.283); dx.fill();
+                    dx.fillStyle = '#ffe08a'; dx.beginPath(); dx.arc(q.x, q.y, q.r, 0, 6.283); dx.fill();
                 }
                 requestAnimationFrame(dl);
             }
@@ -2750,26 +3271,26 @@
             const mid = () => [innerWidth / 2, innerHeight / 2];
             function open() { opener = document.activeElement; li.src = img.currentSrc || img.src; reset(); lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.getElementById('lbX').focus(); clearTimeout(openTimer); openTimer = setTimeout(() => unlock(), 1500); }
             function close() { clearTimeout(openTimer); lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); if (opener && opener.focus) opener.focus(); unlock(); }
-            img.tabIndex = 0; img.setAttribute('role', 'button'); img.setAttribute('aria-label', 'Відкрити листівку на весь екран');
+            img.tabIndex = 0; img.setAttribute('role', 'button'); img.setAttribute('aria-label', 'Розгорнути грамоту на весь екран');
             img.addEventListener('click', open);
             img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
-            const cue = document.createElement('button'); cue.type = 'button'; cue.className = 'zoom-cue'; cue.textContent = 'Натисніть на листівку, щоб відкрити та збільшити'; cue.onclick = open; img.after(cue);
+            const cue = document.createElement('button'); cue.type = 'button'; cue.className = 'zoom-cue'; cue.textContent = 'Торкніться грамоти, щоб розгорнути та роздивитись'; cue.onclick = open; img.after(cue);
 
             /* gate: cannot leave the fax until the postcard has been viewed */
             const btn = document.getElementById('to-gift-stage-btn'), btnHTML = btn.innerHTML.trim();
             const LOCK = '<svg class="lk" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
-            const stamp = document.createElement('div'); stamp.className = 'stamp'; stamp.textContent = 'ПЕРЕГЛЯНУТО'; stamp.setAttribute('aria-hidden', 'true'); img.parentElement.appendChild(stamp);
+            const stamp = document.createElement('div'); stamp.className = 'stamp'; stamp.textContent = 'ЗАВІРЕНО'; stamp.setAttribute('aria-hidden', 'true'); img.parentElement.appendChild(stamp);
             let viewed = false, openTimer = 0;
             function lock() {
                 viewed = false; clearTimeout(openTimer); stamp.classList.remove('go');
-                btn.disabled = true; btn.innerHTML = LOCK + 'Спершу відкрийте листівку';
-                img.classList.add('need-view'); cue.classList.add('need'); cue.textContent = 'Відкрити листівку ➜';
+                btn.disabled = true; btn.innerHTML = LOCK + 'Спершу розгорни грамоту';
+                img.classList.add('need-view'); cue.classList.add('need'); cue.textContent = 'Розгорнути грамоту ➜';
             }
             function unlock(missing) {
                 if (viewed) return; viewed = true; clearTimeout(openTimer);
                 btn.disabled = false; btn.innerHTML = btnHTML; btn.classList.add('unlocked'); setTimeout(() => btn.classList.remove('unlocked'), 1000);
                 img.classList.remove('need-view'); cue.classList.remove('need');
-                cue.textContent = missing === true ? 'Листівку не знайдено — можна йти далі' : 'Листівку переглянуто';
+                cue.textContent = missing === true ? 'Грамоту не знайдено, можна рушати далі' : 'Грамоту прочитано';
                 if (missing !== true) {
                     stamp.classList.add('go');
                     setTimeout(() => { const r = stamp.getBoundingClientRect(); FX.burst(r.left + r.width / 2, r.top + r.height / 2, 40, .35, 7); }, 350);
@@ -2809,8 +3330,8 @@
         const FX = (function () {
             const cv = document.getElementById('fx'), c = cv.getContext('2d'), reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
             let P = [], run = false, fw = 0, rn = 0;
-            const H = new Path2D('M12 21C4 15 1 10.5 2.6 7C4.2 3.8 8.5 3.6 12 8C15.5 3.6 19.8 3.8 21.4 7C23 10.5 20 15 12 21Z');
-            const COL = ['#f0d89a', '#c6a969', '#e0d9c7', '#d9b8ad', '#b9b1a0'], R = Math.random;
+            const H = new Path2D(); H.addPath(new Path2D('M0-10C-4-4-4 2 0 8C4 2 4-4 0-10ZM-8-2C-9 3-4 7 0 8C-5 6-6 2-8-2ZM8-2C9 3 4 7 0 8C5 6 6 2 8-2ZM-5 10H5V12H-5Z'), new DOMMatrix().translate(12, 12).scale(1.2));
+            const COL = ['#ffd36b', '#e0a540', '#e8a46a', '#b3202f', '#ffcf7a'], R = Math.random;
             const fit = () => { cv.width = innerWidth; cv.height = innerHeight; }; fit(); addEventListener('resize', fit);
             function add(p) { P.push(p); if (!run) { run = true; requestAnimationFrame(loop); } }
             function loop() {
@@ -2847,6 +3368,231 @@
             b.style.setProperty('--bx', ((e.clientX - r.left - r.width / 2) / r.width * 12).toFixed(1) + 'px');
             b.style.setProperty('--by', ((e.clientY - r.top - r.height / 2) / r.height * 10).toFixed(1) + 'px');
         }, { passive: true });
+
+        /* === Випробування III: підйомний міст === */
+        let brHits = 0, brRaf = 0, brNext = null, brT0 = 0, brP = 0, brZ = [.4, .26], brLock = false;
+        const brNeedle = document.getElementById('brNeedle'), brZone = document.getElementById('brZone'), brMsg = document.getElementById('brMsg'), brCh = document.getElementById('brChains'), brTrack = document.getElementById('brTrack');
+        function brNewZone() { const w = [.3, .24, .19][Math.min(brHits, 2)]; brZ = [.08 + Math.random() * (.84 - w), w]; brZone.style.left = brZ[0] * 100 + '%'; brZone.style.width = w * 100 + '%'; }
+        function brDraw() { brCh.textContent = '⛓'.repeat(3 - brHits) + '⚔'.repeat(brHits); }
+        function brLoop(t) { brT0 = brT0 || t; brP = (1 - Math.cos((t - brT0) / 1000 * (.62 + brHits * .16) * Math.PI)) / 2; brNeedle.style.left = 'calc(' + brP * 100 + '% - 2px)'; brRaf = requestAnimationFrame(brLoop); }
+        function startBridge(next) { brNext = next; brHits = 0; brT0 = 0; brLock = false; brMsg.textContent = 'Ланцюги тримають міст… не поспішай.'; brNewZone(); brDraw(); switchStage('bridge'); cancelAnimationFrame(brRaf); brRaf = requestAnimationFrame(brLoop); }
+        function brStrike() {
+            if (brLock || !stages.bridge.classList.contains('active')) return;
+            const r = brNeedle.getBoundingClientRect();
+            if (brP >= brZ[0] && brP <= brZ[0] + brZ[1]) {
+                brHits++; FX.burst(r.left, r.top + r.height / 2, 22, .3, 5);
+                if (brHits >= 3) { brLock = true; brMsg.textContent = 'Ланцюги розірвано, міст опущено!'; FX.burst(innerWidth / 2, innerHeight / 2, 80, .4, 8); cancelAnimationFrame(brRaf); setTimeout(() => { brLock = false; brNext(); }, 1400); }
+                else { brMsg.textContent = 'Влучно! Ще ' + (3 - brHits) + '…'; brNewZone(); }
+            } else { brHits = 0; brMsg.textContent = 'Промах! Ланцюги знову натягнулися…'; brTrack.classList.remove('miss'); void brTrack.offsetWidth; brTrack.classList.add('miss'); brNewZone(); }
+            brDraw();
+        }
+        document.getElementById('brHit').addEventListener('click', brStrike);
+        addEventListener('keydown', e => { if ((e.key === ' ' || e.key === 'Enter') && stages.bridge.classList.contains('active') && e.target.tagName !== 'BUTTON') { e.preventDefault(); brStrike(); } });
+        const _afterBridge = startFinalStage;
+        startFinalStage = function () { startBridge(_afterBridge); };
+
+        /* === Випробування I: вічко у брамі === */
+        const PEEP_ROUNDS = 3;
+        const peepScene = document.getElementById('peepScene'), peepKnight = document.getElementById('peepKnight'), peepOrb = document.getElementById('peepOrb'),
+              peepMsg = document.getElementById('peepMsg'), peepN = document.getElementById('peepN'), peepRing = document.getElementById('peepRing'), peepHit = document.getElementById('peepHit');
+        let peepRound = 0, peepRaf = 0, peepT = 0, peepRun = false, peepLock = false, peepLit = false, peepCool = 0, peepWp = 0;
+        let po = { x: .5, y: .5 }, pv = { x: 0, y: 0 }, pw = { x: .5, y: .5 }, pk = { x: .5, y: .5, hw: .14, hh: .25 };
+        const PEEP_FALLBACK = 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 160"><path d="M50 4l10 14v14l8 6 22 14v100H10V52l22-14 8-6V18z" fill="#1a0a0e" stroke="#e8b765" stroke-width="1.5"/><rect x="38" y="22" width="24" height="12" fill="#050203"/></svg>');
+        peepKnight.addEventListener('error', () => { if (peepKnight.src !== PEEP_FALLBACK) peepKnight.src = PEEP_FALLBACK; });
+        peepKnight.addEventListener('load', () => { if (stages.peep.classList.contains('active') && !peepLock) peepNewKnight(); });
+
+        function peepNewKnight() {
+            const S = peepScene.clientWidth || 300;
+            const hw = (peepKnight.offsetWidth / 2 / S) || .14, hh = (peepKnight.offsetHeight / 2 / S) || .25;
+            let kx = .5, ky = .5, tries = 0;
+            do {
+                kx = .5 + (Math.random() - .5) * .62; ky = .5 + (Math.random() - .5) * .4; tries++;
+            } while (tries < 80 && (Math.hypot(Math.abs(kx - .5) + hw, Math.abs(ky - .5) + hh) > .47 || Math.hypot(kx - pk.x, ky - pk.y) < .2));
+            pk = { x: kx, y: ky, hw, hh };
+            peepKnight.style.left = kx * 100 + '%'; peepKnight.style.top = ky * 100 + '%';
+        }
+        function peepNextWaypoint() {
+            peepWp++;
+            if (peepWp % 3 === 0) { pw = { x: pk.x + (Math.random() - .5) * .08, y: pk.y + (Math.random() - .5) * .1 }; return; }
+            const a = Math.random() * 6.283, r = Math.sqrt(Math.random()) * .36; pw = { x: .5 + Math.cos(a) * r, y: .5 + Math.sin(a) * r };
+        }
+        function peepMessage(t) { if (peepMsg.textContent !== t) peepMsg.textContent = t; }
+        function peepKnocks() {
+            peepRun = false; peepLit = false;
+            peepMessage('Тук… тук… тук…');
+            [0, 330, 660].forEach(ms => setTimeout(() => {
+                if (!stages.peep.classList.contains('active')) return;
+                audio.playWoodKnock(.24, .32);
+                peepRing.classList.remove('knock'); void peepRing.offsetWidth; peepRing.classList.add('knock');
+            }, ms));
+            setTimeout(() => { if (!stages.peep.classList.contains('active')) return; peepRun = true; peepMessage('Вогник блукає темрявою…'); }, 1200);
+        }
+        function peepLoop(t) {
+            if (!stages.peep.classList.contains('active')) { peepRaf = 0; return; }
+            const dt = Math.min(.05, (t - (peepT || t)) / 1000); peepT = t;
+            const S = peepScene.clientWidth;
+            if (peepRun) {
+                const sp = .24 + peepRound * .04;
+                const dx = pw.x - po.x, dy = pw.y - po.y, d = Math.hypot(dx, dy);
+                if (d < .035) peepNextWaypoint();
+                else { const k = Math.min(1, dt * 2.2); pv.x += (dx / d * sp - pv.x) * k; pv.y += (dy / d * sp - pv.y) * k; }
+                po.x += pv.x * dt; po.y += pv.y * dt;
+                const off = Math.hypot(po.x - .5, po.y - .5); if (off > .42) { po.x = .5 + (po.x - .5) * .42 / off; po.y = .5 + (po.y - .5) * .42 / off; }
+            }
+            const ox = po.x * S, oy = po.y * S;
+            peepScene.style.setProperty('--lx', ox + 'px'); peepScene.style.setProperty('--ly', oy + 'px'); peepScene.style.setProperty('--lr', (S * .27) + 'px');
+            peepOrb.style.transform = 'translate(' + ox + 'px,' + oy + 'px)';
+            const lit = peepRun && !peepLock && (Math.pow((po.x - pk.x) / pk.hw, 2) + Math.pow((po.y - pk.y) / pk.hh, 2) <= 1.1);
+            if (lit !== peepLit) { peepLit = lit; peepScene.classList.toggle('lit', lit); if (peepRun && !peepLock) peepMessage(lit ? 'Щось темніє в сяйві… це він?' : 'Вогник блукає темрявою…'); }
+            peepRaf = requestAnimationFrame(peepLoop);
+        }
+        function startPeephole() {
+            peepRound = 0; peepLock = false; peepLit = false; peepWp = 0; peepCool = 0;
+            po = { x: .5, y: .5 }; pv = { x: 0, y: 0 }; pw = { x: .5, y: .5 }; pk = { x: .5, y: .5, hw: .14, hh: .25 };
+            peepScene.classList.remove('found', 'lit'); peepN.textContent = '1';
+            switchStage('peep');
+            peepNewKnight(); peepNextWaypoint(); peepKnocks();
+            cancelAnimationFrame(peepRaf); peepT = 0; peepRaf = requestAnimationFrame(peepLoop);
+        }
+        function peepStrike(e) {
+            if (e) e.preventDefault();
+            if (!stages.peep.classList.contains('active') || peepLock || !peepRun || performance.now() < peepCool) return;
+            const r = peepRing.getBoundingClientRect();
+            if (peepLit) {
+                peepLock = true; peepRound++; peepScene.classList.add('found'); peepScene.classList.remove('lit');
+                audio.playHit(); FX.burst(r.left + r.width / 2, r.top + r.height / 2, 34, .35, 6);
+                if (peepRound >= PEEP_ROUNDS) {
+                    peepMessage('Це лицар у чорних латах! Ключ повертається в замку…');
+                    FX.burst(innerWidth / 2, innerHeight / 2, 70, .4, 8);
+                    setTimeout(() => { audio.playVictory(); switchStage('sAgeInput'); }, 2000);
+                } else {
+                    peepMessage('Він! Але стук лунає знову…');
+                    setTimeout(() => {
+                        if (!stages.peep.classList.contains('active')) return;
+                        peepScene.classList.remove('found'); peepN.textContent = String(peepRound + 1);
+                        peepLock = false; peepNewKnight(); peepKnocks();
+                    }, 1500);
+                }
+            } else {
+                peepCool = performance.now() + 700; audio.playError();
+                peepMessage('Лише темрява… нікого. Зачекай, поки вогник впаде на силует.');
+                peepRing.classList.remove('miss'); void peepRing.offsetWidth; peepRing.classList.add('miss');
+            }
+        }
+        peepScene.addEventListener('pointerdown', peepStrike);
+        peepHit.addEventListener('click', peepStrike);
+        addEventListener('keydown', e => { if ((e.key === ' ' || e.key === 'Enter') && stages.peep.classList.contains('active') && e.target.tagName !== 'BUTTON') peepStrike(e); });
+
+        /* === polish: звук, зламані зображення === */
+        (function () {
+            const btn = document.getElementById('sound-toggle');
+            function setMuted(m) {
+                window.__muted = m;
+                document.querySelectorAll('audio').forEach(a => { a.muted = m; });
+                try { if (audio.ctx) { m ? audio.ctx.suspend() : audio.ctx.resume(); } } catch (e) {}
+                btn.classList.toggle('muted', m);
+                btn.setAttribute('aria-label', m ? 'Увімкнути звук' : 'Вимкнути звук');
+                btn.setAttribute('aria-pressed', String(m));
+            }
+            btn.addEventListener('click', () => setMuted(!window.__muted));
+            addEventListener('keydown', e => { if ((e.key === 'm' || e.key === 'M' || e.key === 'ь' || e.key === 'Ь') && !/INPUT|TEXTAREA/.test(e.target.tagName)) setMuted(!window.__muted); });
+            const skip = el => el.id === 'peepKnight' || el.id === 'lbImg' || el.closest('.fax-paper');
+            document.querySelectorAll('img').forEach(im => {
+                if (skip(im)) return;
+                const hide = () => { im.style.display = 'none'; };
+                im.addEventListener('error', hide);
+                if (im.complete && im.naturalWidth === 0 && im.getAttribute('src')) hide();
+            });
+        })();
+
+        /* Latin inscriptions (Cloister Black) + bokeh */
+        (function () {
+            const LAT = { 'stage-2': 'Archivum Secretum', 'stage-age-input': 'Custodia Portae', 'stage-3-1': 'Primum Iudicium', 'stage-3-2': 'Secundum Iudicium', 'stage-bridge': 'Pons Levatorius', 'stage-4': 'Epistola Regia', 'stage-5': 'Tres Calices', 'stage-author-rating': 'Sententia Finalis', 'stage-6': 'Finis Coronat Opus' };
+            for (const id in LAT) {
+                const st = document.getElementById(id); if (!st) continue;
+                const card = st.querySelector('.rdr-card,.letter-card,.game-panel,.offline-card'); if (!card) continue;
+                const d = document.createElement('div'); d.className = 'latin'; d.lang = 'la'; d.textContent = LAT[id]; card.prepend(d);
+            }
+            const bk = document.getElementById('bokeh');
+            for (let i = 0; i < 14; i++) {
+                const e = document.createElement('i'), z = 40 + Math.random() * 110;
+                e.style.cssText = `left:${Math.random() * 100}%;top:${40 + Math.random() * 60}%;width:${z}px;height:${z}px;--o:${.05 + Math.random() * .1};--dx:${(Math.random() - .5) * 120}px;animation-duration:${14 + Math.random() * 14}s;animation-delay:${-Math.random() * 20}s`;
+                bk.appendChild(e);
+            }
+        })();
+    </script>
+
+    <script>
+    /* === Літаючі мем-картинки: mem1.jpeg (Обурмалдіть), mem2.jpg (Лицар пішов), mem3.jpg (таймер) === */
+    (function () {
+        const MEM_COUNT = 1; /* скільки копій картинки літає на екрані */
+        const MEM = { s3_2: 'mem1.jpg', sUhod: 'mem2.jpg', s6: 'mem3.jpg' };
+        const layer = document.getElementById('mem-layer');
+        const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+        let items = [], raf = 0, last = 0;
+        const R = Math.random;
+
+        function clear() {
+            cancelAnimationFrame(raf); raf = 0;
+            items.forEach(it => { const el = it.el; el.classList.remove('show'); setTimeout(() => el.remove(), 900); });
+            items = [];
+        }
+
+        function spawn(src) {
+            const el = document.createElement('div');
+            el.className = 'mem-fly';
+            el.innerHTML = '<div class="mem-frame"><div class="mem-mat"><img alt="" draggable="false"></div></div>';
+            const img = el.querySelector('img');
+            img.addEventListener('error', () => { el.remove(); items = items.filter(i => i.el !== el); });
+            img.src = src;
+            layer.appendChild(el);
+            const a = R() * 6.283, sp = 70 + R() * 70;
+            const it = {
+                el, x: R() * Math.max(10, innerWidth - 200), y: R() * Math.max(10, innerHeight - 200),
+                vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, tvx: 0, tvy: 0,
+                rot: (R() - .5) * 30, vr: (R() - .5) * 26, next: 0
+            };
+            it.tvx = it.vx; it.tvy = it.vy;
+            items.push(it);
+            requestAnimationFrame(() => el.classList.add('show'));
+            return it;
+        }
+
+        function loop(t) {
+            const dt = Math.min(.05, (t - (last || t)) / 1000); last = t;
+            const W = innerWidth, H = innerHeight;
+            items.forEach(it => {
+                const w = it.el.offsetWidth, h = it.el.offsetHeight;
+                if (t > it.next) { /* час від часу змінюємо напрямок випадково */
+                    const a = R() * 6.283, sp = 60 + R() * 90;
+                    it.tvx = Math.cos(a) * sp; it.tvy = Math.sin(a) * sp; it.vr = (R() - .5) * 30;
+                    it.next = t + 2200 + R() * 3000;
+                }
+                const k = Math.min(1, dt * 1.4);
+                it.vx += (it.tvx - it.vx) * k; it.vy += (it.tvy - it.vy) * k;
+                it.x += it.vx * dt; it.y += it.vy * dt; it.rot += it.vr * dt;
+                if (it.x < 0) { it.x = 0; it.vx = it.tvx = Math.abs(it.vx); }
+                else if (it.x + w > W) { it.x = W - w; it.vx = it.tvx = -Math.abs(it.vx); }
+                if (it.y < 0) { it.y = 0; it.vy = it.tvy = Math.abs(it.vy); }
+                else if (it.y + h > H) { it.y = H - h; it.vy = it.tvy = -Math.abs(it.vy); }
+                if (Math.abs(it.rot) > 22) { it.rot = Math.sign(it.rot) * 22; it.vr = -it.vr; }
+                it.el.style.transform = 'translate3d(' + it.x.toFixed(1) + 'px,' + it.y.toFixed(1) + 'px,0) rotate(' + it.rot.toFixed(1) + 'deg)';
+            });
+            raf = requestAnimationFrame(loop);
+        }
+
+        function show(key) {
+            clear();
+            const src = MEM[key];
+            if (!src) return;
+            for (let i = 0; i < MEM_COUNT; i++) spawn(src);
+            if (reduce) { items.forEach(it => { it.vx = it.vy = it.tvx = it.tvy = it.vr = 0; }); }
+            last = 0; raf = requestAnimationFrame(loop);
+        }
+
+        const prev = window.__fxStage;
+        window.__fxStage = function (k) { if (prev) prev(k); show(k); };
+    })();
     </script>
 </body>
 </html>
