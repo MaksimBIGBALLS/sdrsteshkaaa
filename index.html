@@ -54,7 +54,6 @@
             mix-blend-mode: overlay;
         }
 
-        /* Локальне фонове зображення з папки: fonxxx.png із фільтром RDR2 */
         #bg-image-container {
             position: fixed;
             top: 0;
@@ -69,7 +68,6 @@
             filter: sepia(0.55) contrast(1.1) brightness(0.7);
         }
 
-        /* Дощ на фоні */
         #rain-canvas {
             position: fixed;
             top: 0;
@@ -81,7 +79,6 @@
             opacity: 0.4;
         }
 
-        /* Кінематографічна віньєтка */
         .rdr-vignette {
             position: fixed;
             inset: 0;
@@ -150,7 +147,6 @@
             pointer-events: none;
         }
 
-        /* Ретро-кнопки RDR2 */
         .rdr-btn {
             background:
                 linear-gradient(180deg, rgba(255,255,255,.035), transparent 35%),
@@ -185,7 +181,6 @@
             transform: scale(0.97);
         }
 
-        /* Інтро з годинником */
         #intro-lamp-wrap {
             display: flex;
             flex-direction: column;
@@ -228,7 +223,6 @@
             40%, 60% { transform: translate3d(6px, -1px, 0); }
         }
 
-        /* Досьє */
         .rdr-card {
             width: 100%;
             max-width: 720px;
@@ -278,7 +272,6 @@
             margin-top: 4px;
         }
 
-        /* Ігрові панелі */
         .game-panel {
             width: 100%;
             max-width: 760px;
@@ -402,7 +395,6 @@
             100% { opacity: 0; transform: translate(-50%, -160%) scale(1); }
         }
 
-        /* Пасхалка */
         #easter-egg-overlay {
             position: fixed;
             inset: 0;
@@ -451,7 +443,6 @@
             object-fit: contain;
         }
 
-        /* Шкала розслідування */
         #arena-investigation {
             flex: 1;
             position: relative;
@@ -529,7 +520,6 @@
             text-transform: uppercase;
         }
 
-        /* Факс-повідомлення */
         .letter-container {
             width: 100%;
             max-width: 650px;
@@ -688,7 +678,6 @@
             to { opacity: 1; }
         }
 
-        /* Міні-гра зі стаканами */
         .shell-game-panel {
             width: 100%;
             max-width: 760px;
@@ -935,7 +924,6 @@
             .mail-delivery-scene { min-height: 270px; }
         }
 
-        /* Заглушка / Таймер */
         .offline-card {
             width: 100%;
             max-width: 780px;
@@ -1001,8 +989,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-    
-        /* === Noir + Belle Epoque: warm gold with tarnished silver === */
+
         #pips{position:fixed;top:calc(10px + env(safe-area-inset-top));left:0;right:0;z-index:30;display:flex;justify-content:center;gap:8px;pointer-events:none}
         .pip{width:15px;height:15px;fill:none;stroke:var(--rdr-gold-dim);stroke-width:1.6;transition:.5s}
         .pip.on{fill:var(--rdr-gold);stroke:var(--silver);filter:drop-shadow(0 0 5px rgba(224,165,64,.5))}
@@ -1037,8 +1024,7 @@
         @keyframes letterSwing{from{transform:rotate(-12deg)}to{transform:rotate(10deg)}}
         @keyframes pigeonSilverFlight{0%{left:-28%;top:62%;transform:rotate(-8deg) scale(.8);opacity:0}10%{opacity:1}35%{left:24%;top:36%;transform:rotate(-2deg)}55%{left:46%;top:38%;transform:rotate(2deg)}100%{left:106%;top:10%;transform:rotate(10deg) scale(.78);opacity:.3}}
         @media (prefers-reduced-motion:reduce){.intro-title,.clock-icon-svg .hd,.mail-trail path{animation:none;stroke-dashoffset:0}}
-    
-        /* === MAX: baroque heart frame, dust, grain, rays, corners === */
+
         ::selection{background:#8a5d22;color:#0a0605}
         #frame{position:fixed;left:50%;top:50%;width:min(130vw,760px);height:auto;transform:translate(-50%,-50%);z-index:2;opacity:.2;pointer-events:none;filter:drop-shadow(0 0 22px rgba(224,165,64,.25));animation:breathe 7s ease-in-out infinite}
         @keyframes breathe{0%,100%{opacity:.14}50%{opacity:.27}}
@@ -1055,7 +1041,7 @@
         .sp{position:fixed;z-index:50;pointer-events:none;border-radius:50%;background:radial-gradient(circle,#fff6d8,#e0a540 60%,transparent);animation:spk .8s ease-out forwards}
         @keyframes spk{to{opacity:0;transform:translateY(-22px) scale(.2)}}
         @media (prefers-reduced-motion:reduce){#frame,#rays{animation:none}#bloom.go{animation:none}}
-            /* v-polish */
+
         #frame{width:auto;height:min(86vh,800px);max-width:130vw;aspect-ratio:600/660;opacity:0;animation:none}
         body.ready #frame{animation:fin 1.8s ease both,breathe 7s 1.8s ease-in-out infinite}
         @keyframes fin{from{opacity:0;transform:translate(-50%,-50%) scale(.82)}to{opacity:.2;transform:translate(-50%,-50%) scale(1)}}
@@ -1063,7 +1049,7 @@
         .clock-icon-svg{animation:beat 1.5s 1.9s ease-in-out infinite}
         @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
         @media (prefers-reduced-motion:reduce){body.ready #frame{animation:none;opacity:.2}.clock-icon-svg{animation:none}}
-            /* === pigeon v2 + attributes === */
+
         .mail-delivery-scene{background:#0a0605;border:3px double var(--rdr-gold-dim)}
         .mail-delivery-scene::after{display:none}
         .scene-svg{position:absolute;inset:0;width:100%;height:100%}
@@ -1086,7 +1072,7 @@
         .mail-delivery-caption .c2{opacity:0;color:var(--rdr-gold);animation:capIn .5s 4.5s forwards}
         @keyframes capOut{to{opacity:0}}@keyframes capIn{to{opacity:1}}
         .seal{position:absolute;right:22px;top:-28px;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#b0554a,#6e2a24 70%);box-shadow:0 4px 14px rgba(0,0,0,.7),inset 0 0 8px rgba(0,0,0,.5);outline:2px dotted rgba(232,164,106,.3);outline-offset:-8px;color:#e8c9bd;font:1.6rem var(--font-western);transform:rotate(-12deg);z-index:2}
-            /* === v3: livelier motion + lightbox === */
+
         @keyframes cardRise{from{opacity:0;transform:translateY(46px) scale(.93);filter:blur(8px)}60%{filter:blur(0)}to{opacity:1;transform:none;filter:none}}
         @keyframes cardGlow{50%{box-shadow:0 18px 55px rgba(0,0,0,.94),inset 0 0 38px rgba(0,0,0,.58),0 0 60px rgba(224,165,64,.16)}}
         @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
@@ -1126,7 +1112,7 @@
         .zoom-cue{text-align:center;font-style:italic;font-size:.9rem;color:#7a6350;padding-top:4px}
         @media (prefers-reduced-motion:reduce){.stage.active .rdr-card,.stage.active .letter-card,.stage.active .game-panel,.stage.active .rdr-card>*,.stage.active .letter-card>*,.rdr-btn,.pip.on,.floating-evidence,.time-num,.progress-fill,.offline-title,.scene-svg .tw,.scene-svg .cl,.scene-svg .march{animation:none}#lbImg{transition:none}}
             #stage-4.stage.active::after{display:none}
-            /* === v4: gate + juice === */
+
         #fx{position:fixed;inset:0;width:100%;height:100%;z-index:45;pointer-events:none}
         .rdr-btn{translate:var(--bx,0px) var(--by,0px);transition:translate .2s ease-out,background .2s,color .2s,box-shadow .3s,border-color .2s}
         .rdr-btn:disabled{opacity:.6;cursor:not-allowed;filter:grayscale(.6);animation:none;border-style:dashed}
@@ -1143,14 +1129,14 @@
         .stamp.go{animation:slam .6s cubic-bezier(.2,1.4,.4,1) forwards}
         @keyframes slam{0%{opacity:0;transform:translate(-50%,-50%) rotate(-14deg) scale(3.4)}55%{opacity:.95;transform:translate(-50%,-50%) rotate(-14deg) scale(.9)}100%{opacity:.88;transform:translate(-50%,-50%) rotate(-14deg) scale(1)}}
         @media (prefers-reduced-motion:reduce){.need-view,button.zoom-cue.need,.rdr-btn.unlocked{animation:none}.stamp.go{animation:none;opacity:.88}}
-            /* === v5: Kingdom of knights & princesses === */
+
         .flag{transform-box:fill-box;transform-origin:0 50%;animation:wave 1.3s ease-in-out infinite alternate}
         @keyframes wave{to{transform:skewY(12deg) scaleX(.82)}}
         .intro-title{font-size:clamp(1.8rem,7vw,3rem)}
         .clock-icon-svg{filter:drop-shadow(0 0 22px rgba(224,165,64,.35))}
         body{background-image:radial-gradient(ellipse at 50% 18%,#4a1218 0,#1f0c0b 46%,#0a0605 82%)}
         @media (prefers-reduced-motion:reduce){.flag{animation:none}}
-            /* === v6: GOTHIC HALL === */
+
         #floor{position:fixed;left:0;right:0;bottom:0;height:30vh;z-index:2;pointer-events:none;background:linear-gradient(0deg,rgba(224,165,64,.13),rgba(179,32,47,.05) 45%,transparent)}
         #rain{opacity:.16}
         h1,h2,.game-title,.access-badge{letter-spacing:.05em}
@@ -1161,7 +1147,7 @@
         .br-track.miss{animation:brMiss .4s}
         @keyframes brMiss{25%{box-shadow:inset 0 0 26px #b3202f;transform:translateX(-5px)}60%{transform:translateX(5px)}}
         .br-chains{font-size:1.7rem;letter-spacing:.35rem;min-height:2.2rem;filter:drop-shadow(0 0 6px rgba(224,165,64,.45))}
-            /* === v7: GRACEFUL - Cloister Black, filigree, bokeh === */
+
         @font-face{font-family:'Cloister Black';src:local('Cloister Black'),local('CloisterBlack'),local('Cloister Black Regular'),url('CloisterBlack.woff2') format('woff2'),url('CloisterBlack.ttf') format('truetype'),url('CloisterBlack.otf') format('opentype'),url('Cloister Black.ttf') format('truetype');font-display:swap}
         :root{--font-western:'Cloister Black','UnifrakturCook','EB Garamond',Georgia,serif;--font-mono:'EB Garamond',Georgia,serif}
         body{font-family:'EB Garamond',Georgia,serif}
@@ -1180,9 +1166,6 @@
         @keyframes bk{0%{transform:translate(0,0) scale(1);opacity:0}20%{opacity:var(--o)}80%{opacity:var(--o)}100%{transform:translate(var(--dx),-140px) scale(1.25);opacity:0}}
         @media (prefers-reduced-motion:reduce){#bokeh i{animation:none;opacity:.08}}
 
-        /* ===================================================================
-           v8: ГОТИЧНА ЗАЛА - стиль з фото (свічі, бордовий оксамит, золото, темний мармур)
-           =================================================================== */
         @font-face{font-family:'GothicCustom';src:local('GothicCustom'),url('gothic.woff2') format('woff2'),url('gothic.ttf') format('truetype'),url('gothic.otf') format('opentype');font-display:swap}
         :root{
             --rdr-dark:#070405; --rdr-paper:#160d10; --rdr-paper-trans:rgba(17,10,13,.93);
@@ -1195,12 +1178,10 @@
             --dm:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 .5L11.5 6L6 11.5L.5 6Z' fill='%23e8b765' stroke='%23fff0c8' stroke-width='.5'/%3E%3C/svg%3E");
         }
 
-        /* фон: сама зала з фото, без сепії */
         #bg-image-container{filter:brightness(.82) saturate(1.08) contrast(1.05)}
         #rain-canvas{opacity:.22}
         .rdr-vignette{background:radial-gradient(circle at 50% 46%,transparent 30%,rgba(5,2,3,.6) 70%,rgba(5,2,3,.95) 100%),linear-gradient(180deg,rgba(255,170,70,.03),transparent 22%,transparent 78%,rgba(40,0,6,.28))}
 
-        /* миготіння свічок з боків і від люстри */
         #candles{position:fixed;inset:0;z-index:2;pointer-events:none;mix-blend-mode:screen;
             background:
                 radial-gradient(circle at 4% 24%,rgba(255,170,70,.34),transparent 15%),
@@ -1212,7 +1193,6 @@
         @keyframes candleFlicker{0%,100%{opacity:.85}9%{opacity:1}19%{opacity:.68}31%{opacity:.96}46%{opacity:.76}58%{opacity:1}71%{opacity:.8}86%{opacity:.95}}
         @media (prefers-reduced-motion:reduce){#candles{animation:none;opacity:.8}}
 
-        /* текст: читабельний гарамонд, заголовки - готичні */
         body,.rdr-lines,.rdr-line,.game-desc,.shell-status-text,.peep-desc,p{font-family:'EB Garamond',Georgia,serif}
         .rdr-lines{font-size:clamp(1.05rem,2.6vw,1.3rem)}
         .game-desc{font-size:clamp(1rem,2.4vw,1.15rem)}
@@ -1227,7 +1207,6 @@
         .floating-evidence{font-family:'Cormorant SC','EB Garamond',serif!important;font-weight:700}
         .intro-title{font-weight:700}
 
-        /* панелі: темний мармур у золотій оправі */
         .rdr-card,.letter-card,.offline-card,.game-panel,.shell-game-panel,.fail-box,.easter-egg-box{
             background:
                 radial-gradient(120% 55% at 50% -8%,rgba(255,184,92,.12),transparent 62%),
@@ -1239,12 +1218,10 @@
             box-shadow:0 22px 60px rgba(0,0,0,.95),inset 0 0 55px rgba(0,0,0,.65),0 0 55px rgba(255,170,70,.09)}
         .fail-box,.easter-egg-box{border-color:rgba(200,60,70,.75)!important;box-shadow:0 22px 60px rgba(0,0,0,.95),inset 0 0 55px rgba(0,0,0,.65),0 0 40px rgba(170,30,45,.3)}
 
-        /* готична арка-фронтон над карткою */
         .rdr-card::before,.letter-card::before,.offline-card::before,.fail-box::before{
             top:-31px;width:140px;height:32px;
             background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 32'%3E%3Cpath d='M0 32C40 30 56 18 70 4C84 18 100 30 140 32Z' fill='%23140a0d' stroke='%23e8b765' stroke-width='1.4'/%3E%3Cpath d='M70 11C66 16 66 21 70 26C74 21 74 16 70 11Z' fill='%23e8b765'/%3E%3Ccircle cx='70' cy='3' r='2.2' fill='%23e8b765'/%3E%3C/svg%3E") center/contain no-repeat!important}
 
-        /* шапки ігор - бордовий оксамит із золотою торочкою */
         .game-header{position:relative;background:linear-gradient(180deg,#7d1527 0%,#4b0a16 60%,#33060f 100%)!important;border-bottom:2px solid var(--rdr-gold)!important;box-shadow:inset 0 1px 0 rgba(255,225,170,.3),inset 0 -14px 24px rgba(0,0,0,.35)}
         .game-header::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:10px;pointer-events:none;
             background:repeating-linear-gradient(90deg,var(--rdr-gold) 0 2px,transparent 2px 7px);opacity:.75;
@@ -1252,7 +1229,6 @@
         .game-badge{background:linear-gradient(180deg,#2a0a10,#14070a);border:1px solid var(--rdr-gold);color:#f6dfaa}
         .game-desc{background:rgba(12,7,9,.8)}
 
-        /* кнопки: бордовий оксамит, золоті ромби, свічкове сяйво */
         .rdr-btn{
             font-family:var(--font-gothic)!important;font-style:normal!important;font-weight:700;
             font-size:clamp(1.1rem,2.7vw,1.35rem)!important;letter-spacing:.07em;text-transform:none!important;
@@ -1268,7 +1244,6 @@
         .rdr-btn:hover{color:#fff;filter:brightness(1.22);box-shadow:0 0 30px rgba(255,170,70,.45),inset 0 1px 0 rgba(255,225,170,.45)}
         .rdr-btn:disabled{filter:grayscale(.7) brightness(.8)}
 
-        /* печатки, шкали, таймер */
         .progress-track{background:#0d0608;border:1px solid var(--rdr-gold)}
         .progress-fill{background:linear-gradient(90deg,#6e0f1d,#b3202f,#e8b765,#f6dfaa);background-size:200% 100%}
         .time-unit{background:linear-gradient(180deg,#2a0a10,#12070a);border:1px solid var(--rdr-gold)}
@@ -1279,7 +1254,6 @@
         .noir-cup{background:linear-gradient(180deg,#5a0f1c,#2a060d);border-color:var(--rdr-gold)}
         .fax-machine{background:linear-gradient(145deg,#2a1216,#120709 70%)}
 
-        /* ===== Випробування I: вічко у брамі ===== */
         #stage-peep{overflow-y:auto;justify-content:safe center}
         .peep-card{max-width:580px!important;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:22px 22px 24px}
         .peep-desc{font-size:clamp(.95rem,2.3vw,1.1rem);line-height:1.45;color:var(--rdr-dim);max-width:48ch}
@@ -1316,11 +1290,6 @@
         .peep-msg{min-height:1.6em;font-style:italic;font-size:1.1rem;color:var(--rdr-text)}
         @media (max-height:700px){.peep-desc{font-size:.9rem}.peep-card{gap:7px;padding:16px}}
 
-
-        /* ===================================================================
-           v9: лицар передає свиток, фон shar.png, шар під кубками, шліфування
-           =================================================================== */
-        /* другий фон (shar.png) плавно підміняє залу на час гри */
         #bg-image-container{transition:opacity 1.2s ease}
         #bg-shar{position:fixed;inset:0;z-index:1;pointer-events:none;background:url('shar.png') center/cover no-repeat;opacity:0;transition:opacity 1.2s ease;filter:brightness(.82) contrast(1.05)}
         body.bg-shar #bg-shar{opacity:1}
@@ -1328,7 +1297,6 @@
         body.bg-shar #candles{animation:none;opacity:0}
         #candles{transition:opacity 1.2s ease}
 
-        /* розповідь: лицар передає свиток та підіймає забрало */
         .knight-narr{display:flex;align-items:center;justify-content:center;gap:14px;width:100%;max-width:600px;padding:8px 14px;
             background:linear-gradient(90deg,transparent,rgba(110,15,29,.55) 12%,rgba(110,15,29,.55) 88%,transparent);
             border-top:1px solid rgba(232,183,101,.5);border-bottom:1px solid rgba(232,183,101,.5)}
@@ -1342,19 +1310,16 @@
         @keyframes visorGlow{0%{box-shadow:0 0 0 rgba(255,220,150,0)}40%{box-shadow:0 0 34px 8px rgba(255,220,150,.85)}100%{box-shadow:0 0 18px rgba(255,170,70,.35)}}
         .letter-container{gap:12px}
 
-        /* лицар пропонує гру */
         .offer-knight{height:min(26vh,210px);width:auto;max-width:60vw;object-fit:contain;pointer-events:none;
             filter:drop-shadow(0 0 18px rgba(255,170,70,.3)) drop-shadow(0 12px 14px #000);animation:knightIdle 4.5s ease-in-out infinite}
         @keyframes knightIdle{50%{transform:translateY(-5px)}}
 
-        /* шар під кубком */
         .prize-item.prize-ball{width:54px;height:54px;bottom:14px;border-radius:50%;filter:none;
             background:radial-gradient(circle at 32% 28%,#fff6dc 0 7%,#ffd27a 16%,#d1404a 52%,#5a0b17 100%);
             box-shadow:inset -7px -9px 13px rgba(0,0,0,.5),0 0 18px rgba(255,170,70,.5)}
         .prize-item.prize-ball::after{content:"";position:absolute;left:50%;bottom:-8px;width:70%;height:9px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.65),transparent 70%)}
         .cup-slot:focus-visible{outline:2px solid var(--silver);outline-offset:6px;border-radius:4px}
 
-        /* кнопка звуку */
         #sound-toggle{position:fixed;top:calc(12px + env(safe-area-inset-top));right:14px;z-index:60;width:42px;height:42px;display:grid;place-items:center;padding:0;cursor:pointer;
             color:var(--rdr-gold);background:linear-gradient(180deg,#5a0f1c,#2a060d);border:1px solid var(--rdr-gold);border-radius:50%;box-shadow:0 4px 14px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,225,170,.3);transition:filter .2s,transform .2s}
         #sound-toggle:hover{filter:brightness(1.3)}#sound-toggle:active{transform:scale(.92)}
@@ -1362,7 +1327,6 @@
         #sound-toggle svg{width:22px;height:22px}
         #sound-toggle .off{display:none}#sound-toggle.muted .on{display:none}#sound-toggle.muted .off{display:inline}
 
-        /* шліфування: прокрутка на низьких екранах, фокус, мобільні */
         #stage-2,#stage-age-input,#stage-4,#stage-5,#stage-author-rating,#stage-6{overflow-y:auto;justify-content:safe center;scrollbar-width:thin;scrollbar-color:#8f6428 transparent}
         #stage-4 .fax-paper-window{--fax-paper-height:clamp(200px,38vh,360px)}
         #stage-4 .fax-paper img{max-height:min(280px,30vh)}
@@ -1379,8 +1343,6 @@
         @media (max-height:640px){.offer-knight{height:18vh}.knight-narr{padding:5px 10px}}
         @media (prefers-reduced-motion:reduce){.offer-knight,.knight-narr .n1,.knight-narr .n2,.kn-face{animation:none!important;opacity:1}}
 
-    
-        /* Екран "Лицар пішов" */
         #stage-uhod{padding:0;cursor:pointer}
         #stage-uhod .uhod-bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,3,2,.15),rgba(5,3,2,.1) 45%,rgba(5,3,2,.78)),url('uhod.png') center/cover no-repeat #0a0605;filter:sepia(.35) contrast(1.05) brightness(.85)}
         #stage-uhod .uhod-text{position:relative;z-index:2;margin-top:auto;padding:0 24px calc(11vh + env(safe-area-inset-bottom));text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
@@ -1391,8 +1353,7 @@
         #stage-uhod.active .uhod-sub{animation:uhodIn 1.6s .6s ease both}
         #stage-uhod.active .uhod-hint{animation:uhodIn 1.2s 3s ease both}
         @keyframes uhodIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-    
-        /* ===== Літаючі мем-картинки в золотих рамах ===== */
+
         #mem-layer{position:fixed;inset:0;z-index:15;pointer-events:none;overflow:hidden}
         .mem-fly{position:absolute;left:0;top:0;width:clamp(96px,17vw,170px);opacity:0;transition:opacity .9s ease;will-change:transform}
         .mem-fly.show{opacity:1}
@@ -1442,7 +1403,6 @@
     <div id="mem-layer" aria-hidden="true"></div>
     <main id="app-wrapper">
 
-        <!-- Етап 1: Інтро -->
         <section id="stage-1" class="stage active">
             <div id="intro-lamp-wrap">
                 <svg class="clock-icon-svg" viewBox="0 0 400 400" aria-hidden="true">
@@ -1461,7 +1421,6 @@
             <div id="countdown-display" data-num="3">3</div>
         </section>
 
-        <!-- Етап 2: Завантаження досьє -->
         <section id="stage-2" class="stage">
             <div class="rdr-card">
                 <div class="rdr-header">
@@ -1472,7 +1431,6 @@
             </div>
         </section>
 
-                <!-- Етап: Вічко у брамі (хтось стукає) -->
         <section id="stage-peep" class="stage">
             <div class="rdr-card peep-card">
                 <div class="access-badge">● ХТОСЬ СТУКАЄ У БРАМУ // ВИПРОБУВАННЯ I</div>
@@ -1494,7 +1452,6 @@
             </div>
         </section>
 
-        <!-- Етап: Введення віку -->
         <section id="stage-age-input" class="stage">
             <div class="rdr-card" style="max-width: 460px; text-align: center; display: flex; flex-direction: column; gap: 16px;">
                 <h2 style="color: var(--rdr-gold); font-size: 1.2rem; font-family: var(--font-western);">Лицар питає крізь двері</h2>
@@ -1512,7 +1469,6 @@
             </div>
         </section>
 
-        <!-- Етап 3.1: Пошук вуликів -->
         <section id="stage-3-1" class="stage">
             <div class="game-panel">
                 <div class="game-header">
@@ -1526,7 +1482,6 @@
             </div>
         </section>
 
-        <!-- Пасхалка -->
         <div id="easter-egg-overlay">
             <div class="easter-egg-box">
                 <div class="easter-egg-alert">⚠ ХИБНА ПЕЧАТКА // ВАРТА ПОЧУЛА ШЕЛЕСТ ⚠</div>
@@ -1535,7 +1490,6 @@
             </div>
         </div>
 
-        <!-- Етап 3.2: Шкала тиску -->
         <section id="stage-3-2" class="stage">
             <div class="game-panel">
                 <div class="game-header">
@@ -1562,7 +1516,6 @@
             </div>
         </section>
 
-        <!-- Етап 4: Факс-повідомлення -->
         <section id="stage-bridge" class="stage">
             <div class="rdr-card" style="max-width: 640px; text-align: center; display: flex; flex-direction: column; gap: 14px;">
                 <div class="access-badge">● ПІДЙОМНИЙ МІСТ // ВИПРОБУВАННЯ IV</div>
@@ -1615,7 +1568,6 @@
             </div>
         </section>
 
-        <!-- Етап 5: Схованка з коробками -->
         <section id="stage-5" class="stage">
             <div id="gift-intro-view" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 16px;">
                 <img class="offer-knight" src="ricar.png" alt="Лицар з піднятим забралом" draggable="false">
@@ -1692,7 +1644,6 @@
             </div>
         </section>
 
-        <!-- Етап: Лицар пішов -->
         <section id="stage-uhod" class="stage">
             <div class="uhod-bg"></div>
             <div class="uhod-text">
@@ -1702,16 +1653,15 @@
             </div>
         </section>
 
-        <!-- Етап: Оцінка автора -->
         <section id="stage-author-rating" class="stage">
             <div class="rdr-card" style="max-width: 520px; text-align: center; display: flex; flex-direction: column; gap: 14px;">
                 <div class="access-badge">● Остаточний вирок літописця</div>
                 <h2 style="color: #fff; font-size: 1.2rem; font-family: var(--font-western);">Оціни працю майстра-розробника: <span style="color: var(--rdr-gold);">MaksimBIGBALLS</span></h2>
                 <p style="color: var(--rdr-dim); font-size: 0.85rem; font-family: var(--font-mono);">Постав бали за заслуги:</p>
-                
+
                 <div style="display: flex; flex-direction: column; gap: 4px; text-align: left;">
                     <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--rdr-dim); font-family: var(--font-mono);">
-                        <span>1. Звитяга:</span>
+                        <span>1. Задумка:</span>
                         <span id="val-crit-1" style="color: var(--rdr-gold); font-weight: bold;">100/100</span>
                     </div>
                     <input type="range" id="crit-1" min="1" max="100" value="100" style="accent-color: var(--rdr-gold); cursor: pointer;">
@@ -1719,7 +1669,7 @@
 
                 <div style="display: flex; flex-direction: column; gap: 4px; text-align: left;">
                     <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--rdr-dim); font-family: var(--font-mono);">
-                        <span>2. Похмура велич:</span>
+                        <span>2. Дизайн:</span>
                         <span id="val-crit-2" style="color: var(--rdr-gold); font-weight: bold;">100/100</span>
                     </div>
                     <input type="range" id="crit-2" min="1" max="100" value="100" style="accent-color: var(--rdr-gold); cursor: pointer;">
@@ -1727,7 +1677,7 @@
 
                 <div style="display: flex; flex-direction: column; gap: 4px; text-align: left;">
                     <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--rdr-dim); font-family: var(--font-mono);">
-                        <span>3. BIGBALLS:</span>
+                        <span>3. Ступєнькі:</span>
                         <span id="val-crit-3" style="color: var(--rdr-gold); font-weight: bold;">100/100</span>
                     </div>
                     <input type="range" id="crit-3" min="1" max="100" value="100" style="accent-color: var(--rdr-gold); cursor: pointer;">
@@ -1739,7 +1689,6 @@
             </div>
         </section>
 
-        <!-- Негативна оцінка -->
         <div id="negative-rating-overlay" style="position: fixed; inset: 0; background: rgba(10, 7, 5, 0.92); z-index: 95; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;">
             <div class="easter-egg-box" style="max-width: 420px; display: flex; flex-direction: column; gap: 14px; align-items: center;">
                 <div style="color: var(--rdr-orange); font-weight: bold; font-size: 1.2rem; font-family: var(--font-western);">А за шо нєгатів?</div>
@@ -1748,7 +1697,6 @@
             </div>
         </div>
 
-        <!-- Етап 6: Фінальний таймер -->
         <section id="stage-6" class="stage">
             <div class="offline-card">
                 <div class="seal" aria-hidden="true">⚜</div>
@@ -2180,9 +2128,6 @@
                 } catch (e) {}
             }
 
-            /* ===== Музика перемішування: «Блеф на Дикому Заході» =====
-               Синтезована в реальному часі: темп 92 BPM (удар = 0.65 с, як і обміни кубків),
-               ре мінор, контрабас, гітарний твенг, ковбойський свист/наспівування, щітки та тихий там-там. */
             _shuffleBusInit() {
                 if (this.shuffleBus) return;
                 const c = this.ctx;
@@ -2257,7 +2202,6 @@
                 o.stop(t + 0.32);
             }
 
-            // свист / наспівування з вібрато
             _sHum(freq, t, dur, vol) {
                 const c = this.ctx;
                 const o1 = c.createOscillator();
@@ -2289,13 +2233,12 @@
             }
 
             _shuffleStep(step, t) {
-                const sd = this.shuffleBeat / 2;           // 1/8 нота
-                const s = step % 32;                        // 4 такти по 8 вісімок
+                const sd = this.shuffleBeat / 2;
+                const s = step % 32;
                 const bar = Math.floor(s / 8);
                 const inBar = s % 8;
                 const beat = inBar / 2;
 
-                // Dm | Bb | C | A7
                 const roots  = [73.42, 58.27, 65.41, 55.00];
                 const fifths = [110.00, 87.31, 98.00, 82.41];
                 const chords = [
@@ -2311,18 +2254,17 @@
                     24: [659.25, 2], 26: [554.37, 2], 28: [440.00, 4]
                 };
 
-                // контрабас
                 if (inBar % 2 === 0) {
                     const fq = (beat % 2 === 0) ? roots[bar] : fifths[bar];
                     this._sTone('triangle', fq, t, sd * 1.8, 0.34, 420, 0.012);
                     this._sTone('sine', fq * 2, t, sd * 0.9, 0.05, 700, 0.01);
                 }
-                // тихий там-там на 1 і 3
+
                 if (inBar === 0 || inBar === 4) this._sKick(t, inBar === 0 ? 0.36 : 0.24);
-                // щітки: хет на кожній вісімці + «шурх» на 2 і 4
+
                 this._sNoise(t, 0.04, inBar % 2 ? 0.05 : 0.028, 'highpass', 6500);
                 if (inBar === 2 || inBar === 6) this._sNoise(t, 0.13, 0.075, 'bandpass', 1900, 0.8);
-                // гітарний твенг по слабких долях
+
                 if (inBar % 2 === 1) {
                     const ch = chords[bar];
                     const fq = ch[[0, 1, 2, 1][(inBar - 1) / 2]] * ((inBar === 7) ? 2 : 1);
@@ -2330,7 +2272,7 @@
                     this._sTone('sine', fq * 2.01, t, 0.22, 0.02, 3000, 0.004);
                     this._sNoise(t, 0.02, 0.012, 'highpass', 2500);
                 }
-                // свист-наспівування
+
                 if (melody[s]) this._sHum(melody[s][0], t, melody[s][1] * sd * 0.96, 0.11);
             }
 
@@ -2708,9 +2650,9 @@
             ageCounterBadge.textContent = `Печаток: 0 / 3`;
 
             const target = CONFIG.age;
-            const mandatoryDecoys = [12, 21, 404, 999].filter(n => n !== target);
+            const mandatoryDecoys = [12, 21, 404, 1488].filter(n => n !== target);
             const extraDecoys = [25, 69, 100, 228, 777, 16, 5, 88].filter(n => n !== target);
-            
+
             const numbersToSpawn = [
                 { val: target, isTarget: true },
                 { val: target, isTarget: true },
@@ -2772,7 +2714,7 @@
                                 startMiniGame2();
                             }, 650);
                         }
-                    } else if (entity.val === 999) {
+                    } else if (entity.val === 1488) {
                         openEasterEgg();
                         entity.vx = -entity.vx;
                         entity.vy = -entity.vy;
@@ -2881,7 +2823,7 @@
             if (investigationVal >= 100) {
                 investigationCompleted = true;
                 clearInterval(investigationDecayInterval);
-                investigationStatus.textContent = '100% СКРІПЛЕНО ПРИСЯГОЮ';
+                investigationStatus.textContent = '100% ДОВІРА';
                 investigationStatus.style.background = '#1c3a27';
                 audio.playHit();
 
@@ -2925,7 +2867,6 @@
             startGiftStageIntro();
         });
 
-        /* фон shar.png на час гри з кубками; після гри повертається звичайний */
         const sharProbe = new Image(); sharProbe.src = 'shar.png';
         function setSharBackground(on) {
             document.body.classList.toggle('bg-shar', !!on && sharProbe.complete && sharProbe.naturalWidth > 0);
@@ -3215,7 +3156,6 @@
 
         document.getElementById('full-restart-btn').addEventListener('click', resetEntireProtocol);
 
-        /* gold dust + cursor sparkles */
         (function () {
             if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
             const dc = document.getElementById('dust'), dx = dc.getContext('2d');
@@ -3245,14 +3185,13 @@
             });
         })();
 
-        /* parallax */
         addEventListener('pointermove', e => {
             if (e.pointerType === 'touch') return;
             const r = document.documentElement.style;
             r.setProperty('--mx', ((e.clientX / innerWidth - .5) * -28) + 'px');
             r.setProperty('--my', ((e.clientY / innerHeight - .5) * -20) + 'px');
         }, { passive: true });
-        /* lightbox for the fax postcard */
+
         (function () {
             const img = document.querySelector('.fax-paper img'); if (!img) return;
             const lb = document.getElementById('lb'), li = document.getElementById('lbImg');
@@ -3276,7 +3215,6 @@
             img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
             const cue = document.createElement('button'); cue.type = 'button'; cue.className = 'zoom-cue'; cue.textContent = 'Торкніться грамоти, щоб розгорнути та роздивитись'; cue.onclick = open; img.after(cue);
 
-            /* gate: cannot leave the fax until the postcard has been viewed */
             const btn = document.getElementById('to-gift-stage-btn'), btnHTML = btn.innerHTML.trim();
             const LOCK = '<svg class="lk" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
             const stamp = document.createElement('div'); stamp.className = 'stamp'; stamp.textContent = 'ЗАВІРЕНО'; stamp.setAttribute('aria-hidden', 'true'); img.parentElement.appendChild(stamp);
@@ -3326,7 +3264,6 @@
             });
         })();
 
-        /* particle engine: bursts, fireworks, heart rain */
         const FX = (function () {
             const cv = document.getElementById('fx'), c = cv.getContext('2d'), reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
             let P = [], run = false, fw = 0, rn = 0;
@@ -3358,7 +3295,7 @@
         document.addEventListener('pointerdown', e => {
             if (e.target.closest && e.target.closest('button:not(:disabled),.floating-evidence,[class*="box"],[class*="cup"]')) FX.burst(e.clientX, e.clientY, 10, .25, 4);
         }, true);
-        /* magnetic buttons */
+
         let mb = null;
         document.addEventListener('pointermove', e => {
             const b = e.target.closest && e.target.closest('.rdr-btn:not(:disabled)');
@@ -3369,7 +3306,6 @@
             b.style.setProperty('--by', ((e.clientY - r.top - r.height / 2) / r.height * 10).toFixed(1) + 'px');
         }, { passive: true });
 
-        /* === Випробування III: підйомний міст === */
         let brHits = 0, brRaf = 0, brNext = null, brT0 = 0, brP = 0, brZ = [.4, .26], brLock = false;
         const brNeedle = document.getElementById('brNeedle'), brZone = document.getElementById('brZone'), brMsg = document.getElementById('brMsg'), brCh = document.getElementById('brChains'), brTrack = document.getElementById('brTrack');
         function brNewZone() { const w = [.3, .24, .19][Math.min(brHits, 2)]; brZ = [.08 + Math.random() * (.84 - w), w]; brZone.style.left = brZ[0] * 100 + '%'; brZone.style.width = w * 100 + '%'; }
@@ -3391,7 +3327,6 @@
         const _afterBridge = startFinalStage;
         startFinalStage = function () { startBridge(_afterBridge); };
 
-        /* === Випробування I: вічко у брамі === */
         const PEEP_ROUNDS = 3;
         const peepScene = document.getElementById('peepScene'), peepKnight = document.getElementById('peepKnight'), peepOrb = document.getElementById('peepOrb'),
               peepMsg = document.getElementById('peepMsg'), peepN = document.getElementById('peepN'), peepRing = document.getElementById('peepRing'), peepHit = document.getElementById('peepHit');
@@ -3483,7 +3418,6 @@
         peepHit.addEventListener('click', peepStrike);
         addEventListener('keydown', e => { if ((e.key === ' ' || e.key === 'Enter') && stages.peep.classList.contains('active') && e.target.tagName !== 'BUTTON') peepStrike(e); });
 
-        /* === polish: звук, зламані зображення === */
         (function () {
             const btn = document.getElementById('sound-toggle');
             function setMuted(m) {
@@ -3505,7 +3439,6 @@
             });
         })();
 
-        /* Latin inscriptions (Cloister Black) + bokeh */
         (function () {
             const LAT = { 'stage-2': 'Archivum Secretum', 'stage-age-input': 'Custodia Portae', 'stage-3-1': 'Primum Iudicium', 'stage-3-2': 'Secundum Iudicium', 'stage-bridge': 'Pons Levatorius', 'stage-4': 'Epistola Regia', 'stage-5': 'Tres Calices', 'stage-author-rating': 'Sententia Finalis', 'stage-6': 'Finis Coronat Opus' };
             for (const id in LAT) {
@@ -3523,9 +3456,9 @@
     </script>
 
     <script>
-    /* === Літаючі мем-картинки: mem1.jpeg (Обурмалдіть), mem2.jpg (Лицар пішов), mem3.jpg (таймер) === */
+
     (function () {
-        const MEM_COUNT = 1; /* скільки копій картинки літає на екрані */
+        const MEM_COUNT = 1;
         const MEM = { s3_2: 'mem1.jpg', sUhod: 'mem2.jpg', s6: 'mem3.jpg' };
         const layer = document.getElementById('mem-layer');
         const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -3563,7 +3496,7 @@
             const W = innerWidth, H = innerHeight;
             items.forEach(it => {
                 const w = it.el.offsetWidth, h = it.el.offsetHeight;
-                if (t > it.next) { /* час від часу змінюємо напрямок випадково */
+                if (t > it.next) {
                     const a = R() * 6.283, sp = 60 + R() * 90;
                     it.tvx = Math.cos(a) * sp; it.tvy = Math.sin(a) * sp; it.vr = (R() - .5) * 30;
                     it.next = t + 2200 + R() * 3000;
